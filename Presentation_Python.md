@@ -27,11 +27,9 @@
 	* Ni interprété, ni compilé
 	* Orienté objet et fonctionnel
 	* A typage dynamique fort
-	* Performant
 	* Associable
 	* Un langage de haut niveau
 	* Facile à lire et à écrire
-		* Délimitation des structures par l'indentation
 
 ## Usages de Python ##
 * Scripts métier
