@@ -81,9 +81,9 @@ La première lettre, colonne "l", est codée avec la ligne "e" : on obtient "p".
 
 Le cryptage complet de la chaîne donne :
 
-|** Texte en clair** | l'informatique c'est de la balle! |
-|:-------------------|:----------------------------------|
-| **Texte chiffré**  | p'vflseegxviai p'wyx qw re osrpr. |
+| ** Texte en clair** | l'informatique c'est de la balle! |
+|:--------------------|:----------------------------------|
+| **Texte chiffré**   | p'vflseegxviai p'wyx qw re osrpr. |
 
 
 1. Ecrivez une fonction `table_vigenere()` retournant une table de Vigenère sous forme d'un liste de listes.
@@ -98,6 +98,7 @@ La fonction doit parcourir une à une les lettres du texte à coder, les associe
 Dans cette partie, nous cherchons à décrypter un message, sans connaître la clé utilisée lors du cryptage.
 
 Pour cette partie, nous avons traduit un même message à l'aide des trois méthodes étudiées prcédement. Les résultats sont les suivants :
+
 * `a = "p'vflseegxviai p'wyx qw re osrpr. gt c ssox qwy xemiw cjgxviaif egmf xgyg soqrj rif egxuéegxviaif."`
 * `b = "p'mrjsvqexmuyi g'iwx hi pe feppi. sr c jemx hiw xvygw tvexmuyiw qemw jeyx emqiv piw qexléqexmuyiw."`
 * `c = "l'qsfmratiquen c'ngi dn lt btlln. ms y cmdn dng irecg prtiqueng atqg ftei tqanr lng atihéatiqueng."`
