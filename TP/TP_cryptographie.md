@@ -81,9 +81,9 @@ La première lettre, colonne "l", est codée avec la ligne "e" : on obtient "p".
 
 Le cryptage complet de la chaîne donne :
 
-| ** Texte en clair** | l'informatique c'est de la balle! |
-|:--------------------|:----------------------------------|
-| **Texte chiffré**   | p'vflseegxviai p'wyx qw re osrpr. |
+| **Texte en clair** | l'informatique c'est de la balle! |
+|:-------------------|:----------------------------------|
+| **Texte chiffré**  | p'vflseegxviai p'wyx qw re osrpr. |
 
 
 1. Ecrivez une fonction `table_vigenere()` retournant une table de Vigenère sous forme d'un liste de listes.
