@@ -1,14 +1,14 @@
-# Python_ENSG_Geomatique
+# Python_ENSG_Geomatique #
 
 Cours de programmation avec Python de l'ENSG Géomatique
 
 
-Préalables :
+## Préalables ##
 
 * installation de pandoc
 * ...
 
-Création des pdf / html :
+# Création des pdf / html #
 
 * Le support de cours général :
 
