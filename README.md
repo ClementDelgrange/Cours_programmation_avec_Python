@@ -8,7 +8,7 @@ Cours de programmation avec Python de l'ENSG Géomatique
 * installation de pandoc
 * ...
 
-# Création des pdf / html #
+## Création des pdf / html ##
 
 * Le support de cours général :
 
