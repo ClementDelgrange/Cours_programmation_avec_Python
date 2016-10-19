@@ -64,7 +64,7 @@ Le cryptage de Vigenère est un système de cryptage utilisant un chiffrement pa
 
 La table de Vigenère est constituée d'un alphabet recopié 26 fois et décallé à chaque ligne d'une lettre vers la gauche.
 
-![Table de Vigenère](img/vigenere.png)
+![Table de Vigenère](../img/tp/vigenere.png)
 
 La clé utilisée est écrite sous le texte à chiffrer. Puis pour crypter, nous sélectionnons, pour chaque lettre du texte en clair, la colonne correspondante et nous regardons l'intersection avec la ligne de la lettre de la clé.
 
