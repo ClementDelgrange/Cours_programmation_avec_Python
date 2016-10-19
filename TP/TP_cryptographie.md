@@ -12,19 +12,7 @@ A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère
 
 **Restrictions** : nous n'utiliserons au cours de ce TP que des chaînes de caractères écrites en minuscules et sans caractères accentués, l'objectif étant de crypter des messages et d'en retrouver le sens lors du décryptage. 
 
-Dans la pratique, le passage d'un chaîne avec accents et majuscules vers une chaîne "simple" est réalisable en Python, ce qui rend nos programmes compatible avec n'importe quelle donnée en entrée.
-
-``` python
->>> import unicodedata
->>> s = 'Découvrez tous les logiciels à télécharger'
->>> s
-'D\xc3\xa9couvrez tous les logiciels \xc3\xa0 t\xc3\xa9l\xc3\xa9charger'
->>> s1 = unicode(s,'utf-8')
->>> s2 = unicodedata.normalize('NFD', s1).encode('ascii', 'ignore')     
->>> s2
-'Decouvrez tous les logiciels a telecharger'
-```
-
+Dans la pratique, le passage d'un chaîne avec accents et majuscules vers une chaîne "simple" est réalisable en Python (fonction `lower()`, module `unicodedata`), ce qui rend nos programmes compatible avec n'importe quelle donnée en entrée.
 
 # Cryptage de César #
 Le cryptage de César est une méthode chiffrement par décalage constant. Chaque lettre du texte en clair est remplacée par une lettre à distance fixe. Dans le cas d'un décalage à droite pour les dernières lettres de l'alphabet, nous repartons au début (et inversement pour un décalage à gauche).
