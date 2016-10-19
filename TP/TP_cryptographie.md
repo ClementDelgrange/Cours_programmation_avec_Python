@@ -38,13 +38,15 @@ Le chiffrement par substitution remplace une lettre par une autre de l'alphabet,
 Exemple :
 
 Clé : ensg geomatique
+
 Clé normalisée : ensgomatiqu
  
 | **Texte en clair** | l'informatique c'est de la balle! |
 |:-------------------|:----------------------------------|
 | **Texte chiffré**  | l'qsfmratiquen c'ngi dn lt btlln! |
 
-1. Ecrivez une fonction `codage_substitution(message, cle, mode)` permettant d'effectuer le cryptage ou le décryptage, selon le mode choisi, du message passé en paramètre.
+1. Ecrivez une méthodes `normalisation_cle(cle)` retournant une chaîne de caractères contenant la clé normalisée.
+2. Ecrivez une fonction `cryptage_substitution(message, cle, mode)` permettant d'effectuer le cryptage ou le décryptage, selon le mode choisi, du message passé en paramètre.
 
 
 # Cryptage de Vigenère #
