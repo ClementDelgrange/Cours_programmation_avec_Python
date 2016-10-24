@@ -12,19 +12,7 @@ A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère
 
 **Restrictions** : nous n'utiliserons au cours de ce TP que des chaînes de caractères écrites en minuscules et sans caractères accentués, l'objectif étant de crypter des messages et d'en retrouver le sens lors du décryptage. 
 
-Dans la pratique, le passage d'un chaîne avec accents et majuscules vers une chaîne "simple" est réalisable en Python, ce qui rend nos programmes compatible avec n'importe quelle donnée en entrée.
-
-``` python
->>> import unicodedata
->>> s = 'Découvrez tous les logiciels à télécharger'
->>> s
-'D\xc3\xa9couvrez tous les logiciels \xc3\xa0 t\xc3\xa9l\xc3\xa9charger'
->>> s1 = unicode(s,'utf-8')
->>> s2 = unicodedata.normalize('NFD', s1).encode('ascii', 'ignore')     
->>> s2
-'Decouvrez tous les logiciels a telecharger'
-```
-
+Dans la pratique, le passage d'un chaîne avec accents et majuscules vers une chaîne "simple" est réalisable en Python (fonction `lower()`, module `unicodedata`), ce qui rend nos programmes compatible avec n'importe quelle donnée en entrée.
 
 # Cryptage de César #
 Le cryptage de César est une méthode chiffrement par décalage constant. Chaque lettre du texte en clair est remplacée par une lettre à distance fixe. Dans le cas d'un décalage à droite pour les dernières lettres de l'alphabet, nous repartons au début (et inversement pour un décalage à gauche).
@@ -50,13 +38,15 @@ Le chiffrement par substitution remplace une lettre par une autre de l'alphabet,
 Exemple :
 
 Clé : ensg geomatique
+
 Clé normalisée : ensgomatiqu
  
 | **Texte en clair** | l'informatique c'est de la balle! |
 |:-------------------|:----------------------------------|
 | **Texte chiffré**  | l'qsfmratiquen c'ngi dn lt btlln! |
 
-1. Ecrivez une fonction `codage_substitution(message, cle, mode)` permettant d'effectuer le cryptage ou le décryptage, selon le mode choisi, du message passé en paramètre.
+1. Ecrivez une méthodes `normalisation_cle(cle)` retournant une chaîne de caractères contenant la clé normalisée.
+2. Ecrivez une fonction `cryptage_substitution(message, cle, mode)` permettant d'effectuer le cryptage ou le décryptage, selon le mode choisi, du message passé en paramètre.
 
 
 # Cryptage de Vigenère #
@@ -64,7 +54,7 @@ Le cryptage de Vigenère est un système de cryptage utilisant un chiffrement pa
 
 La table de Vigenère est constituée d'un alphabet recopié 26 fois et décallé à chaque ligne d'une lettre vers la gauche.
 
-![Table de Vigenère](img/vigenere.png)
+![Table de Vigenère](../img/tp/vigenere.png)
 
 La clé utilisée est écrite sous le texte à chiffrer. Puis pour crypter, nous sélectionnons, pour chaque lettre du texte en clair, la colonne correspondante et nous regardons l'intersection avec la ligne de la lettre de la clé.
 
@@ -81,7 +71,7 @@ La première lettre, colonne "l", est codée avec la ligne "e" : on obtient "p".
 
 Le cryptage complet de la chaîne donne :
 
-|** Texte en clair** | l'informatique c'est de la balle! |
+| **Texte en clair** | l'informatique c'est de la balle! |
 |:-------------------|:----------------------------------|
 | **Texte chiffré**  | p'vflseegxviai p'wyx qw re osrpr. |
 
@@ -98,6 +88,7 @@ La fonction doit parcourir une à une les lettres du texte à coder, les associe
 Dans cette partie, nous cherchons à décrypter un message, sans connaître la clé utilisée lors du cryptage.
 
 Pour cette partie, nous avons traduit un même message à l'aide des trois méthodes étudiées prcédement. Les résultats sont les suivants :
+
 * `a = "p'vflseegxviai p'wyx qw re osrpr. gt c ssox qwy xemiw cjgxviaif egmf xgyg soqrj rif egxuéegxviaif."`
 * `b = "p'mrjsvqexmuyi g'iwx hi pe feppi. sr c jemx hiw xvygw tvexmuyiw qemw jeyx emqiv piw qexléqexmuyiw."`
 * `c = "l'qsfmratiquen c'ngi dn lt btlln. ms y cmdn dng irecg prtiqueng atqg ftei tqanr lng atihéatiqueng."`
