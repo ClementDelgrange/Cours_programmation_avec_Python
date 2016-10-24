@@ -1,6 +1,6 @@
 % TP Cryptographie
 % Division des enseignements en informatique
-% novembre 2016
+% 03/11/2016
 
 
 Dans ce TP, nous nous proposons de mettre en oeuvre quelques méthodes de cryptage d'une chaîne de caractères. Dans un premier temps, nous écrirons les fonctions nécessaires au cryptage/décryptage. Puis en fin de TP, nous explorerons quelques méthodes permettant de casser un cryptage sans connaître la clé utilisée ou même la méthode de cryptage.

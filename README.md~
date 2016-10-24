@@ -4,11 +4,9 @@ Cours de programmation avec Python de l'ENSG Géomatique
 
 
 ## Préalables ##
-Pour pouvoir générer les documents finaux mis en forme :
 
 * installation de pandoc
-* installation de reveal.js
-
+* ...
 
 ## Création des pdf / html ##
 

@@ -1,4 +1,7 @@
-%Description: Cours de programmation avec le langage Python
+% Description: Cours de programmation avec le langage Python
+% Versions :
+%		- v1.0 : avril 2016
+%		- v1.1 : octobre 2016 - corrections mineures
 
 %%%
 \documentclass[12pt, a4paper]{article}
@@ -100,7 +103,7 @@
 \begin{titlepage}
 	\begin{sffamily}
 		\begin{flushleft}
-			\includegraphics[scale=0.15]{img/logo_ensg.png}\\[1.5cm]
+			\includegraphics[scale=0.15]{img/logos/logo_ensg.png}\\[1.5cm]
 		\end{flushleft}
 		\begin{flushright}
 			% pour mettre une image en haut à droite
@@ -809,9 +812,34 @@ Les opérations logiques retournent des booléens. La table \ref{tab:operateurs_
 	\end{center}
 \end{table}
 
-Dans l'exemple ci-dessous, on affecte à x le résultat de la comparaison \lstinline{3 != 5}. Ce résultat est un booléen :
+Dans l'exemple ci-dessous, nous affectons à x le résultat de la comparaison \lstinline{3 != 5}. Ce résultat est un booléen :
 \begin{lstlisting}
 >>> x = (3 != 5)
+>>> x
+True
+\end{lstlisting}
+
+Les expressions booléennes peuvent enfin être combinées entre elles à l'aide des mots clé \lstinline{and}, \lstinline{or} et \lstinline{not}. 
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|c|l|}
+			\hline
+			\textbf{Opérateur} & \textbf{Signification} \\
+			\hline
+			\lstinline{X and Y} & Est vrai si X et Y sont vrai \\
+			\lstinline{X or Y} & Est vrai si X ou Y est vrai\\
+			\lstinline{not X} & Est vrai si X est faux \\
+			\hline
+		\end{tabular}
+	\caption{Opérateurs booléens}
+	\label{tab:operateurs_booleens}
+	\end{center}
+\end{table}
+
+Exemple :
+\begin{lstlisting}
+>>> x = ((2 != 3) or (4 < 1)) and (not 5 == 2)
 >>> x
 True
 \end{lstlisting}
@@ -842,7 +870,8 @@ En Python, il n'existe qu'un seul type de données textuelles, qu'il s'agisse de
 \subsection{Création d'une chaîne de caractères}
 Les apostrophes et guillemets s'utilisent indifféremment pour définir une chaîne de caractères \lstinline{"..."} ou \lstinline{'...'} :
 \begin{lstlisting}
->>> "demain", 'demain'     # ces 2 chaînes de caractères sont identiques
+>>> "demain" == 'demain'
+True
 \end{lstlisting}
 
 L'intérêt d'utiliser l'une ou l'autre des deux formes est de pouvoir intégrer des apostrophes ou guillemets dans une chaîne :
@@ -1042,6 +1071,8 @@ Les chaînes de caractères étudiées au chapitre précédent sont un exemple d
 'a'
 \end{lstlisting}
 
+Nous en profitons pour remarquer que l'indexation d'une séquence commence à 0 : \lstinline{s[0] = 'a'}
+
 Il est également possible de parcourir la chaîne caractère par caractère\footnote{L'exemple utilise des fonctions \lstinline{iter()} et \lstinline{next()} qui ne sont pas à connaître et sur lesquelles nous reviendrons ultérieurement} :
 \begin{lstlisting}
 >>> s = 'abracabra'
@@ -1095,28 +1126,28 @@ Un \textbf{tuple} est un tableau d'objets qui peuvent être de n'importe quel ty
 
 Pour créer un tuple, on sépare les différentes valeurs qui vont le composer par des virgules :
 \begin{lstlisting}
->>> t = 15, 'cent', 15
+>>> t = 2016, "ENSG", 'Géomatique'
 >>> type(t)
 <class 'tuple'>
 >>> t
-(15, 'cent', 15)
+(2016, 'ENSG', 'Géomatique')
 \end{lstlisting}
 
 Pour améliorer la lecture du code, on utilise souvent des parenthèses lors de la définition d'un tuple :
 \begin{lstlisting}
->>> t = (15, 'cent', 15)
+>>> t = (2016, "ENSG", 'Géomatique')
 \end{lstlisting}
 
 Les tuples peuvent être imbriqués :
 \begin{lstlisting}
->>> t, ('M', 'a', 'r', 'i', 'g', 'n', 'a', 'n')
-((15, 'cent', 15), ('M', 'a', 'r', 'i', 'g', 'n', 'a', 'n'))
+>>> t, (1, 2, 3, 4)
+((2016, 'ENSG', 'Géomatique'), (1, 2, 3, 4))
 \end{lstlisting}
 
 Les tuples sont toujours représentés entre parenthèses. Comme pour une chaîne de caractère, il est impossible de modifier la valeur d'un élément d'un tuple.
 \begin{lstlisting}
->>> t = 15, 'cent', 15
->>> t[0] = 12
+>>> t = 2016, 'ENSG', 'Géomatique'
+>>> t[0] = 2017
 TypeError: 'tuple' object does not support item assignement
 \end{lstlisting}
 
@@ -1147,21 +1178,21 @@ Tous les opérateurs définit pour les séquences seront utilisable sur les list
 
 Une liste est définit par un ensemble de valeurs entre deux crochets :
 \begin{lstlisting}
->>> a = [15, 'cent', 15]
+>>> a = [2016, "ENSG", 'Géomatique']
 >>> type(a)
 <class 'list'>
 >>> a
-[15, 'cent', 15]
+[2016, 'ENSG', 'Géomatique']
 \end{lstlisting}
 
 Les listes peuvent également être imbriquées :
 \begin{lstlisting}
->>> b = [a, ['M', 'a', 'r', 'i', 'g', 'n', 'a', 'n']]
+>>> b = [a, [1, 2, 3, 4]]
 >>> b
-[[15, 'cent', 15], ['M', 'a', 'r', 'i', 'g', 'n', 'a', 'n']]
+[[2016, 'ENSG', 'Géomatique'], [1, 2, 3, 4]]
 \end{lstlisting}
 
-Pour créer une liste vide, on utilise des crochets sans rien à l'intérieur :
+Pour créer une liste vide, nous utilisons des crochets sans rien à l'intérieur :
 \begin{lstlisting}
 >>> c = []
 >>> type(c)
@@ -1196,15 +1227,15 @@ Du fait de leur caractère modifiables, un certains nombres de fonctions viennen
 			\hline
 			\textbf{Fonction} & \textbf{Signification} \\
 			\hline
-			\lstinline{L.append(x)} & Ajoute l'élément \lstinline{x} à la fin de la liste \\
-			\lstinline{L.extend(t)} ou \lstinline{L += t} & Ajoute les éléments de la liste \lstinline{t} en fin de liste \lstinline{L}. Equivalent à \lstinline{L += t} \\
-			\lstinline{L.insert(i, x)} & Insertion de l'élément x à la position i \\
-			\lstinline{L.remove(x)} & Suppression de tous les éléments x \\
-			\lstinline{L.pop(i)} & Retourne et supprime de la liste l'élément à la position i \\
-			\lstinline{L.clear()} & Vide la liste \\
-			\lstinline{L.reverse()} & Inverse l'ordre des éléments de la liste \\
-			\lstinline{L.copy()} & Crée une copie de la liste \\
-			\lstinline{L.sort()} & Trie les éléments de la liste par ordre croissant\footnote{La fonction sort() s'applique uniquement aux listes, et non à l'ensemble des séquences modifiables.} \\
+			\lstinline{l.append(x)} & Ajoute l'élément \lstinline{x} à la fin de la liste \\
+			\lstinline{l.extend(t)} ou \lstinline{l += t} & Ajoute les éléments de la liste \lstinline{t} en fin de liste \lstinline{l} \\
+			\lstinline{l.insert(i, x)} & Insertion de l'élément x à la position i \\
+			\lstinline{l.remove(x)} & Suppression de tous les éléments x \\
+			\lstinline{l.pop(i)} & Retourne et supprime de la liste l'élément à la position i \\
+			\lstinline{l.clear()} & Vide la liste \\
+			\lstinline{l.reverse()} & Inverse l'ordre des éléments de la liste \\
+			\lstinline{l.copy()} & Crée une copie de la liste \\
+			\lstinline{l.sort()} & Trie les éléments de la liste par ordre croissant\footnote{La fonction sort() s'applique uniquement aux listes, et non à l'ensemble des séquences modifiables.} \\
 			\hline
 		\end{tabular}
 		\caption{Fonctions s'appliquant listes}
@@ -1291,9 +1322,9 @@ Les autres opérations et méthodes pour les dictionnaires sont listées respect
 			\hline
 			\lstinline{x in d} & x est dans une des clés de d \\
 			\lstinline{x not in d} & x n'est pas dans les clés de d \\
-			\lstinline{d[i]} & retourne l'élément associé à la clé i \\
+			\lstinline{d[c]} & retourne l'élément associé à la clé c \\
 			\lstinline{len(d)}  & nombre d'éléments de d \\
-			\lstinline{del(d[i]}  & supprime l'élément associé à la clé i \\
+			\lstinline{del(d[c]}  & supprime l'élément associé à la clé c \\
 			\hline
 		\end{tabular}
 		\caption{Opérateurs sur les dictionnaires}
@@ -1307,12 +1338,12 @@ Les autres opérations et méthodes pour les dictionnaires sont listées respect
 			\hline
 			\textbf{Fonction} & \textbf{Signification} \\
 			\hline
-			\lstinline{dico.has_key(x)} & retourne vrai si x est une clé \\
-			\lstinline{dico.items()} & retourne une liste des couples (clé, valeur) du dictionnaire \\
-			\lstinline{dico.keys()} & retourne une liste des clés du dictionnaire \\
-			\lstinline{dico.values()}  & retourne une liste des valeurs du dictionnaire \\
-			\lstinline{dico.update(dico2)}  & dico reçoit le contenu de dico2 \\
-			\lstinline{dico.clear()}  & vide le dictionnaire \\
+			\lstinline{d.has_key(x)} & retourne vrai si x est une clé \\
+			\lstinline{d.items()} & retourne une liste des couples (clé, valeur) du dictionnaire \\
+			\lstinline{d.keys()} & retourne une liste des clés du dictionnaire \\
+			\lstinline{d.values()}  & retourne une liste des valeurs du dictionnaire \\
+			\lstinline{d.update(dico2)}  & dico reçoit le contenu de dico2 \\
+			\lstinline{d.clear()}  & vide le dictionnaire \\
 			\hline
 		\end{tabular}
 		\caption{Fonctions disponibles pour les dictionnaires}
@@ -2041,18 +2072,29 @@ La fonction suivante affiche par exemple "hello world !" dans la console :
 Hello world !
 \end{lstlisting}
 
-Si la fonction retourne un ou plusieurs résultats, ils sont spécifiés à l'aide du mot-clé \lstinline{return}. Le corps d'une fonction peut contenir plusieurs \lstinline{return}, mais un seul sera lu : dès que ce mot clé est rencontré, l'exécution de la fonction se termine et les instructions suivantes sont ignorées.
+Si la fonction retourne un résultat, il est spécifié à l'aide du mot-clé \lstinline{return}. Le corps d'une fonction peut contenir plusieurs \lstinline{return}, mais un seul sera lu : dès que ce mot clé est rencontré, l'exécution de la fonction se termine et les instructions suivantes sont ignorées.
 \begin{lstlisting}
 def ma_fonction():
 		instruction_1
 		...
 		instruction_n
-		return resultat_1, ... resultat_n
+		return resultat
 \end{lstlisting}
 
-Pour récupérer les résultats, on les affecte à des variables de manière classique :
+Pour récupérer le résultat, nous l'affectons à une variable de manière classique :
 \begin{lstlisting}
-x_1, ... x_n = ma_fonction()
+x = ma_fonction()
+\end{lstlisting}
+
+Lorsque la fonction retourne plusieurs résultats, ceux-ci sont transmis sous forme de tuple. Il est possible de les récupérer individuellement en effectuant une affectation multiple :
+\begin{lstlisting}
+def ma_fonction():
+		instruction_1
+		...
+		instruction_n
+		return resultat_1, resultat_2, ..., resultat_n
+		
+x_1, x_2, ... x_n = ma_fonction()
 \end{lstlisting}
 
 Les paramètres qui peuvent être spécifiées en entrée de la fonction s'ajoutent entre les parenthèses :
@@ -2212,15 +2254,12 @@ Ce paragraphe vise à attirer l'attention sur quelques comportements particulier
 
 La fonction ci-dessous, ré-initialise à zero les n premiers terme d'une liste.
 \begin{lstlisting}
+>>> def init_liste(n, liste):
+...	    for i in range(n):
+...	        liste[i] = 0
+...
 >>> n = 2
 >>> liste = [1, 2, 3, 4, 5]
->>> def init_liste(n, liste):
-...	    for i in range(len(liste)):
-...	        liste[i] = 0
-...         n -= 1
-...         if n = 0:
-...             break
-...
 >>> init_liste(n, liste)
 >>> n
 2
@@ -2230,8 +2269,7 @@ La fonction ci-dessous, ré-initialise à zero les n premiers terme d'une liste.
 
 Le paramètre \lstinline{n} n'a pas été modifié. On dit qu'il a été \textbf{passé en valeur}. C'est le cas de toutes les données de type immuable.
 
-La liste a en revanche bien été modifiée par la fonction. On dit que ce paramètre a été \textbf{passé en paramètre}. C'est le cas des données de type modifiable.
-
+La liste a en revanche bien été modifiée par la fonction. Tout se passe comme si ce paramètre avait été \textbf{passé en paramètre}. C'est le cas des données de type modifiable.
 
 L'autre remarque que nous soulèverons dans ce paragraphe concerne l'utilisation de valeurs de types modifiables comme paramètre par défaut d'une fonction. Cela peut introduire des résultats inattendus, comme le montre l'exemple ci-dessous :
 \begin{lstlisting}
@@ -2400,7 +2438,7 @@ def produit(a, b):
 
 A la différence des fonctions classiques, les fonctions anonymes sont de simples expressions. Elles peuvent directement employées dans une instruction sans avoir besoin d'être définies au préalable.
 
-% exemple
+% exemples
 % map, filter, reduce...
 
 
@@ -3460,6 +3498,7 @@ Boucle while: 1.0651071071624756
 %%%---------------
 %%% Les exceptions
 %%%---------------
+\newpage
 \part{Les exceptions}
 \chapter{}
 
