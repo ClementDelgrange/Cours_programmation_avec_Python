@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="generator" content="pandoc">
+        <meta name="author" content="Division des enseignements en informatique" />
+        <meta name="dcterms.date" content="2016-01-01" />
+        <title>Programmation avec Python</title>
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="reveal.js/css/reveal.css">
+		
+        <!-- For syntax highlighting -->
+        <style type="text/css">code{white-space: pre;}</style>
+        <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+        </style>
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+        <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+
+	<!-- Styles ENSG-IGN -->
+	<link rel="stylesheet" href="css/ign.css">
+
+        <!-- Printing and PDF exports -->
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script type="text/javascript">
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/'+ (window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper') + '.css';
+            link.media = 'print';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" type="text/javascript" src="reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <!-- -H/- -include-in-header -->
+    </head>
+    <body>
+        <!-- -B/- -include-before-body -->
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1>Programmation avec Python</h1>
+                    <h3>Division des enseignements en informatique</h3>
+                    <h4>2016</h4>
+                </section>
+
+                <!-- - -toc/- -table-of-contents -->
+
+            <!-- ne pas indenter le $body$ sinon les codes (highlight) vont l'être aussi !!! -->
+<section id="organisation" class="level1">
+<h1>Organisation</h1>
+<ul>
+<li>4 séances de TP / cours</li>
+<li>1 séance de TP noté</li>
+<li>(même chose au 2ème semestre)</li>
+</ul>
+</section>
+<section id="organisation-1" class="level1">
+<h1>Organisation</h1>
+<ul>
+<li>3 groupes :
+<ul>
+<li>Groupe 1 -&gt; M303</li>
+<li>Groupe 2 -&gt; L112</li>
+<li>Groupe 3 -&gt; L309</li>
+</ul></li>
+<li>3 intervenants :
+<ul>
+<li>Lionel Atty</li>
+<li>Clément Delgrange</li>
+<li>Nathan Piasco</li>
+</ul></li>
+<li>Même salle pour tous les cours, mais les intervenants tournent</li>
+</ul>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="histoire-de-python" class="level2">
+<h2>Histoire de Python</h2>
+<ul>
+<li>80-90 : Guido van Rossum / Langage ABC
+<ul>
+<li>invite de commande interractive avec mémoire</li>
+<li>pas de point virgule, indentation</li>
+</ul></li>
+<li>1991 : première version de Python (0.9.0)</li>
+<li>1995 : version 1.2</li>
+<li>2000 : version 2.0</li>
+<li>2008 : version 3.0 (<em>rectification de défauts du langage</em>)</li>
+<li>2010 : version 2.7</li>
+<li>2015 : version 3.5</li>
+</ul>
+</section>
+<section id="distribution-de-python" class="level2">
+<h2>Distribution de Python</h2>
+<ul>
+<li>Python Software Fundation</li>
+<li>Licence LGPL (Lesser GNU Public License)
+<ul>
+<li>Utilisation sans restriction</li>
+<li>Y compris usages commerciaux</li>
+</ul></li>
+</ul>
+</section>
+<section id="caractéristiques-du-langage" class="level2">
+<h2>Caractéristiques du langage</h2>
+<ul>
+<li>Python est...
+<ul>
+<li>Ni interprété, ni compilé</li>
+<li>Orienté objet et fonctionnel</li>
+<li>A typage dynamique fort</li>
+<li>Associable</li>
+<li>Un langage de haut niveau</li>
+<li>Facile à lire et à écrire</li>
+</ul></li>
+</ul>
+</section>
+<section id="usages-de-python" class="level2">
+<h2>Usages de Python</h2>
+<ul>
+<li>Scripts métier</li>
+<li>Calculs scientifiques</li>
+<li>Applications bureautiques</li>
+<li>Extensions</li>
+<li>Jeux vidéo</li>
+<li>Web</li>
+</ul>
+</section>
+<section id="exécution-dun-programme" class="level2">
+<h2>Exécution d'un programme</h2>
+<ul>
+<li>Processus d'exécution
+<ul>
+<li>Code source <em>compilé</em> en bytecode</li>
+<li>Bytecode exécuté par la machine virtuelle Python</li>
+</ul></li>
+</ul>
+<figure>
+<img src="img/bytecode_execution.png" alt="Fonctionnement de l&#39;interpréteur Python" /><figcaption>Fonctionnement de l'interpréteur Python</figcaption>
+</figure>
+<ul>
+<li><strong>Interpréteur Python</strong>
+<ul>
+<li>Programme écrit en C le plus souvent</li>
+<li>Plusieurs versions possibles sur un même ordinateur</li>
+</ul></li>
+</ul>
+</section>
+<section id="en-pratique" class="level2">
+<h2>En pratique</h2>
+<ul>
+<li>En ligne de commande
+<ul>
+<li><code>python</code></li>
+<li><code>py -2</code></li>
+<li><code>python script.py</code></li>
+</ul></li>
+<li>Sous windows
+<ul>
+<li>double clic sur <code>script.py</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="environnements-de-développement" class="level2">
+<h2>Environnements de développement</h2>
+<ul>
+<li>Invite de commande interractive</li>
+<li>IDLE</li>
+<li>IDE : PyScripter, PyCharm, PyDev...</li>
+<li>Notebook Jupyter</li>
+</ul>
+</section>
+<section id="environnements-de-développement-1" class="level2">
+<h2>Environnements de développement</h2>
+<p></br></p>
+<figure>
+<img src="img/demarrer_session_interactive-3.png" alt="Invite de commande interractive" /><figcaption>Invite de commande interractive</figcaption>
+</figure>
+</section>
+<section id="environnements-de-développement-2" class="level2">
+<h2>Environnements de développement</h2>
+<p></br></p>
+<figure>
+<img src="img/idle_fenetre.png" alt="Fenêtre d&#39;IDLE" /><figcaption>Fenêtre d'IDLE</figcaption>
+</figure>
+</section>
+<section id="environnements-de-développement-3" class="level2">
+<h2>Environnements de développement</h2>
+<p></br></p>
+<figure>
+<img src="img/pycharm.png" alt="Environnement de développement PyCharm" /><figcaption>Environnement de développement PyCharm</figcaption>
+</figure>
+</section>
+</section>
+<section id="types-et-opérations" class="level1">
+<h1>Types et opérations</h1>
+<section id="variables" class="level2">
+<h2>Variables</h2>
+<ul>
+<li>1 variable = 1 nom + 1 valeur
+<ul>
+<li>Règles de nommage
+<ul>
+<li>Lettes, chiffres et blancs soulignés</li>
+<li>Pas d'espace, accent, caractère spécial</li>
+<li>Sensible à la casse</li>
+</ul></li>
+<li>Convention</li>
+</ul></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">mon_nom_de_variable</code></pre>
+<p></br> <small> Mots réservés </small></p>
+<pre class="sourceCode python"><code class="sourceCode python">and  <span class="ch">as</span>  <span class="kw">assert</span>  <span class="kw">break</span>  <span class="kw">class</span>  <span class="kw">continue</span>  <span class="kw">def</span>  <span class="kw">del</span>  
+<span class="kw">elif</span>  <span class="kw">else</span>  <span class="kw">except</span>  false  <span class="kw">finally</span>  <span class="kw">for</span>  <span class="ch">from</span>  <span class="kw">global</span>  
+<span class="kw">if</span>  <span class="ch">import</span>  in  is  <span class="kw">lambda</span>  none  <span class="kw">nonlocal</span>  not  or
+<span class="kw">pass</span>  <span class="kw">raise</span>  <span class="kw">return</span>  true  <span class="kw">try</span>  <span class="kw">while</span>  <span class="kw">with</span>  <span class="kw">yield</span></code></pre>
+</section>
+<section id="types-et-variables" class="level2">
+<h2>Types et variables</h2>
+<ul>
+<li>Typage dynamique fort
+<ul>
+<li>Typage <strong>fort</strong>
+<ul>
+<li>Type derrière chaque variable</li>
+<li>Opérations cohérentes avec le type</li>
+</ul></li>
+<li>Typage <strong>dynamique</strong>
+<ul>
+<li>Type d'une variable modifiable au cours du programme</li>
+</ul></li>
+</ul></li>
+<li>En pratique...
+<ul>
+<li>Pas de déclaration des types</li>
+<li>Détections par l'interpréteur</li>
+<li>Associé à la valeur référencée par la variable</li>
+</ul></li>
+</ul>
+</section>
+<section id="affectation" class="level2">
+<h2>Affectation</h2>
+<figure>
+<img src="img/affectation.png" alt="Processus d&#39;affectation en Python" /><figcaption>Processus d'affectation en Python</figcaption>
+</figure>
+</section>
+<section id="types-et-variables-1" class="level2">
+<h2>Types et variables</h2>
+<ul>
+<li>Conséquences
+<ul>
+<li>Impossible de déclarer une variable sans lui affecter une valeur</li>
+<li>Types associés aux objets référencés</li>
+<li>Type d'une variable = type de l'objet référencé</li>
+</ul></li>
+</ul>
+</section>
+<section id="affectations-et-mémoire" class="level2">
+<h2>Affectations et mémoire</h2>
+<figure>
+<img src="img/garbage_collector-1.png" alt="Ramasse-miettes Python" /><figcaption>Ramasse-miettes Python</figcaption>
+</figure>
+</section>
+<section id="affectations-et-mémoire-1" class="level2">
+<h2>Affectations et mémoire</h2>
+<figure>
+<img src="img/garbage_collector-2.png" alt="Ramasse-miettes Python" /><figcaption>Ramasse-miettes Python</figcaption>
+</figure>
+</section>
+<section id="affectations-et-mémoire-2" class="level2">
+<h2>Affectations et mémoire</h2>
+<figure>
+<img src="img/garbage_collector-3.png" alt="Ramasse-miettes Python" /><figcaption>Ramasse-miettes Python</figcaption>
+</figure>
+</section>
+<section id="affectations-en-python" class="level2">
+<h2>Affectations en Python</h2>
+<ul>
+<li>Affectation <em>simple</em></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">2</span>
+&gt;&gt;&gt; a
+<span class="dv">2</span></code></pre>
+<ul>
+<li>Affectations parallèles</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a, b = <span class="dv">2</span>, <span class="dv">5</span>
+&gt;&gt;&gt; a
+<span class="dv">2</span>
+&gt;&gt;&gt; b
+<span class="dv">5</span></code></pre>
+<ul>
+<li>Affectations multiples</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = b = c = <span class="dv">4</span>
+&gt;&gt;&gt; a
+<span class="dv">4</span>
+&gt;&gt;&gt; b
+<span class="dv">4</span>
+&gt;&gt;&gt; c
+<span class="dv">4</span></code></pre>
+</section>
+<section id="types-de-base" class="level2">
+<h2>Types de base</h2>
+<ul>
+<li>Types de base ou <em>types intégrés</em></li>
+</ul>
+<p><small style="display: block"></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Exemple de valeur</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Nombre</td>
+<td style="text-align: left;"><code>3</code>, <code>1.1456</code>, <code>-3.5</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chaîne de caractères</td>
+<td style="text-align: left;"><code>'mot'</code>, <code>'petit texte'</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Liste</td>
+<td style="text-align: left;"><code>[1, 2, 3]</code>, <code>['a', 'b']</code>, <code>['a', 5, 2.3, 'f']</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tuple</td>
+<td style="text-align: left;"><code>(1, 3)</code>, <code>('a', 'b', 14)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensemble</td>
+<td style="text-align: left;"><code>set('abc')</code>, <code>{'a', 'b', 'c'}</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dictionnaire</td>
+<td style="text-align: left;"><code>{'a': 3, 7: 'b'}</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fichier</td>
+<td style="text-align: left;"><code>open('fichier.txt')</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Booléen</td>
+<td style="text-align: left;"><code>True</code>, <code>False</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rien</td>
+<td style="text-align: left;"><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p></small></p>
+</section>
+<section id="types-numériques" class="level2">
+<h2>Types numériques</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Exemple de valeur</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;"><code>2</code>, <code>-3</code>, <code>156235789</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;"><code>2.3</code>, <code>-4.12</code>, <code>1.0</code>, <code>189489.23891</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Complex</td>
+<td style="text-align: left;"><code>2+3j</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Decimal</td>
+<td style="text-align: left;"><code>Decimal('0.1')</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fraction</td>
+<td style="text-align: left;"><code>Fraction(1, 3)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="opérations-sur-les-numériques" class="level2">
+<h2>Opérations sur les numériques</h2>
+<ul>
+<li>Opérations <em>classiques</em>
+<ul>
+<li>Addition <code>+</code></li>
+<li>Soustraction <code>-</code></li>
+<li>Multiplication <code>*</code></li>
+<li>Puissance <code>**</code></li>
+<li>Division <code>/</code></li>
+<li>Division entière <code>//</code></li>
+<li>Reste d'une division entière (<em>modulo</em>) <code>%</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="les-nombres-entiers-et-réels" class="level2">
+<h2>Les nombres entiers et réels</h2>
+<ul>
+<li>2 types distincts</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">3</span>
+&gt;&gt;&gt; <span class="dt">type</span>(a)
+&lt;<span class="kw">class</span> <span class="st">&#39;int&#39;</span>&gt;
+&gt;&gt;&gt; b = <span class="fl">3.0</span>
+&gt;&gt;&gt; <span class="dt">type</span>(b)
+&lt;<span class="kw">class</span> <span class="st">&#39;float&#39;</span>&gt;</code></pre>
+<ul>
+<li>Conversion automatique vers le plus &quot;complèxe&quot;</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">3</span> + <span class="fl">2.18</span>
+&gt;&gt;&gt; a
+<span class="fl">5.18</span>
+&gt;&gt;&gt; <span class="dt">type</span>(a)
+&lt;<span class="kw">class</span> <span class="st">&#39;float&#39;</span>&gt;</code></pre>
+</section>
+<section id="les-nombres-entiers-et-réels-1" class="level2">
+<h2>Les nombres entiers et réels</h2>
+<ul>
+<li><code>int()</code> et <code>float()</code> pour convertir</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a, b = <span class="dv">14</span>, <span class="dv">4</span>
+&gt;&gt;&gt; c = a % b
+&gt;&gt;&gt; c
+<span class="dv">2</span>
+&gt;&gt;&gt; d = <span class="dt">float</span>(c)
+&gt;&gt;&gt; d
+<span class="fl">2.0</span></code></pre>
+</section>
+<section id="les-booléens" class="level2">
+<h2>Les booléens</h2>
+<ul>
+<li><code>True</code> ou <code>False</code></li>
+<li><em>Surcouche</em> des entiers 0 et 1</li>
+<li>Résultats des opérations logiques</li>
+</ul>
+<p><small style="display: block"></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Opérateur</strong></th>
+<th style="text-align: left;"><strong>Signification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;</code></td>
+<td style="text-align: left;">Inférieur</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;</code></td>
+<td style="text-align: left;">Supérieur</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&gt;=</code></td>
+<td style="text-align: left;">Supérieur ou égal</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&lt;=</code></td>
+<td style="text-align: left;">Inférieur ou égal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>==</code></td>
+<td style="text-align: left;">Egal</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>!=</code> ou <code>&lt;&gt;</code></td>
+<td style="text-align: left;">Différent de</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>is</code></td>
+<td style="text-align: left;">Objet identique</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>is not</code></td>
+<td style="text-align: left;">Objet différent</td>
+</tr>
+</tbody>
+</table>
+<p></small></p>
+</section>
+<section id="les-booléens-1" class="level2">
+<h2>Les booléens</h2>
+<ul>
+<li>Exemple 1</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="ot">True</span> + <span class="dv">2</span>
+<span class="dv">3</span></code></pre>
+<p></br></p>
+<ul>
+<li>Exemple 2</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; x = (<span class="dv">3</span> != <span class="dv">5</span>)
+&gt;&gt;&gt; x
+<span class="ot">True</span></code></pre>
+</section>
+<section id="le-type-rien" class="level2">
+<h2>Le type Rien</h2>
+<ul>
+<li><code>None</code></li>
+<li>Référence <strong>l'objet rien</strong></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; x = <span class="ot">None</span>
+&gt;&gt;&gt; <span class="dt">type</span>(x)
+&lt;<span class="kw">class</span> <span class="st">&#39;NoneType &#39;</span>&gt;</code></pre>
+</section>
+<section id="les-séquences" class="level2">
+<h2>Les séquences</h2>
+<ul>
+<li>Catégorie de structures avec des propriétés communes
+<ul>
+<li><strong>itérable</strong> : retourner les éléments qui la compose les uns à la suite des autres</li>
+<li><strong>indexable</strong> : retourner n'importe lequel de ses éléments sans avoir à la parcourir en entier</li>
+</ul></li>
+<li>2 grandes catégories
+<ul>
+<li>séquence <strong>immuable</strong> (= non modifiable)</li>
+<li>séquence <strong>mutable</strong> (= modifiable)</li>
+</ul></li>
+<li>3 types <em>basiques</em>
+<ul>
+<li>liste</li>
+<li>tuple</li>
+<li>range</li>
+</ul></li>
+</ul>
+</section>
+<section id="opérations-sur-les-séquences" class="level2">
+<h2>Opérations sur les séquences</h2>
+<p><small style="display: block"></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Opération</strong></th>
+<th style="text-align: left;"><strong>Signification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>s + t</code></td>
+<td style="text-align: left;">concaténation de s et t</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>s * n</code></td>
+<td style="text-align: left;">concaténer n fois s à elle-même</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>s[i]</code></td>
+<td style="text-align: left;">élément à la i-ème position</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>s[i:j]</code></td>
+<td style="text-align: left;">sous-séquence de s, de la i-ème à la j-ème position</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>s[i:j:k]</code></td>
+<td style="text-align: left;">sous-séquence de s, de la i-ème à la j-ème position avec un pas de k</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>len(s)</code></td>
+<td style="text-align: left;">nombre d'éléments de s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>min(s)</code></td>
+<td style="text-align: left;">plus petit élément de s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>max(s)</code></td>
+<td style="text-align: left;">plus grand élément de s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sum(s)</code></td>
+<td style="text-align: left;">somme des éléments de s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>x in s</code></td>
+<td style="text-align: left;">x est dans s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>x not in s</code></td>
+<td style="text-align: left;">x n'est pas dans s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>s.index(x)</code></td>
+<td style="text-align: left;">position de la première occurence de x dans s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>s.count(x)</code></td>
+<td style="text-align: left;">nombre d'occurrences de x dans s</td>
+</tr>
+</tbody>
+</table>
+<p></small></p>
+</section>
+<section id="les-tuples" class="level2">
+<h2>Les tuples</h2>
+<ul>
+<li>Tableaux non modifiable d'objets de n'importe quel type
+<ul>
+<li>Séquences immuables</li>
+</ul></li>
+<li>Syntaxe :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; t = elem1, elem2, elem3...</code></pre>
+<ul>
+<li>Pour faciliter la lecture : utilisation de parenthèses</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; t = (elem1, elem2, elem3...)</code></pre>
+<ul>
+<li>Séquence vide : <code>s = ()</code></li>
+<li>Séquence de un élément : <code>s = elem,</code> ou <code>s = (elem,)</code></li>
+</ul>
+</section>
+<section id="les-tuples-1" class="level2">
+<h2>Les tuples</h2>
+<ul>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; t = <span class="st">&quot;ing&quot;</span>, <span class="dv">16</span>, <span class="st">&quot;ENSG&quot;</span>
+&gt;&gt;&gt; t[<span class="dv">0</span>]
+<span class="co">&quot;ing&quot;</span>
+&gt;&gt;&gt; t[<span class="dv">0</span>:<span class="dv">3</span>:<span class="dv">2</span>]
+(<span class="st">&quot;ing&quot;</span>, <span class="st">&quot;ENSG&quot;</span>)
+&gt;&gt;&gt; <span class="dv">16</span> in t
+<span class="ot">True</span>
+&gt;&gt;&gt; <span class="dt">len</span>(t)
+<span class="dv">3</span>
+&gt;&gt;&gt; t2 = t + (<span class="dv">42</span>,)
+&gt;&gt;&gt; t2
+(<span class="st">&quot;ing&quot;</span>, <span class="dv">16</span>, <span class="st">&quot;ENSG&quot;</span>, <span class="dv">42</span>)</code></pre>
+</section>
+<section id="les-listes" class="level2">
+<h2>Les listes</h2>
+<ul>
+<li>Tableaux modifiable d'objets de n'importe quel type
+<ul>
+<li>Séquences mutable</li>
+</ul></li>
+<li>Syntaxe :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; l = [elem1, elem2, elem3...]</code></pre>
+<ul>
+<li>Liste vide : <code>l = []</code></li>
+<li>Liste de un élément : <code>l = [elem]</code></li>
+</ul>
+</section>
+<section id="opérations-sur-les-listes" class="level2">
+<h2>Opérations sur les listes</h2>
+<p><small></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Opération</strong></th>
+<th style="text-align: left;"><strong>Signification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>l[i] = x</code></td>
+<td style="text-align: left;">élément à la position i remplacé par x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>l[i:j] = t</code></td>
+<td style="text-align: left;">séquence entre les position i et j remplacée par la liste t</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>l.extend(t)</code></td>
+<td style="text-align: left;">ajout de la séquence t à L</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>l.append(x)</code></td>
+<td style="text-align: left;">ajout de x à la fin de L</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>l.insert(i, x)</code></td>
+<td style="text-align: left;">insertion de x à la position x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>l.pop(i)</code></td>
+<td style="text-align: left;">retourne et supprime de la liste l'élément à la position i</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>del(l[i:j])</code></td>
+<td style="text-align: left;">suppression des éléments entre les position i et j</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>l.clear()</code></td>
+<td style="text-align: left;">vide la liste</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>l.reverse()</code></td>
+<td style="text-align: left;">inverse l'ordre des éléments de L</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>l.sort()</code></td>
+<td style="text-align: left;">trie les éléments de L par ordre croissant</td>
+</tr>
+</tbody>
+</table>
+<p></small></p>
+</section>
+<section id="les-listes-1" class="level2">
+<h2>Les listes</h2>
+<ul>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; liste = [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">8</span>]
+&gt;&gt;&gt; liste[<span class="dv">2</span>] = <span class="dv">7</span>
+&gt;&gt;&gt; liste
+[<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">8</span>]
+&gt;&gt;&gt; liste.append(<span class="dv">1</span>)
+[<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">1</span>]
+&gt;&gt;&gt; liste.reverse()
+&gt;&gt;&gt; liste
+[<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>]
+&gt;&gt;&gt; <span class="dt">len</span>(liste)
+<span class="dv">7</span>
+&gt;&gt;&gt; liste.pop(<span class="dv">4</span>)
+<span class="dv">7</span>
+&gt;&gt;&gt; liste
+[<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>]</code></pre>
+</section>
+<section id="les-ranges" class="level2">
+<h2>Les ranges</h2>
+<ul>
+<li>Suite de nombres entiers
+<ul>
+<li>Séquence immuable</li>
+</ul></li>
+<li>Définie par
+<ul>
+<li><strong>borne finale</strong></li>
+<li>et éventuellement : <strong>borne initiale</strong> et <strong>pas</strong></li>
+</ul></li>
+<li>Syntaxe :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; r = <span class="dt">range</span>(bi, bf, pas)</code></pre>
+<ul>
+<li>Peut être convertie en liste :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; l = <span class="dt">list</span>(<span class="dt">range</span>(<span class="dv">2</span>, <span class="dv">5</span>))
+&gt;&gt;&gt; <span class="dt">type</span>(l)
+&lt;<span class="kw">class</span> <span class="st">&#39;list&#39;</span>&gt;
+&gt;&gt;&gt; l
+[<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</code></pre>
+</section>
+<section id="les-chaînes-de-caractères" class="level2">
+<h2>Les chaînes de caractères</h2>
+<ul>
+<li>Type particulier de séquence immuable</li>
+<li>Suite finie de caractères</li>
+<li>Pas de distinction caractère / chaîne de caractères</li>
+<li>Définie entre guillements ou apostrophes</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="st">&quot;demain&quot;</span> == <span class="st">&#39;demain&#39;</span>
+<span class="ot">True</span></code></pre>
+</section>
+<section id="les-chaînes-de-caractères-1" class="level2">
+<h2>Les chaînes de caractères</h2>
+<ul>
+<li>Opérateurs : + / * / in / not in / [i] / [i:j]</li>
+<li>Fonctions :
+<ul>
+<li><code>isalpha()</code></li>
+<li><code>isdigit()</code></li>
+<li><code>replace(old, new)</code></li>
+<li><code>split(sep)</code></li>
+<li><code>upper()</code></li>
+<li><code>endwith()</code></li>
+<li><code>startwith()</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="les-chaînes-de-caractères-2" class="level2">
+<h2>Les chaînes de caractères</h2>
+<ul>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="st">&quot;12 avenue de Paris&quot;</span>
+&gt;&gt;&gt; a[<span class="dv">5</span>]
+e
+&gt;&gt;&gt; a.count(<span class="st">&quot; &quot;</span>)
+<span class="dv">3</span>
+&gt;&gt;&gt; a.isalpha()
+<span class="ot">False</span>
+&gt;&gt;&gt; mots = a.split(<span class="st">&quot; &quot;</span>)
+&gt;&gt;&gt; mots
+[<span class="st">&#39;12&#39;</span>, <span class="st">&#39;avenue&#39;</span>, <span class="st">&#39;de&#39;</span>, <span class="st">&#39;Paris&#39;</span>]
+&gt;&gt;&gt; mots[<span class="dv">1</span>].upper()
+<span class="co">&#39;AVENUE&#39;</span>
+&gt;&gt;&gt; mots[<span class="dv">1</span>] = mots[<span class="dv">1</span>].upper()
+&gt;&gt;&gt; mots
+[<span class="st">&#39;12&#39;</span>, <span class="st">&#39;AVENUE&#39;</span>, <span class="st">&#39;de&#39;</span>, <span class="st">&#39;Paris&#39;</span>]</code></pre>
+</section>
+<section id="les-dictionnaires" class="level2">
+<h2>Les dictionnaires</h2>
+<ul>
+<li>Association non ordonnée et modifiable de clés et de valeurs</li>
+<li><em>Tables d'associations</em></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; dico = {cle1: valeur1, cle2, valeur2...}</code></pre>
+<ul>
+<li>Dictionnaire vide : <code>{}</code></li>
+<li>Remarque :
+<ul>
+<li>Liste = ensemble d'éléments référencés par leur position</li>
+<li>Dictionnaire = ensemble d'éléments référencés par d'autres éléments immuables</li>
+</ul></li>
+</ul>
+</section>
+<section id="opérations-sur-les-dictionnaires" class="level2">
+<h2>Opérations sur les dictionnaires</h2>
+<p><small style="display: block"></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Opération</strong></th>
+<th style="text-align: left;"><strong>Signification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>d[cle]</code></td>
+<td style="text-align: left;">élément associé à la clé cle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>len(d)</code></td>
+<td style="text-align: left;">nombre d'éléments de d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>x in d</code></td>
+<td style="text-align: left;">x est dans d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>x not in d</code></td>
+<td style="text-align: left;">x n'est pas dans d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>del(d[cle])</code></td>
+<td style="text-align: left;">suppression de l'élément associé à la clé cle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>d.items()</code></td>
+<td style="text-align: left;">retourne une liste de couples (cle, valeur)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>d.keys()</code></td>
+<td style="text-align: left;">retourne la liste des clés</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>d.values()</code></td>
+<td style="text-align: left;">retourne la liste des valeurs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>d.update(d2)</code></td>
+<td style="text-align: left;">ajoute le dictionnaire d2 à d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>d.clear()</code></td>
+<td style="text-align: left;">vide le dictionnaire</td>
+</tr>
+</tbody>
+</table>
+<p></small></p>
+</section>
+<section id="les-dictionnaires-1" class="level2">
+<h2>Les dictionnaires</h2>
+<ul>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; dico = {<span class="st">&quot;nom&quot;</span>: <span class="st">&quot;Mir&quot;</span>, <span class="st">&quot;prenom&quot;</span>: <span class="st">&quot;Jade&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">24</span>}
+&gt;&gt;&gt; dico[<span class="st">&quot;nom&quot;</span>]
+<span class="co">&#39;Mir&#39;</span>
+&gt;&gt;&gt; dico[<span class="st">&quot;prenom&quot;</span>] = <span class="st">&quot;Abel&quot;</span>
+&gt;&gt;&gt; dico
+{<span class="st">&#39;prenom&#39;</span>: <span class="st">&#39;Abel&#39;</span>, <span class="st">&#39;age&#39;</span>: <span class="dv">24</span>, <span class="st">&#39;nom&#39;</span>: <span class="st">&#39;Mir&#39;</span>}
+&gt;&gt;&gt; dico[<span class="st">&quot;animaux&quot;</span>] = [<span class="st">&quot;chien&quot;</span>, <span class="st">&quot;poissons&quot;</span>]
+&gt;&gt;&gt; dico
+{<span class="st">&#39;prenom&#39;</span>: <span class="st">&#39;Abel&#39;</span>, <span class="st">&#39;animaux&#39;</span>: [<span class="st">&#39;chien&#39;</span>, <span class="st">&#39;poissons&#39;</span>], <span class="st">&#39;age&#39;</span>: <span class="dv">24</span>, <span class="st">&#39;nom&#39;</span>: <span class="st">&#39;Mir&#39;</span>}
+&gt;&gt;&gt; dico.keys()
+[<span class="st">&#39;prenom&#39;</span>, <span class="st">&#39;animaux&#39;</span>, <span class="st">&#39;age&#39;</span>, <span class="st">&#39;nom&#39;</span>]</code></pre>
+</section>
+<section id="les-ensembles" class="level2">
+<h2>Les ensembles</h2>
+<ul>
+<li>Collection non ordonnée d'objets</li>
+<li>Propriétés
+<ul>
+<li>Itérable</li>
+<li>Modifiable</li>
+<li>Supporte propriétés mathématiques des ensembles</li>
+</ul></li>
+<li>Mais
+<ul>
+<li>Non indexable</li>
+<li>Pas d'élément en double</li>
+</ul></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; s = <span class="dt">set</span>(<span class="st">&#39;abracadabra&#39;</span>)
+&gt;&gt;&gt; s
+{<span class="st">&#39;a&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;r&#39;</span>, <span class="st">&#39;c&#39;</span>}</code></pre>
+</section>
+<section id="les-fichiers" class="level2">
+<h2>Les fichiers</h2>
+<ul>
+<li>Ouverture : <code>f = open(chemin, mode)</code>
+<ul>
+<li>3 modes combinables
+<ul>
+<li>Lecture <code>'r'</code></li>
+<li>Ecriture <code>'w'</code> (<em>écrase le contenu précédent</em>)</li>
+<li>Ajout <code>'a'</code></li>
+</ul></li>
+</ul></li>
+<li>Fermeture <strong>indispensable</strong> : <code>f.close()</code></li>
+<li>Options de lecture
+<ul>
+<li>En entier : <code>f.read()</code></li>
+<li>Ligne par ligne : <code>f.readline()</code></li>
+<li>...</li>
+</ul></li>
+<li>Ecriture
+<ul>
+<li><code>f.write(message)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="les-fichiers-1" class="level2">
+<h2>Les fichiers</h2>
+<ul>
+<li>Exemple de lecture</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; fichier = <span class="dt">open</span>(<span class="st">r&quot;D:\TD_Python\fichier.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)
+&gt;&gt;&gt; contenu = fichier.read()
+&gt;&gt;&gt; fichier.close()
+&gt;&gt;&gt; <span class="dt">print</span>(contenu)
+Je suis le contenu d<span class="st">&#39;un fichier texte !</span></code></pre>
+<ul>
+<li>Exemple d'écriture</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; fichier = <span class="dt">open</span>(<span class="st">&quot;fichier.txt&quot;</span>, <span class="st">&quot;w&quot;</span>)
+&gt;&gt;&gt; fichier.write(<span class="st">&quot;J&#39;écris dans un fichier texte via Python&quot;</span>)
+&gt;&gt;&gt; fichier.close()</code></pre>
+</section>
+</section>
+<section id="syntaxe-du-langage" class="level1">
+<h1>Syntaxe du langage</h1>
+<section id="structure-du-code" class="level2">
+<h2>Structure du code</h2>
+<ul>
+<li>1 ligne = 1 instruction</li>
+<li>Pas de symbole de fin d'instruction
+<ul>
+<li>Indentation pour structurer le code</li>
+</ul></li>
+<li>Sauts de lignes et espaces ignorés</li>
+<li>Lignes non lues par l'interpréteur
+<ul>
+<li>Commentaires : <code># ...</code></li>
+<li>Documentation (<em>docstring</em>) : <code>&quot;&quot;&quot; ... &quot;&quot;&quot;</code></li>
+</ul></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="co"># commentaire sur une ligne</span>
+
+<span class="co">&quot;&quot;&quot; </span>
+<span class="co">Documentation </span>
+<span class="co">sur plusieurs</span>
+<span class="co">lignes </span>
+<span class="co">&quot;&quot;&quot;</span></code></pre>
+</section>
+<section id="les-tests" class="level2">
+<h2>Les tests</h2>
+<ul>
+<li>Pas de structure de tests à choix multiple</li>
+<li>Syntaxe :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> condition:
+    instruction1
+    instruction2
+    ...
+<span class="kw">else</span>:
+    instructionA
+    ...</code></pre>
+<ul>
+<li>Exemple :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> x &gt;= <span class="dv">0</span>:
+    <span class="dt">print</span>(<span class="st">&quot;x positif&quot;</span>)
+<span class="kw">else</span>:
+    <span class="dt">print</span>(<span class="st">&quot;x negatif&quot;</span>)</code></pre>
+</section>
+<section id="les-tests-1" class="level2">
+<h2>Les tests</h2>
+<ul>
+<li>Tester plusieurs conditions
+<ul>
+<li><code>elif</code></li>
+</ul></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> x % <span class="dv">2</span> == <span class="dv">0</span>:
+    <span class="dt">print</span>(<span class="st">&quot;x multiple de 2&quot;</span>)
+<span class="kw">elif</span> x % <span class="dv">3</span> == <span class="dv">0</span>:
+    <span class="dt">print</span>(<span class="st">&quot;x multiple de 3&quot;</span>)
+<span class="kw">elif</span> x % <span class="dv">5</span> == <span class="dv">0</span>:
+    <span class="dt">print</span>(<span class="st">&quot;x pultiple de 5&quot;</span>)
+<span class="kw">else</span>:
+    <span class="dt">print</span>(<span class="st">&quot;x n&#39;est multiple ni de 2, ni de 3, ni de 5&quot;</span>)</code></pre>
+</section>
+<section id="les-tests-2" class="level2">
+<h2>Les tests</h2>
+<ul>
+<li>Ecritures simplifiées</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Valeur</strong></th>
+<th style="text-align: left;"><strong>Test</strong></th>
+<th style="text-align: left;"><strong>Test simplifié</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">None</td>
+<td style="text-align: left;">if v==None:</td>
+<td style="text-align: left;">if not v:</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: left;">if v!=None:</td>
+<td style="text-align: left;">if v:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Booléen</td>
+<td style="text-align: left;">if v==True:</td>
+<td style="text-align: left;">if v:</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: left;">if v==False:</td>
+<td style="text-align: left;">if not v:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Zéro</td>
+<td style="text-align: left;">if v==0:</td>
+<td style="text-align: left;">if not v:</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: left;">if v!=0:</td>
+<td style="text-align: left;">if v:</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="les-boucles" class="level2">
+<h2>Les boucles</h2>
+<ul>
+<li>Deux types de boucles
+<ul>
+<li>For</li>
+<li>While</li>
+</ul></li>
+</ul>
+</section>
+<section id="boucle-while" class="level2">
+<h2>Boucle while</h2>
+<ul>
+<li>Syntaxe :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">while</span> condition:
+    instruction1
+    instruction2
+    ....</code></pre>
+<ul>
+<li>Exemple :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">0</span>
+&gt;&gt;&gt; <span class="kw">while</span> a &lt;= <span class="dv">3</span>:
+...     <span class="dt">print</span>(a)
+...     a += <span class="dv">1</span> 
+...
+<span class="dv">0</span>
+<span class="dv">1</span>
+<span class="dv">2</span>
+<span class="dv">3</span></code></pre>
+</section>
+<section id="boucle-for" class="level2">
+<h2>Boucle for</h2>
+<ul>
+<li>Syntaxe :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">for</span> element in iterable:
+    instruction1
+    ...</code></pre>
+<ul>
+<li>Exemple :</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):
+...    <span class="dt">print</span>(i**<span class="dv">2</span>)
+...
+<span class="dv">1</span>
+<span class="dv">4</span>
+<span class="dv">9</span></code></pre>
+</section>
+<section id="sorties-de-boucle" class="level2">
+<h2>Sorties de boucle</h2>
+<ul>
+<li>2 débranchements
+<ul>
+<li>Sortie définitive : <code>break</code></li>
+<li>Retour au début du bloc de code : <code>continue</code></li>
+</ul></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">for</span> i in <span class="dt">range</span> (<span class="dv">3</span>) :
+...     <span class="dt">print</span> (<span class="st">&quot;Début du bloc&quot;</span>)
+...     <span class="kw">continue</span>
+...     <span class="dt">print</span> (<span class="st">&quot;Fin du bloc&quot;</span>)
+...
+Début du bloc
+Début du bloc
+Début du bloc</code></pre>
+</section>
+<section id="les-listes-de-compréhension" class="level2">
+<h2>Les listes de compréhension</h2>
+<ul>
+<li>Création d'une liste à partir d'un traitement sur une autre liste</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">liste = [ instruction <span class="kw">for</span> element in iterable <span class="kw">if</span> condition ]</code></pre>
+<ul>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; liste = [ x**<span class="dv">2</span> <span class="kw">for</span> x in <span class="dt">range</span>(<span class="dv">5</span>) ]
+&gt;&gt;&gt; liste2
+[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">16</span>]</code></pre>
+</section>
+</section>
+<section id="modules-et-fonctions" class="level1">
+<h1>Modules et fonctions</h1>
+<section id="les-fonctions" class="level2">
+<h2>Les fonctions</h2>
+<ul>
+<li>Groupe d'instructions destiné à être exécuté plusieurs fois</li>
+<li>Des paramètres pour faire varier les conditions initiales</li>
+<li>Une unique valeur de sortie</li>
+<li>Syntaxe</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> ma_fonction(param1, param2, ...):
+    instruction1
+    instruction2
+    ...
+    <span class="kw">return</span> sortie</code></pre>
+</section>
+<section id="les-fonctions-1" class="level2">
+<h2>Les fonctions</h2>
+<ul>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">def</span> puissance(nombre, facteur):
+...     resultat = nombre ** facteur
+...     <span class="kw">return</span> resultat
+...
+&gt;&gt;&gt; x = puissance(<span class="dv">2</span>, <span class="dv">3</span>)
+&gt;&gt;&gt; x
+<span class="dv">8</span></code></pre>
+</section>
+<section id="valeur-par-défaut" class="level2">
+<h2>Valeur par défaut</h2>
+<ul>
+<li>Paramètre optionnel avec une valeur par défaut
+<ul>
+<li><code>param = valeur_par_defaut</code></li>
+</ul></li>
+<li>Exemple</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">def</span> puissance(nombre, facteur=<span class="dv">2</span>):
+...     resultat = nombre ** facteur
+...     <span class="kw">return</span> resultat
+...
+&gt;&gt;&gt; x = puissance(<span class="dv">2</span>)
+&gt;&gt;&gt; x
+<span class="dv">4</span>
+&gt;&gt;&gt; y = puissance(<span class="dv">2</span>, <span class="dv">3</span>)
+&gt;&gt;&gt; y
+<span class="dv">8</span></code></pre>
+</section>
+<section id="portée-des-variables" class="level2">
+<h2>Portée des variables</h2>
+<ul>
+<li>local / global</li>
+<li>ne pas utiliser de global</li>
+</ul>
+</section>
+<section id="fonctions-et-types-modifiables" class="level2">
+<h2>Fonctions et types modifiables</h2>
+<p>listes (et autres types modifiables) en paramètre</p>
+</section>
+<section id="paramètres-additionnels" class="level2">
+<h2>Paramètres additionnels</h2>
+<p>args, kwargs</p>
+</section>
+<section id="les-modules" class="level2">
+<h2>Les modules</h2>
+<p>import module import module as alias</p>
+<p>from module import element from module import *</p>
+<p>exemples de modules : os, math, random</p>
+</section>
+<section id="exceptions" class="level2">
+<h2>Exceptions</h2>
+</section>
+</section>
+<section id="documentation-et-tests" class="level1">
+<h1>Documentation et tests</h1>
+</section>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="reveal.js/lib/js/head.min.js"></script>
+        <script type="text/javascript" src="reveal.js/js/reveal.js"></script>
+
+        <script type="text/javascript">
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                /* mettre une taille en pixel sinon l'overview ne fonctionne plus */
+                width: 1024,
+                height: 768,
+                controls: true,                                 // Display controls in the bottom right corner
+                progress: true,                                 // Display a presentation progress bar
+                history: true,                                  // Push each slide change to the browser history
+                center: false, // Vertical centering of slides
+                minScale: 0.2, // Bounds for smallestpossible content scale
+                maxScale: 1.5, // Bounds for largest possible content scale
+                slideNumber: false, // Display the page number of the current slide
+                autoSlide: 0, // Slide every duration milliseconds
+
+                theme: 'default', // available themes are in /css/theme
+                transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    // { src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    // { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    /* ne pas activer highlight sinon la colorisation syntaxique ne fonctionne plus ? */
+                    // { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }//,
+                    // { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+        <!-- -A/- -include-after-body -->
+        <!-- comme le footer contient des variables, on le met dans le gabarit car
+             les variables ne sont pas interprétées via -A de pandoc -->
+        <div id="slide-ign-footer">
+            <div class="slide-ign-title">Programmation avec Python</div>
+            <div class="slide-ign-date">2016</div>
+        </div>
+    </body>
+</html>
+
