@@ -1199,7 +1199,10 @@ Début du bloc</code></pre>
 ...
 &gt;&gt;&gt; x = puissance(<span class="dv">2</span>, <span class="dv">3</span>)
 &gt;&gt;&gt; x
-<span class="dv">8</span></code></pre>
+<span class="dv">8</span>
+&gt;&gt;&gt; y = puissance(facteur=<span class="dv">3</span>, nombre=<span class="dv">3</span>)
+&gt;&gt;&gt; y
+<span class="dv">27</span></code></pre>
 </section>
 <section id="valeur-par-défaut" class="level2">
 <h2>Valeur par défaut</h2>
@@ -1224,30 +1227,92 @@ Début du bloc</code></pre>
 <section id="portée-des-variables" class="level2">
 <h2>Portée des variables</h2>
 <ul>
-<li>local / global</li>
-<li>ne pas utiliser de global</li>
+<li>Local / global</li>
 </ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">2</span>
+&gt;&gt;&gt; <span class="kw">def</span> f(b):
+...     <span class="dt">print</span>(a+b)
+...
+&gt;&gt;&gt; <span class="dt">print</span>(a)
+<span class="dv">2</span>
+&gt;&gt;&gt; f(<span class="dv">3</span>)
+<span class="dv">5</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">2</span>
+&gt;&gt;&gt; <span class="kw">def</span> f(a, b):
+...     <span class="dt">print</span>(a+b)
+...
+&gt;&gt;&gt; <span class="dt">print</span>(a)
+<span class="dv">2</span>
+&gt;&gt;&gt; f(<span class="dv">4</span>, <span class="dv">3</span>)
+<span class="dv">7</span>
+&gt;&gt;&gt; <span class="dt">print</span>(a)
+<span class="dv">2</span></code></pre>
 </section>
-<section id="fonctions-et-types-modifiables" class="level2">
-<h2>Fonctions et types modifiables</h2>
-<p>listes (et autres types modifiables) en paramètre</p>
+<section id="portée-des-variables-1" class="level2">
+<h2>Portée des variables</h2>
+<ul>
+<li>Mot clé <code>global</code> : généralement mauvaise pratique</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">2</span>
+&gt;&gt;&gt; <span class="kw">def</span> f(b):
+...     <span class="kw">global</span> a
+...     <span class="dt">print</span>(a)
+...
+&gt;&gt;&gt; f(<span class="dv">3</span>)
+<span class="dv">2</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; a = <span class="dv">2</span>
+&gt;&gt;&gt; <span class="kw">def</span> f(b):
+...     a = a + b
+...     <span class="dt">print</span>(a)
+...
+&gt;&gt;&gt; f(<span class="dv">3</span>)
+<span class="dv">5</span>
+&gt;&gt;&gt; <span class="dt">print</span>(a)
+<span class="dv">5</span></code></pre>
 </section>
 <section id="paramètres-additionnels" class="level2">
 <h2>Paramètres additionnels</h2>
-<p>args, kwargs</p>
+<ul>
+<li>Passer un nombre indéterminé de paramètres</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">def</span> somme(*args):
+...     s = <span class="dv">0</span>
+...     <span class="kw">for</span> arg in args:
+...         s += arg
+...     <span class="kw">return</span> s
+...
+&gt;&gt;&gt; s(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+<span class="dv">6</span>
+&gt;&gt;&gt; s()
+<span class="dv">0</span></code></pre>
+<ul>
+<li>Combinaisons possibles</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">def</span> f(a, *args):
+...     val = a
+...     <span class="kw">for</span> arg in args:
+...         val *= arg
+...     <span class="kw">return</span> val
+...
+&gt;&gt;&gt; s(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)
+<span class="dv">30</span>
+&gt;&gt;&gt; s(<span class="dv">5</span>)
+<span class="dv">5</span></code></pre>
 </section>
 <section id="les-modules" class="level2">
 <h2>Les modules</h2>
-<p>import module import module as alias</p>
-<p>from module import element from module import *</p>
-<p>exemples de modules : os, math, random</p>
+<ul>
+<li>Pour utiliser des fonctions dans d'autres fichiers</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> module
+<span class="ch">import</span> module <span class="ch">as</span> alias
+
+<span class="ch">from</span> module <span class="ch">import</span> element
+<span class="ch">from</span> module <span class="ch">import</span> *</code></pre>
+<ul>
+<li>Exemples de modules : os, math, random, numpy</li>
+</ul>
 </section>
-<section id="exceptions" class="level2">
-<h2>Exceptions</h2>
-</section>
-</section>
-<section id="documentation-et-tests" class="level1">
-<h1>Documentation et tests</h1>
 </section>
             </div>
         </div>

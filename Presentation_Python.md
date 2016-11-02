@@ -780,6 +780,9 @@ def ma_fonction(param1, param2, ...):
 >>> x = puissance(2, 3)
 >>> x
 8
+>>> y = puissance(facteur=3, nombre=3)
+>>> y
+27
 ```
 
 ## Valeur par défaut ##
@@ -801,33 +804,103 @@ def ma_fonction(param1, param2, ...):
 ```
 
 ## Portée des variables ##
-* local / global
-* ne pas utiliser de global
+* Local / global
 
+``` python
+>>> a = 2
+>>> def f(b):
+...     print(a+b)
+...
+>>> print(a)
+2
+>>> f(3)
+5
+```
 
-## Fonctions et types modifiables ##
-listes (et autres types modifiables) en paramètre 
+``` python
+>>> a = 2
+>>> def f(a, b):
+...     print(a+b)
+...
+>>> print(a)
+2
+>>> f(4, 3)
+7
+>>> print(a)
+2
+```
+
+## Portée des variables ##
+* Mot clé `global` : généralement mauvaise pratique
+
+``` python
+>>> a = 2
+>>> def f(b):
+...     global a
+...     print(a)
+...
+>>> f(3)
+2
+```
+
+``` python
+>>> a = 2
+>>> def f(b):
+...     a = a + b
+...     print(a)
+...
+>>> f(3)
+5
+>>> print(a)
+5
+```
 
 
 ## Paramètres additionnels ##
-args, kwargs
+* Passer un nombre indéterminé de paramètres
+
+``` python
+>>> def somme(*args):
+...     s = 0
+...     for arg in args:
+...         s += arg
+...     return s
+...
+>>> s(1, 2, 3)
+6
+>>> s()
+0
+```
+
+* Combinaisons possibles
+
+``` python
+>>> def f(a, *args):
+...     val = a
+...     for arg in args:
+...         val *= arg
+...     return val
+...
+>>> s(5, 1, 3, 2)
+30
+>>> s(5)
+5
+```
 
 
 
 ## Les modules ##
+*  Pour utiliser des fonctions dans d'autres fichiers
+
+``` python
 import module
 import module as alias
 
 from module import element
 from module import *
+```
 
-exemples de modules : os, math, random 
-
-## Exceptions ##
-
-
-# Documentation et tests #
-
+* Exemples de modules : os, math, random, numpy 
 
 
 
