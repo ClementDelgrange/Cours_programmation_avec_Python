@@ -25,11 +25,11 @@ Dans un repère orthonormé :
 
 
 1. Ecrivez une fonction de tirage alétoire de points dans un rectangle. Par défaut, si les coordonnées du rectangle ne sont pas renseignées, elles devront avoir pour valeur xmin=0, xmax=1, ymin=0 et ymax=1.
-2. Testez votre fonction en tirant plusieurs points dans un le carré d'origine (0,0) et de côté 1.
+2. Ajoutez une fonction permettant de tirer n points aléatoires et de retourner leur coordonnées dans une liste. Testez votre fonction.
 3. Quelle condition permet de déterminer si un point (x,y) est à l'intérieur du du cercle de centre (x0,y0) et de rayon r ?
 4. Ecrivez une fonction `est_dans_cercle(x, y, x0, y0, r)` retournant le booléen `True` si le point (x,y) est dans le cercle de centre (x0,y0) et de rayon r, et `False` sinon.
 5. Ajoutez les valeurs par defaut suivante à votre fonction : `x0=0`, `y0=0` et `r=1`
-6. Pour revenir à notre problème d'estimation de Pi, prévoyez une fonction `nb_dans_sous_domaine(n)` tirant n points aléatoires dans un carré de côté 1 et retournant le nombre de points à l'intérieur du quart de cerle de rayon 1 centré sur un coin du carré.
+6. Pour revenir à notre problème d'estimation de Pi, prévoyez une fonction `nb_dans_sous_domaine(points)` prenant en paramètre une liste de points et retournant le nombre à l'intérieur du quart de cerle de rayon 1 centré sur un coin du carré.
 7. Utilisez votre dernière fonction pour estimer Pi en tirant 10, 100, 1000, ... 10000000 points.
 8. Quels sont selon vous les points forts / points faibles de la méthode ?
 
