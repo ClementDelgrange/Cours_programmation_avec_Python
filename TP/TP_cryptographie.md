@@ -5,7 +5,7 @@
 
 Dans ce TP, nous nous proposons de mettre en oeuvre quelques méthodes de cryptage d'une chaîne de caractères. Dans un premier temps, nous écrirons les fonctions nécessaires au cryptage/décryptage. Puis en fin de TP, nous explorerons quelques méthodes permettant de casser un cryptage sans connaître la clé utilisée ou même la méthode de cryptage.
 
-A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère est une lettre (a-z) ou autre chose (espace, signe de ponctuation). Pour cela, nous utiliserons le code ASCII du caractère et vérifierons s'il est compris entre 97 et 123 inclus. Deux méthodes nous seront utiles pour cela :
+A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère est une lettre (a-z) ou autre chose (espace, signe de ponctuation). Pour cela, nous utiliserons le code ASCII du caractère et vérifierons s'il est compris entre 97 et 122 inclus. Deux méthodes nous seront utiles pour cela :
 
 * `ord(string)` transforme un caractère en son code ASCII correspondant;
 * `chr(int)` transforme un entier en son caractère ASCII correspondant.
