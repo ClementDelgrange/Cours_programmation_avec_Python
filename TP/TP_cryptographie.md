@@ -5,7 +5,7 @@
 
 Dans ce TP, nous nous proposons de mettre en oeuvre quelques méthodes de cryptage d'une chaîne de caractères. Dans un premier temps, nous écrirons les fonctions nécessaires au cryptage/décryptage. Puis en fin de TP, nous explorerons quelques méthodes permettant de casser un cryptage sans connaître la clé utilisée ou même la méthode de cryptage.
 
-A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère est une lettre (a-z) ou autre chose (espace, signe de ponctuation). Pour cela, nous utiliserons le code ASCII du caractère et vérifierons s'il est compris entre 97 et 122 inclus. Deux méthodes nous seront utiles pour cela :
+A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère est une lettre (a-z) ou autre chose (espace, signe de ponctuation). Pour cela, nous utiliserons le code ASCII du caractère et vérifierons s'il est compris entre 97 et 123 inclus. Deux méthodes nous seront utiles pour cela :
 
 * `ord(string)` transforme un caractère en son code ASCII correspondant;
 * `chr(int)` transforme un entier en son caractère ASCII correspondant.
@@ -13,6 +13,9 @@ A plusieurs reprise dans ce TP, nous chercherons à déterminer si un caractère
 **Restrictions** : nous n'utiliserons au cours de ce TP que des chaînes de caractères écrites en minuscules et sans caractères accentués, l'objectif étant de crypter des messages et d'en retrouver le sens lors du décryptage. 
 
 Dans la pratique, le passage d'un chaîne avec accents et majuscules vers une chaîne "simple" est réalisable en Python (fonction `lower()`, module `unicodedata`), ce qui rend nos programmes compatible avec n'importe quelle donnée en entrée.
+
+0. Ecrivez une fonction `est_une_lettre(caractere)` retournant True si le caractère en entrée est une lettre et False sinon.
+
 
 # Cryptage de César #
 Le cryptage de César est une méthode chiffrement par décalage constant. Chaque lettre du texte en clair est remplacée par une lettre à distance fixe. Dans le cas d'un décalage à droite pour les dernières lettres de l'alphabet, nous repartons au début (et inversement pour un décalage à gauche).
@@ -89,9 +92,9 @@ Dans cette partie, nous cherchons à décrypter un message, sans connaître la c
 
 Pour cette partie, nous avons traduit un même message à l'aide des trois méthodes étudiées prcédement. Les résultats sont les suivants :
 
-* `a = "p'vflseegxviai p'wyx qw re osrpr. gt c ssox qwy xemiw cjgxviaif egmf xgyg soqrj rif egxuéegxviaif."`
-* `b = "p'mrjsvqexmuyi g'iwx hi pe feppi. sr c jemx hiw xvygw tvexmuyiw qemw jeyx emqiv piw qexléqexmuyiw."`
-* `c = "l'qsfmratiquen c'ngi dn lt btlln. ms y cmdn dng irecg prtiqueng atqg ftei tqanr lng atihéatiqueng."`
+* `a = "p'vflseegxviai p'wyx qw re osrpr. gt c ssox qwy xemiw cjgxviaif egmf xgyg soqrj rif egxuwsegawyrk."`
+* `b = "r'otluxsgzowak i'kyz jk rg hgrrk. ut e lgoz jky zxaiy vxgzowaky sgoy lgaz goskx rky sgznksgzowaky."`
+* `c = "l'qsfmratiquen c'ngi dn lt btlln. ms y ftqi dng irecg irng prtiqueng atqg ftei tqanr lng atihnatiqueng."`
 
 
 
