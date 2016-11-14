@@ -33,3 +33,24 @@ Un découpage du programme de jeu en différentes méthodes est proposé. Seules
 5. Afin de pouvoir jouer contre un ordinateur, prévoyez une fonction générant de manière aléatoire une combinaison de pions d'une taille donnée. Cette combinaison sera retournée sous forme d'une liste d'entiers.
 6. Complétez le jeu en permettant au joueur de choisir le niveau difficulté : nombre de couleurs utilisées, nombre de pions de la combinaison et nombre de coups autorisés pour découvrir la bonne combinaison.
 7. Ajoutez la possibilité d'avoir des couleurs en double dans une combinaison.
+
+\newpage
+
+**Aller plus loin**
+
+Nous nous intéressons ici à la performance de la fonction de vérification. 
+
+1. Commencez par évaluer la complexité de la fonction que vous avez écrite (notation en 0(f(n)).
+2. En utilisant le script `TP_mastermind_benchmark.py` réalisez un graphique représentant le temps de calcul de la méthode verification en fonction du nombre de pions de la combinaison. Ce script utilisant `matplotlib`, installez cette bibliothèque sur votre poste en tapant dans une invite de commande : `pip3 install matplotlib --proxy=10.0.4.2:3128` (la commande peut légèrement varier en fonction des machines : demander l'aide du professeur si besoin).
+
+![Temps de calcul de verification() en fonction du nombre de points de la combinaison](TP\TP_mastermind_perf.png) 
+
+Pour améliorer la complexité de l'algorithme, nous utiliserons des outils Python issus de la programmation fonctionnelle (<https://fr.wikipedia.org/wiki/Programmation_fonctionnelle>) :
+
+* `zip()` qui permet de combiner plusieurs listes entre elles
+(cf. <https://docs.python.org/3/library/functions.html#zip>);
+
+* `Counter` qui permet de compter le nombre d'occurence des éléments d'une liste et retourne le résultat sous forme de dictionnaire
+(cf. <https://docs.python.org/3/library/collections.html#collections.Counter>).
+
+3. Proposez des améliorations de votre fonction `verification()` et comparer à l'aide du script précédent les temps de calcul des différentes méthodes.
