@@ -1448,7 +1448,7 @@ Pour ouvrir un fichier, on utilise la fonction \lstinline{open()}. Elle prend en
 	\begin{itemize}
 		\item \lstinline{'r'} pour lire uniquement;
 		\item \lstinline{'w'} pour écrire uniquement (le contenu précédent est écrasé);
-		\item \lstinline{'a'} pour écrire à la fin uniquement (le contenu précédent est conservé);
+		\item \lstinline{'a'} pour lire et écrire à la fin (le contenu précédent est conservé);
 	\end{itemize}
 \end{itemize}
 
@@ -1462,7 +1462,7 @@ Lorsque le fichier n'est plus utilisé par le programme, il est nécessaire de l
 Plusieurs modes de lecture d'un fichier sont possible. Les plus courants sont :
 \begin{itemize}
 	\item la lecture en entier avec la fonction \lstinline{read()}
-	\item la lecture ligne par ligne avec la fonction \lstinline{readline()}
+	\item la lecture ligne par ligne avec la fonction \lstinline{readlines()}
 \end{itemize}
 
 D'autres modes permettent la lecture bit par bit ou caractère par caractère.
