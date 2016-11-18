@@ -14,8 +14,6 @@ Les données de l'association sont sotckées dans deux fichiers texte :
 
 Afin de tracer toutes les opérations effectuées avec l'application, nous developperons en fin de TP un module simple d'écriture de fichiers de logs. 
 
-Remarque : module `logging` de Python ?
-
 Il est rappelé que le code devra être documenté et que les tests unitaires, lorsqu'il seront possibles, devront être prévus. Nous utiliserons pour cela les `doctrings` qui pourront être utilisées par le module `doctest`.
 
 # Utilisation du fichier des activités #
@@ -49,7 +47,7 @@ Nous souhaitons tracer dans un fichier texte toutes les opérations effectuées 
 # Documentation #
 Cette partie n'est à traiter que si vous avez déjà complété intégralement les parties précédentes.
 
-12. Si vous ne l'avez pas fait, documentez votre code.
+12. Si vous ne l'avez toujours pas fait, documentez votre code !
 13. En vous aidant de la documentation en ligne (http://www.sphinx-doc.org/en/stable/tutorial.html), installez la librairie `Sphinx` et servez-vous en pour générer la documentation de votre application au format HTML.
 
 
