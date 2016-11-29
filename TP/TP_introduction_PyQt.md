@@ -65,7 +65,7 @@ Pour pouvoir utiliser la librairie PyQt, commençons par l'importer dans notre
 script :
 
 ``` python
-from PyQt4.GtGui import *
+from PyQt4.QtGui import *
 ```
 
 Puis créons une application Qt avec `QApplication`. Cette application 
