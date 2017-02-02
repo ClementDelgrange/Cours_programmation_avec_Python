@@ -1,37 +1,389 @@
-# Aspects pratiques
-* 22/02 aprem, 01/03 aprem, 08/03 aprem, 15/03 aprem, 17/03 matin
-* 3 salles : M403, L112, L109 (15 places)
-* 2 salles pour la dernière séance : M404, L207-208
-
-* PyCharm (ubuntu / windows ?)
-
-
-# Rappels semestre 1 #
-* Tests unitaires
-* Exceptions
-* Bonnes pratiques
-	* Utilisation de la doc en ligne / help()
-	* Tests en live
-	* Boucle for sur les indices
-	* 20 lignes max par fonction
-* *args, **kwargs
-* imports, modules
-* `__main__`
+% Python objet
+% Division des enseignements en informatique
+% 2016
 
 
 
-# Classes #
-* syntaxe définition
-* constructeur
-* héritage
-* encapsulation
-	* tout est public
-	* convention : _ pour indiquer que c'est privé
-* accesseur, mutateur
-* classes abstraites
-* quelques méthodes spéciales
+# Quelques rappels #
+## L'itération en Python ##
+* Itérer sur les éléments pas sur les indices
+
+```
+liste = [2, 5, 4, 8, 1]
+
+for i in range(len(liste)):
+	liste[i] += 1
+```
+
+```
+liste = [2, 5, 4, 8, 1]
+
+for e in liste:
+	e += 1
+```
+
+
+## L'itération en Python ##
+
+```
+>>> liste = [1 for i in range(10000000)]
+>>> t_start = time.time()
+>>> for e in liste:
+...	    e += 1
+...
+>>> t_stop = time.time()
+>>> print(t_stop - t_start)
+0.8220820426940918
+```
+
+
+## L'itération en Python ##
+
+```
+>>> liste = [1 for i in range(10000000)]
+>>> t_start = time.time()
+>>> for i in range(len(liste):
+...	    liste[i] += 1
+...
+>>> t_stop = time.time()
+>>> print(t_stop - t_start)
+1.3101308345794678
+```
+
+
+## L'itération en Python ##
+
+```
+>>> liste = [1 for i in range(10000000)]
+>>> t_start = time.time()
+>>> i = 0
+>>> while i < len(liste):
+...	    liste[i] += 1
+...     i += 1
+...
+>>> t_stop = time.time()
+>>> print(t_stop - t_start)
+2.6622660160064697
+```
+
+
+## *args et **kwargs ##
+
+* Passer un nombre indéterminé d'arguments à une fonction
+* Arguments passés sous forme de tuple
+
+```
+def somme(*args):
+	s = 0
+	for arg in args:
+		s += arg
+	return s
+```
+
+
+## *args et **kwargs ##
+
+* Passer un nombre indéterminé d'arguments nommés à une fonction
+* Arguments passés sous forme de dictionnaire
+
+```
+def presentation(**kwargs):
+	for key, val in kwargs:
+		print("{} => {}".format(key, value))
+```
+
+```
+>>> presentation(nom="Mousse", prenom="Emma", age=22)
+age => 22
+prenom => Emma
+nom => Mousse
+```
+
+
+## Calculs virgules fixes/flottants ##
+
+
+
+## Les messages d'erreurs ##
+
+* Exemple, le fichier `script.py` contient :
+ 
+```
+def une_fonction(a):
+    return 1 / a
+ 
+def une_autre_fonction():
+    une_fonction(0)
+ 
+une_autre_fonction()
+```
+
+## Les messages d'erreurs ##
+
+* Lecture du message d'erreur de bas en haut (*pile des appels*)
+
+```
+Traceback (most recent call last):
+  File "script.py", line 7, in <module>
+    une_autre_fonction()
+  File "script.py", line 5, in une_autre_fonction
+    une_fonction(0)
+  File "script.py", line 2, in une_fonction
+    return 1 / a
+ZeroDivisionError: division by zero
+```
+
+
+## Les exceptions ##
+
+> Mécanisme pour gérer des erreurs survenues lors de l'exécution d'un programme.
+
+* Apporter une solution à un problème bloquant
+* Eviter d'interrompre le programme
+* D'autres solutions, mais c'est la manière de faire en Python
+
+
+## Les exceptions les plus fréquentes ##
+
+* `NameError` : la variable ou fonction manipulée n'est pas déclarée
+* `TypeError` : le type de la variable ne permet pas d'effectuer l'opération demandée
+* `ValueError` : le type est correct, mais pas la valeur
+* `ZeroDivisionError` : division par zéro
+* `IndexError` : tentative d'accès à un élément d'une séquence avec un indice qui n'existe pas 
+* `KeyError` : tentative d'accès à un élément d'un dictionnaire avec une clé qui n'existe pas
+* `FileNotFoundError` : le fichier n'existe pas
+* `IOError` : erreur lors de la manipulation d'un fichier
+* `SyntaxError` : erreur de syntaxe (indentation, parenthèse...)
+
+
+## Soulever une exception ##
+
+* Mot-clé `raise`
+* Lever volontairement une exception quand une condition particulière se produit 
+
+```
+def ma_fonction(age):
+	if age < 0:
+		raise ValueError("'age' doit etre positif")
+	# suite de la fonction
+```
+
+```
+>>> ma_fonction(-2)
+Traceback (most recent call last):
+  File "<interactive input>", line 1, in <module>
+  File "<interactive input>", line 3, in ma_fonction
+ValueError: 'age' doit etre positif !
+```
+
+
+## Traiter d'une exception ##
+
+* Mots-clé `try / except`
+
+```
+try:
+	# ce qui peut produire une exception
+except NomException:
+	# ce qu'il faut faire si l'exception se déclanche
+```
+
+```
+liste = ['toto', 'titi', 'tata'...]
+try:
+	choix = liste[10 // i]
+except ZeroDivisionError:
+	print("Division par zero impossible")
+	choix = liste[0]
+except IndexError:
+	print("Probleme d'index")
+	choix = liste[len(liste)]
+```
+
+## Traiter d'une exception ##
+
+* `finally` et `else`
+
+```
+try:
+	# ce qui peut produire une exception
+except NomException:
+	# ce qu'il faut faire si l'exception se déclanche
+else:
+	# ce qu'il faut faire si aucune exception n'a été levée
+finally:
+	# ce qui sera exécuté dans tous les cas, qu'une exception ai eu lieu ou pas
+```
+
+
+## Traiter une exception ##
+
+```
+try:
+	f = open('fichier.txt', 'w')
+	# écriture dans le fichier
+except IOError:
+	print("Probleme lors de l'écriture du fichier")
+else:
+	print("Ecriture OK")
+finally:
+	f.close()
+```
+
+
+## Les context managers ##
+
+* Simplifier les choses quand la gestion des exceptions devient lourde 
+
+```
+try:
+    with open('fichier.txt', 'w') as f:
+        # écriture dans le fichier
+except (IOError, FileNotFoundError):
+    # gérer l'erreur
+```
+
+
+## Documentation ##
+* Expliquer ce que font les fonctions, classes, modules...
+* Indispensable pour rendre le code exploitable par d'autres
+
+```
+def ma_fonction(a, b):
+	"""
+	Ligne générale de description de ce que fait la fonction
+
+	Description plus détaillé, si besoin, de comment la fonction
+	fait ce qu'elle fait, de ce qu'elle utilise...
+
+	:param a: description de ce que contient a
+	:type a: type de la valeur attendue dans a
+	:param b: description de ce que contient b
+	:type b: type de la valeur attendue dans b
+	:return: description de ce que retourne la fonction
+	:returntype: type de la valeur retournée par la fonction 
+	"""
+```
+
+
+## Les tests unitaires ##
+
+
+
+## Modules et imports ##
+
+
+
+## Bonnes pratiques ##
+* Utilisation de la documentation
+	* comment utiliser une fonction ? `help(fonction)`
+	* quelles sont les fonctions de ce module ? `dir(module)`
+	* où trouver de la doc en ligne ? <https://docs.python.org/3.5/>
+
+
+## Bonnes pratiques ##
+* `nom_de_variable`, `nom_de_fonction`, `NomDeClasse`
+* `a + b` (et pas `a+b`)
+	* respecter les conventions c'est faciliter la lecture 
+* 20 lignes max par fonction
+	* au delà c'est rarement compréhensible !
+* 1 fonction = 1 tâche
+	* découper en sous-fonction pour rendre plus compréhensible/maintenable/testable
+* 1 fichier = 1 classe
+* Utiliser bloc `if __name__ == '__main__':` pour exécuter le code
+	* la console ne sauvegarde pas vos test
+* Testez votre code *en live*
+
+
+
+# Python objet #
+## Définition d'une classe ##
+
+* Utilisation du mot-clé `class`
+
+```
+class MaClasse(object):
+	...
+	...
+```
+
+
+## Constructeur ##
+
+* Méthode appelée pour instancier les objets
+
+```
+class MaClasse(object):
+	def __init__(self, param1, param2...):
+		...
+```
+
+* Instanciation
+
+```
+mon_objet = MaClasse(param1, param2...)
+```
+
+## Les attributs ##
+
+* Mot-clé `self` pour faire référence à la classe elle-même
+
+
+## Les méthodes ##
+
+* le premier paramètre est toujours self
+* il correspond à l'objet avant le point lors de l'appel
+
+
+## L'héritage ##
+
+> Principe permettant de créer une classe à partir d'une autre
+
+* Nom de la classe mère entre parenthèses lors de la définition
+	* *toutes les classes héritent donc de la classe `object`*
+
+```
+class ClasseFille(ClasseMere):
+	...
+```
+
+
+## L'encapsulation ##
+
+> Principe visant à cacher les détails de l'implémentation à l'utilisateur
+
+* En Python : **tout est public**
+* Convention : `_` avant le nom de l'attribut pour indiquer qu'il est privé
+
+
+## Lecture/écriture d'attributs ##
+
+* Décorateur sur les fonctions
+
+`@property` pour faire comme si la méthode était un attribut
+
+`@attribut.setter` pour gérer l'écriture
+
+
+## Les classes abstraites ##
+
+> Classe qui ne peut être instanciée
+
+* Notion de classe abstraite inexistante en Python
+* Astuce : lever une exception dans le constructeur
+
+```
+class MaClasseAbstraite(object):
+	def __init__(self, param1, param2...):
+		raise NotImplementedError
+```
+
+## Personnaliser le comportement des objets ##
+
+* méthodes spéciales
     * `__str__`, `__eq__`, `__iter__`, ...
-* un fichier par classe
+
+
 
 
 # Bases de données #

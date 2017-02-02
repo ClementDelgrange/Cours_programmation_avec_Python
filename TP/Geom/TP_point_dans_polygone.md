@@ -146,7 +146,7 @@ Pour la mise en oeuvre de l'algorithme, nous effectuerons les opérations suivan
 * pour chaque segment du contour du polygone, calcul de l'intersection avec la ligne, si elle existe.
 
 25. Implémentez l'algorithme dans la méthode `contient(p)` de la classe `Polygone`
-26. Testez votre méthode.
+26. Testez votre méthode. Vous pouvez utiliser matplotlib pour vérifier que le résultat est correct.
 
 
 # Aller plus loin #
