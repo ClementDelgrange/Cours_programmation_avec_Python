@@ -87,7 +87,13 @@
 \author{$for(author)$$author$$sep$\\$endfor$}
 \date{$date$}
 
-
+% Commandes personnalisees
+\newenvironment{note}{%
+	\begin{minipage}[c]{0.9\linewidth}
+	\textit{\color{gray}{\textbf{\large{Note :}}}}
+}{%
+	\end{minipage}
+}
 
 % Patch : probleme avec les tightlist
 \def\tightlist{}

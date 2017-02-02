@@ -149,26 +149,7 @@ Pour la mise en oeuvre de l'algorithme, nous effectuerons les opérations suivan
 26. Testez votre méthode.
 
 
+# Aller plus loin #
+Nous souhaiterions tester si le centroïde d'un polygone quelconque (points tirés aléatoirement) se situe à l'intérier du polygone où à l'extérieur de celui-ci. Cette fonctionnalité peut avoir un intérêt, dans un cadre cartographique, pour savoir si l'on peut attacher automatiquement des étiquettes au centroïdes de polygones où s'il faut utiliser d'autres points.
 
-# Organisation du code #
-Jusqu'ici nous avons écrit tous notre code dans un unique fichier .py. Ce fichier commence à être volumineux et difficilement lisible. Pour faciliter le compréhension du code, nous allons répartir les classes sur plusieurs fichiers (aussi appelés modules). Ces modules seront regroupés dans un package Python.
-
-=> Créez un nouveau dossier \textbf{API\_geo}. Pour que ce dossier soit reconnu comme un package Python, créez à sa racine un fichier \lstinline{__init__.py}.
-
-=> Créez ensuite dans ce package cinq modules : \lstinline{base.py}, \lstinline{point.py}, \lstinline{polyligne.py}, \lstinline{polygone.py} et \lstinline{enveloppe.py}.
-
-=> Copiez alors dans chacun des modules les classes correspondantes :
-
-* `base.py` : tout ce qui concerne les formes géométriques génériques
-* `point.py` : la classe **Point**
-* `polyligne.py` : la classe **Polyligne**
-* `polygone.py` : la classe **Polygone** et ses dérivées
-* `enveloppe.py` : la classe **Enveloppe**
-
-
-Lorsque cela est fait, il reste à configurer proprement les imports pour que le code soit de nouveau fonctionnel. Par exemple, lorsque la classe Point est utilisée dans un module, on écrira au début du module : \lstinline{from API_geo.point import Point}.
-
-=> Importez les classes utilisées dans chacun des modules.
-
-=> Pour faciliter encore la compréhension du code, documentez le si ce n'est pas déjà fait et prévoyez des tests unitaires pertinents (les exemples des parties précédentes).
-
+Ajoutez un attribut dérivé `centroide` à la classe forme géométrique (toutes les formes géométriques possèdent un centroïde), et implémentez son calcul dans les classes adaptées. Vous pouvez enfin complétez la classe `Polygone` avec une méthode indiquant si le centroïde est à l'intérieur du polygone ou pas. 
