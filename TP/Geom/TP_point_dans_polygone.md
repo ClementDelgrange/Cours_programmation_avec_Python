@@ -54,7 +54,7 @@ Nous allons maintenant définir une classe `FormeGeo` qui représente une forme 
 9. Ajoutez une classe `FormeGeo` à votre programme et indiquez que la classe `Point` hérite de `FormeGeo`.
 10. La notion de classe abstraite n'existe pas en Python. Pour simuler ce comportement, levez une exception de type `NotImplementedError` dans le constructeur de `FormeGeo`.
 
-De même que pour la classe `Point` nous allons ajouter une méthode `deplacer(dx, dy)` à la classe `FormeGeo`. Cette méthode sera abstraite. Son seul intérêt sera de conrtaindre toutes les classes hériant de `FormeGeo` à l'implémenter : toutes les formes géométriques pourront être déplacées de dx, dy.
+De même que pour la classe `Point` nous allons ajouter une méthode `deplacer(dx, dy)` à la classe `FormeGeo`. Cette méthode sera abstraite. Son seul intérêt sera de contraindre toutes les classes héritant de `FormeGeo` à l'implémenter : toutes les formes géométriques pourront être déplacées de dx, dy.
 
 11. Ajoutez la méthode `deplacer(dx, dy)`. Pour la rendre abstraite, le corps de la méthode contiendra uniquement une levée de l'exception `NotImplementedError`.
 
@@ -86,7 +86,7 @@ ENVELOPPE(Xmin:2 Ymin:3 Xmax:7 Ymax:5)
 15. Ajoutez l'attribut `enveloppe` à la classe `FormeGeo`, en précisant ce qu'il contient.
 
 \begin{note}
-Remarquez qu'ici nous avons définit ce que contient l'attribut `enveloppe` alors que nous n'avons rien définit d'autre dans la classe ormeGeo` (toutes les méthodes, y compris le constructeur, sont abstraites).
+Remarquez qu'ici nous avons définit ce que contient l'attribut `enveloppe` alors que nous n'avons rien définit d'autre dans la classe `FormeGeo` (toutes les méthodes, y compris le constructeur, sont abstraites).
 \end{note}
 
 16. Implémentez le fait que l'enveloppe d'une enveloppe est l'enveloppe elle-même.
@@ -139,7 +139,7 @@ L'algorithme que nous allons mettre en oeuvre pour déterminer si un point est c
 * si le nombre d'intersections est impair, le point est à l'intérieur du polygone;
 * si le nombre d'intersections est pair, le point est à l'extérieur du polygone.
 
-Pour la mide en oeuvre de l'algorithme, nous effectuerons les opérations suivantes :
+Pour la mise en oeuvre de l'algorithme, nous effectuerons les opérations suivantes :
 
 * définition d'un point très loin à l'extérieur de l'enveloppe (par exemple : `x=xmax+1000*(xmax-xmin)` et `y=ymax+1000*(ymax-ymin)`);
 * création d'une ligne entre ce point et le point testé;
