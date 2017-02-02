@@ -3,7 +3,6 @@
 % 2016
 
 
-
 # Quelques rappels #
 ## L'itération en Python ##
 * Itérer sur les éléments pas sur les indices

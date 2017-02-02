@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="generator" content="pandoc">
+        <meta name="author" content="Division des enseignements en informatique" />
+        <meta name="dcterms.date" content="2016-01-01" />
+        <title>Python objet</title>
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="reveal.js/css/reveal.css">
+		
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+        <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+
+	<!-- Styles ENSG-IGN -->
+	<link rel="stylesheet" href="css/ign.css">
+
+        <!-- Printing and PDF exports -->
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script type="text/javascript">
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/'+ (window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper') + '.css';
+            link.media = 'print';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" type="text/javascript" src="reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <!-- -H/- -include-in-header -->
+    </head>
+    <body>
+        <!-- -B/- -include-before-body -->
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1>Python objet</h1>
+                    <h3>Division des enseignements en informatique</h3>
+                    <h4>2016</h4>
+                </section>
+
+                <!-- - -toc/- -table-of-contents -->
+
+            <!-- ne pas indenter le $body$ sinon les codes (highlight) vont l'être aussi !!! -->
+<section id="quelques-rappels" class="level1">
+<h1>Quelques rappels</h1>
+<section id="litération-en-python" class="level2">
+<h2>L'itération en Python</h2>
+<ul>
+<li>Itérer sur les éléments pas sur les indices</li>
+</ul>
+<pre><code>liste = [2, 5, 4, 8, 1]
+
+for i in range(len(liste)):
+    liste[i] += 1</code></pre>
+<pre><code>liste = [2, 5, 4, 8, 1]
+
+for e in liste:
+    e += 1</code></pre>
+</section>
+<section id="litération-en-python-1" class="level2">
+<h2>L'itération en Python</h2>
+<pre><code>&gt;&gt;&gt; liste = [1 for i in range(10000000)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; for e in liste:
+...     e += 1
+...
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; print(t_stop - t_start)
+0.8220820426940918</code></pre>
+</section>
+<section id="litération-en-python-2" class="level2">
+<h2>L'itération en Python</h2>
+<pre><code>&gt;&gt;&gt; liste = [1 for i in range(10000000)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; for i in range(len(liste):
+...     liste[i] += 1
+...
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; print(t_stop - t_start)
+1.3101308345794678</code></pre>
+</section>
+<section id="litération-en-python-3" class="level2">
+<h2>L'itération en Python</h2>
+<pre><code>&gt;&gt;&gt; liste = [1 for i in range(10000000)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; i = 0
+&gt;&gt;&gt; while i &lt; len(liste):
+...     liste[i] += 1
+...     i += 1
+...
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; print(t_stop - t_start)
+2.6622660160064697</code></pre>
+</section>
+<section id="args-et-kwargs" class="level2">
+<h2>*args et **kwargs ##</h2>
+<ul>
+<li>Passer un nombre indéterminé d'arguments à une fonction</li>
+<li>Arguments passés sous forme de tuple</li>
+</ul>
+<pre><code>def somme(*args):
+    s = 0
+    for arg in args:
+        s += arg
+    return s</code></pre>
+</section>
+<section id="args-et-kwargs-1" class="level2">
+<h2>*args et **kwargs ##</h2>
+<ul>
+<li>Passer un nombre indéterminé d'arguments nommés à une fonction</li>
+<li>Arguments passés sous forme de dictionnaire</li>
+</ul>
+<pre><code>def presentation(**kwargs):
+    for key, val in kwargs:
+        print(&quot;{} =&gt; {}&quot;.format(key, value))</code></pre>
+<pre><code>&gt;&gt;&gt; presentation(nom=&quot;Mousse&quot;, prenom=&quot;Emma&quot;, age=22)
+age =&gt; 22
+prenom =&gt; Emma
+nom =&gt; Mousse</code></pre>
+</section>
+<section id="calculs-virgules-fixesflottants" class="level2">
+<h2>Calculs virgules fixes/flottants</h2>
+</section>
+<section id="les-messages-derreurs" class="level2">
+<h2>Les messages d'erreurs</h2>
+<ul>
+<li>Exemple, le fichier <code>script.py</code> contient :</li>
+</ul>
+<pre><code>def une_fonction(a):
+    return 1 / a
+ 
+def une_autre_fonction():
+    une_fonction(0)
+ 
+une_autre_fonction()</code></pre>
+</section>
+<section id="les-messages-derreurs-1" class="level2">
+<h2>Les messages d'erreurs</h2>
+<ul>
+<li>Lecture du message d'erreur de bas en haut (<em>pile des appels</em>)</li>
+</ul>
+<pre><code>Traceback (most recent call last):
+  File &quot;script.py&quot;, line 7, in &lt;module&gt;
+    une_autre_fonction()
+  File &quot;script.py&quot;, line 5, in une_autre_fonction
+    une_fonction(0)
+  File &quot;script.py&quot;, line 2, in une_fonction
+    return 1 / a
+ZeroDivisionError: division by zero</code></pre>
+</section>
+<section id="les-exceptions" class="level2">
+<h2>Les exceptions</h2>
+<blockquote>
+<p>Mécanisme pour gérer des erreurs survenues lors de l'exécution d'un programme.</p>
+</blockquote>
+<ul>
+<li>Apporter une solution à un problème bloquant</li>
+<li>Eviter d'interrompre le programme</li>
+<li>D'autres solutions, mais c'est la manière de faire en Python</li>
+</ul>
+</section>
+<section id="les-exceptions-les-plus-fréquentes" class="level2">
+<h2>Les exceptions les plus fréquentes</h2>
+<ul>
+<li><code>NameError</code> : la variable ou fonction manipulée n'est pas déclarée</li>
+<li><code>TypeError</code> : le type de la variable ne permet pas d'effectuer l'opération demandée</li>
+<li><code>ValueError</code> : le type est correct, mais pas la valeur</li>
+<li><code>ZeroDivisionError</code> : division par zéro</li>
+<li><code>IndexError</code> : tentative d'accès à un élément d'une séquence avec un indice qui n'existe pas</li>
+<li><code>KeyError</code> : tentative d'accès à un élément d'un dictionnaire avec une clé qui n'existe pas</li>
+<li><code>FileNotFoundError</code> : le fichier n'existe pas</li>
+<li><code>IOError</code> : erreur lors de la manipulation d'un fichier</li>
+<li><code>SyntaxError</code> : erreur de syntaxe (indentation, parenthèse...)</li>
+</ul>
+</section>
+<section id="soulever-une-exception" class="level2">
+<h2>Soulever une exception</h2>
+<ul>
+<li>Mot-clé <code>raise</code></li>
+<li>Lever volontairement une exception quand une condition particulière se produit</li>
+</ul>
+<pre><code>def ma_fonction(age):
+    if age &lt; 0:
+        raise ValueError(&quot;&#39;age&#39; doit etre positif&quot;)
+    # suite de la fonction</code></pre>
+<pre><code>&gt;&gt;&gt; ma_fonction(-2)
+Traceback (most recent call last):
+  File &quot;&lt;interactive input&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;&lt;interactive input&gt;&quot;, line 3, in ma_fonction
+ValueError: &#39;age&#39; doit etre positif !</code></pre>
+</section>
+<section id="traiter-dune-exception" class="level2">
+<h2>Traiter d'une exception</h2>
+<ul>
+<li>Mots-clé <code>try / except</code></li>
+</ul>
+<pre><code>try:
+    # ce qui peut produire une exception
+except NomException:
+    # ce qu&#39;il faut faire si l&#39;exception se déclanche</code></pre>
+<pre><code>liste = [&#39;toto&#39;, &#39;titi&#39;, &#39;tata&#39;...]
+try:
+    choix = liste[10 // i]
+except ZeroDivisionError:
+    print(&quot;Division par zero impossible&quot;)
+    choix = liste[0]
+except IndexError:
+    print(&quot;Probleme d&#39;index&quot;)
+    choix = liste[len(liste)]</code></pre>
+</section>
+<section id="traiter-dune-exception-1" class="level2">
+<h2>Traiter d'une exception</h2>
+<ul>
+<li><code>finally</code> et <code>else</code></li>
+</ul>
+<pre><code>try:
+    # ce qui peut produire une exception
+except NomException:
+    # ce qu&#39;il faut faire si l&#39;exception se déclanche
+else:
+    # ce qu&#39;il faut faire si aucune exception n&#39;a été levée
+finally:
+    # ce qui sera exécuté dans tous les cas, qu&#39;une exception ai eu lieu ou pas</code></pre>
+</section>
+<section id="traiter-une-exception" class="level2">
+<h2>Traiter une exception</h2>
+<pre><code>try:
+    f = open(&#39;fichier.txt&#39;, &#39;w&#39;)
+    # écriture dans le fichier
+except IOError:
+    print(&quot;Probleme lors de l&#39;écriture du fichier&quot;)
+else:
+    print(&quot;Ecriture OK&quot;)
+finally:
+    f.close()</code></pre>
+</section>
+<section id="les-context-managers" class="level2">
+<h2>Les context managers</h2>
+<ul>
+<li>Simplifier les choses quand la gestion des exceptions devient lourde</li>
+</ul>
+<pre><code>try:
+    with open(&#39;fichier.txt&#39;, &#39;w&#39;) as f:
+        # écriture dans le fichier
+except (IOError, FileNotFoundError):
+    # gérer l&#39;erreur</code></pre>
+</section>
+<section id="documentation" class="level2">
+<h2>Documentation</h2>
+<ul>
+<li>Expliquer ce que font les fonctions, classes, modules...</li>
+<li>Indispensable pour rendre le code exploitable par d'autres</li>
+</ul>
+<pre><code>def ma_fonction(a, b):
+    &quot;&quot;&quot;
+    Ligne générale de description de ce que fait la fonction
+
+    Description plus détaillé, si besoin, de comment la fonction
+    fait ce qu&#39;elle fait, de ce qu&#39;elle utilise...
+
+    :param a: description de ce que contient a
+    :type a: type de la valeur attendue dans a
+    :param b: description de ce que contient b
+    :type b: type de la valeur attendue dans b
+    :return: description de ce que retourne la fonction
+    :returntype: type de la valeur retournée par la fonction 
+    &quot;&quot;&quot;</code></pre>
+</section>
+<section id="les-tests-unitaires" class="level2">
+<h2>Les tests unitaires</h2>
+</section>
+<section id="modules-et-imports" class="level2">
+<h2>Modules et imports</h2>
+</section>
+<section id="bonnes-pratiques" class="level2">
+<h2>Bonnes pratiques</h2>
+<ul>
+<li>Utilisation de la documentation
+<ul>
+<li>comment utiliser une fonction ? <code>help(fonction)</code></li>
+<li>quelles sont les fonctions de ce module ? <code>dir(module)</code></li>
+<li>où trouver de la doc en ligne ? <a href="https://docs.python.org/3.5/" class="uri">https://docs.python.org/3.5/</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="bonnes-pratiques-1" class="level2">
+<h2>Bonnes pratiques</h2>
+<ul>
+<li><code>nom_de_variable</code>, <code>nom_de_fonction</code>, <code>NomDeClasse</code></li>
+<li><code>a + b</code> (et pas <code>a+b</code>)
+<ul>
+<li>respecter les conventions c'est faciliter la lecture</li>
+</ul></li>
+<li>20 lignes max par fonction
+<ul>
+<li>au delà c'est rarement compréhensible !</li>
+</ul></li>
+<li>1 fonction = 1 tâche
+<ul>
+<li>découper en sous-fonction pour rendre plus compréhensible/maintenable/testable</li>
+</ul></li>
+<li>1 fichier = 1 classe</li>
+<li>Utiliser bloc <code>if __name__ == '__main__':</code> pour exécuter le code
+<ul>
+<li>la console ne sauvegarde pas vos test</li>
+</ul></li>
+<li>Testez votre code <em>en live</em></li>
+</ul>
+</section>
+</section>
+<section id="python-objet" class="level1">
+<h1>Python objet</h1>
+<section id="définition-dune-classe" class="level2">
+<h2>Définition d'une classe</h2>
+<ul>
+<li>Utilisation du mot-clé <code>class</code></li>
+</ul>
+<pre><code>class MaClasse(object):
+    ...
+    ...</code></pre>
+</section>
+<section id="constructeur" class="level2">
+<h2>Constructeur</h2>
+<ul>
+<li>Méthode appelée pour instancier les objets</li>
+</ul>
+<pre><code>class MaClasse(object):
+    def __init__(self, param1, param2...):
+        ...</code></pre>
+<ul>
+<li>Instanciation</li>
+</ul>
+<pre><code>mon_objet = MaClasse(param1, param2...)</code></pre>
+</section>
+<section id="les-attributs" class="level2">
+<h2>Les attributs</h2>
+<ul>
+<li>Mot-clé <code>self</code> pour faire référence à la classe elle-même</li>
+</ul>
+</section>
+<section id="les-méthodes" class="level2">
+<h2>Les méthodes</h2>
+<ul>
+<li>le premier paramètre est toujours self</li>
+<li>il correspond à l'objet avant le point lors de l'appel</li>
+</ul>
+</section>
+<section id="lhéritage" class="level2">
+<h2>L'héritage</h2>
+<blockquote>
+<p>Principe permettant de créer une classe à partir d'une autre</p>
+</blockquote>
+<ul>
+<li>Nom de la classe mère entre parenthèses lors de la définition
+<ul>
+<li><em>toutes les classes héritent donc de la classe <code>object</code></em></li>
+</ul></li>
+</ul>
+<pre><code>class ClasseFille(ClasseMere):
+    ...</code></pre>
+</section>
+<section id="lencapsulation" class="level2">
+<h2>L'encapsulation</h2>
+<blockquote>
+<p>Principe visant à cacher les détails de l'implémentation à l'utilisateur</p>
+</blockquote>
+<ul>
+<li>En Python : <strong>tout est public</strong></li>
+<li>Convention : <code>_</code> avant le nom de l'attribut pour indiquer qu'il est privé</li>
+</ul>
+</section>
+<section id="lectureécriture-dattributs" class="level2">
+<h2>Lecture/écriture d'attributs</h2>
+<ul>
+<li>Décorateur sur les fonctions</li>
+</ul>
+<p><code>@property</code> pour faire comme si la méthode était un attribut</p>
+<p><code>@attribut.setter</code> pour gérer l'écriture</p>
+</section>
+<section id="les-classes-abstraites" class="level2">
+<h2>Les classes abstraites</h2>
+<blockquote>
+<p>Classe qui ne peut être instanciée</p>
+</blockquote>
+<ul>
+<li>Notion de classe abstraite inexistante en Python</li>
+<li>Astuce : lever une exception dans le constructeur</li>
+</ul>
+<pre><code>class MaClasseAbstraite(object):
+    def __init__(self, param1, param2...):
+        raise NotImplementedError</code></pre>
+</section>
+<section id="personnaliser-le-comportement-des-objets" class="level2">
+<h2>Personnaliser le comportement des objets</h2>
+<ul>
+<li>méthodes spéciales
+<ul>
+<li><code>__str__</code>, <code>__eq__</code>, <code>__iter__</code>, ...</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="bases-de-données" class="level1">
+<h1>Bases de données</h1>
+<section id="sqlite" class="level2">
+<h2>SQLite</h2>
+<ul>
+<li>Moteur de BDDR</li>
+<li>Moteur intégré au programme</li>
+<li>BDD dans un seul fichier indépendant de la plateforme</li>
+<li>Librairie standard de Python</li>
+</ul>
+<pre><code>import sqlite3</code></pre>
+</section>
+<section id="lobjet-connection" class="level2">
+<h2>L'objet connection</h2>
+<ul>
+<li>Représente une connection à une base de données</li>
+<li>Interface pour valider (commit) ou annuler (rollback) les transactions</li>
+<li>Génère les curseurs</li>
+</ul>
+<pre><code>conn = sqlite3.connect(&quot;user/password@database&quot;)
+
+conn.commit()  # valider transaction
+conn.rollback()  # annuler transaction
+conn.close()  # fermer la connection</code></pre>
+<p>syntaxe avec with</p>
+</section>
+<section id="lobjet-curseur" class="level2">
+<h2>L'objet curseur</h2>
+<ul>
+<li>Représente une instruction SQL sous format texte</li>
+<li>Utilisé pour parcourir les résultats d'une requête SQL</li>
+</ul>
+<pre><code>curs = conn.cursor()
+
+curs.execute(sql_string [, parameters])  # execute requete sql</code></pre>
+</section>
+<section id="les-requêtes-prises-en-charge" class="level2">
+<h2>Les requêtes prises en charge</h2>
+<ul>
+<li>Tous types de requêtes SQL acceptés</li>
+</ul>
+<pre><code>curs.execute(&quot;CREATE TABLE ...&quot;)
+curs.execute(&quot;UPDATE ...&quot;)
+curs.execute(&quot;INSERT INTO ...&quot;)
+curs.execute(&quot;SELECT ...&quot;)
+</code></pre>
+</section>
+<section id="passage-de-paramètres" class="level2">
+<h2>Passage de paramètres</h2>
+<ul>
+<li>Utilisation du caractère <code>?</code></li>
+<li>Valeur des paramètres sous forme de tuple</li>
+</ul>
+<pre><code>query = &quot;SELECT nom, prenom FROM personne WHERE naissance &gt; ? AND sexe = ?&quot;
+curs.execute(query, (2000, &#39;M&#39;))</code></pre>
+</section>
+<section id="résultats-des-requêtes-sql" class="level2">
+<h2>Résultats des requêtes SQL</h2>
+<ul>
+<li>Séquence d'objets Python</li>
+</ul>
+<pre><code>curs.execute(select_query)
+results = curs.fetchall()
+for row in results:
+    ...</code></pre>
+</section>
+<section id="exemples" class="level2">
+<h2>Exemples</h2>
+<pre><code>&gt;&gt;&gt; import sqlite3
+&gt;&gt;&gt; conn = sqlite3.connect(&#39;dbase1&#39;)
+&gt;&gt;&gt; curs = conn.cursor()
+&gt;&gt;&gt; curs.execute(&#39;insert into people values (?, ?, ?)&#39;, (&#39;Bob&#39;, &#39;dev&#39;, 5000))
+&gt;&gt;&gt; curs.rowcount
+1</code></pre>
+</section>
+<section id="exemples-1" class="level2">
+<h2>Exemples</h2>
+<pre><code>&gt;&gt;&gt; rows = [[&#39;Tom&#39;, &#39;mgr&#39;, 100000],
+...         [&#39;Kim&#39;, &#39;adm&#39;, 30000],
+...         [&#39;pat&#39;, &#39;dev&#39;, 90000]]
+
+&gt;&gt;&gt; for row in rows:
+...     curs.execute(&#39;insert into people values (? , ?, ?)&#39;, row)
+...
+
+&gt;&gt;&gt; conn.commit()</code></pre>
+</section>
+<section id="exemples-2" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li>Utilisation de <code>fetchall()</code> pour avoir tous les résultats d'un coup</li>
+</ul>
+<pre><code>&gt;&gt;&gt; curs.execute(&#39;select * from people&#39;)
+&gt;&gt;&gt; for row in curs.fetchall():
+...     print(row)
+...
+(&#39;Bob&#39;, &#39;dev&#39;, 5000)
+(&#39;Sue&#39;, &#39;mus&#39;, 70000)
+(&#39;Ann&#39;, &#39;mus&#39;, 60000)
+(&#39;Tom&#39;, &#39;mgr&#39;, 100000)
+(&#39;Kim&#39;, &#39;adm&#39;, 30000)
+(&#39;Pat&#39;, &#39;dev&#39;, 90000)</code></pre>
+</section>
+<section id="exemples-3" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li>Possibilité de ne retenir que certaines colonnes en Python (semblable aux dictionnaires)</li>
+</ul>
+<pre><code>&gt;&gt;&gt; curs.execute(&#39;select * from people&#39;)
+&gt;&gt;&gt; for (name, job, pay) in curs.fetchall():
+...     print(name, &#39;:&#39;, pay)
+...
+Bob : 5000
+Sue : 70000
+Ann : 60000
+Tom : 100000
+Kim : 30000
+Pat : 90000</code></pre>
+</section>
+<section id="exemples-4" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li>Idem en utilisant la position des colonnes</li>
+</ul>
+<pre><code>&gt;&gt;&gt; curs.execute(&#39;select * from people&#39;)
+&gt;&gt;&gt; names = [rec[0] for rec in curs.fetchall()]
+&gt;&gt;&gt; names
+[&#39;Bob&#39;, &#39;Sue&#39;, &#39;Ann&#39;, &#39;Tom&#39;, &#39;Kim&#39;, &#39;Pat&#39;]</code></pre>
+</section>
+<section id="exemples-5" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li>Utilisation fe <code>fetchone()</code> pour n'avoir qu'une ligne de résultat à la fois</li>
+</ul>
+<pre><code>&gt;&gt;&gt; curs.execute(&#39;select * from people&#39;)
+&gt;&gt;&gt; while True:
+...     row = curs.fetchone()
+...     if not row:
+...         break
+...     print(row)
+...
+(&#39;Bob&#39;, &#39;dev&#39;, 5000)
+(&#39;Sue&#39;, &#39;mus&#39;, 70000)
+(&#39;Ann&#39;, &#39;mus&#39;, 60000)
+(&#39;Tom&#39;, &#39;mgr&#39;, 100000)
+(&#39;Kim&#39;, &#39;adm&#39;, 30000)
+(&#39;pat&#39;, &#39;dev&#39;, 90000)</code></pre>
+</section>
+<section id="exemples-6" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li><code>rowcount</code> indique le nombre de lignes impactées par la requête</li>
+</ul>
+<pre><code>&gt;&gt;&gt; curs.execute(&#39;update people set pay=? where pay &lt;= ?&#39;, [65000, 60000])
+&gt;&gt;&gt; curs.rowcount
+3
+&gt;&gt;&gt; curs.execute(&#39;select * from people&#39;)
+&gt;&gt;&gt; curs.fetchall()
+[(&#39;Bob&#39;, &#39;dev&#39;, 65000), (&#39;Sue&#39;, &#39;mus&#39;, 70000), (&#39;Ann&#39;, &#39;mus&#39;, 65000), (&#39;Tom&#39;, &#39;mgr&#39;,
+100000), (&#39;Kim&#39;, &#39;adm&#39;, 65000), (&#39;pat&#39;, &#39;dev&#39;, 90000)]</code></pre>
+</section>
+<section id="exemples-7" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li>Accès à la description des colonnes (<code>curs.description</code>)</li>
+</ul>
+<pre><code>&gt;&gt;&gt; curs.execute(&#39;select * from people&#39;)
+&gt;&gt;&gt; colnames = [desc[0] for desc in curs.description]
+&gt;&gt;&gt; for row in curs.fetchall():
+...     for name, value in zip(colnames, row):
+...         print(name, &#39;\t=&gt;&#39;, value)
+...     print()
+...
+name =&gt; Sue
+job  =&gt; mus
+pay  =&gt; 70000
+
+name =&gt; Ann
+job  =&gt; mus
+pay  =&gt; 65000
+</code></pre>
+</section>
+<section id="exemples-8" class="level2">
+<h2>Exemples</h2>
+<ul>
+<li>Possible de faire en Python ce que font de grosses requêtes compliquées</li>
+</ul>
+<pre><code>&gt;&gt;&gt; query = (&quot;select name from people where job = &#39;devel&#39; and &quot;
+...                &quot;pay &gt; (select avg(pay) from people where job = &#39;devel&#39;)&quot;)
+&gt;&gt;&gt; curs.execute(query)
+&gt;&gt;&gt; curs.fetchall()
+[(&#39;kim&#39;,)]</code></pre>
+<pre><code>&gt;&gt;&gt; curs.execute(&quot;select name, pay from people where job = &#39;devel&#39;&quot;)
+&gt;&gt;&gt; result = curs.fetchall()
+&gt;&gt;&gt; avg = sum(rec[1] for rec in result) / len(result)
+&gt;&gt;&gt; print([rec[0] for rec in result if rec[1] &gt; avg])
+[&#39;kim&#39;]</code></pre>
+</section>
+<section id="mapping-classes-bdd" class="level2">
+<h2>Mapping classes-bdd</h2>
+<ul>
+<li>Classiquement
+<ul>
+<li>Classe = table</li>
+<li>Objet = ligne</li>
+<li>Attribut = colonne</li>
+</ul></li>
+</ul>
+</section>
+</section>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="reveal.js/lib/js/head.min.js"></script>
+        <script type="text/javascript" src="reveal.js/js/reveal.js"></script>
+
+        <script type="text/javascript">
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                /* mettre une taille en pixel sinon l'overview ne fonctionne plus */
+                width: 1024,
+                height: 768,
+                controls: true,                                 // Display controls in the bottom right corner
+                progress: true,                                 // Display a presentation progress bar
+                history: true,                                  // Push each slide change to the browser history
+                center: false, // Vertical centering of slides
+                minScale: 0.2, // Bounds for smallestpossible content scale
+                maxScale: 1.5, // Bounds for largest possible content scale
+                slideNumber: false, // Display the page number of the current slide
+                autoSlide: 0, // Slide every duration milliseconds
+
+                theme: 'default', // available themes are in /css/theme
+                transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    // { src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    // { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    /* ne pas activer highlight sinon la colorisation syntaxique ne fonctionne plus ? */
+                    // { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }//,
+                    // { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+        <!-- -A/- -include-after-body -->
+        <!-- comme le footer contient des variables, on le met dans le gabarit car
+             les variables ne sont pas interprétées via -A de pandoc -->
+        <div id="slide-ign-footer">
+            <div class="slide-ign-title">Python objet</div>
+            <div class="slide-ign-date">2016</div>
+        </div>
+    </body>
+</html>
+
