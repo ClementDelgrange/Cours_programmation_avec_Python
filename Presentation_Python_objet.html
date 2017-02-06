@@ -321,10 +321,10 @@ Traceback (most recent call last):
 <span class="cf">finally</span>:
     f.close()</code></pre></div>
 </section>
-<section id="les-context-managers" class="level2">
-<h2>Les context managers</h2>
+<section id="remarque" class="level2">
+<h2>Remarque</h2>
 <ul>
-<li>Simplifier les choses quand la gestion des exceptions devient lourde</li>
+<li>Astuce contre les oublis de fermeture de fichier</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">try</span>:
     <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;fichier.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> f:
@@ -335,23 +335,46 @@ Traceback (most recent call last):
 <section id="exceptions-fréquentes" class="level2">
 <h2>Exceptions fréquentes</h2>
 <ul>
-<li>Quelques exceptions parmis les plus fréquentes :
+<li>Ce que signifient les exceptions courantes :
 <ul>
-<li><code>NameError</code> : la variable ou fonction manipulée n'est pas déclarée</li>
-<li><code>TypeError</code> : le type de la variable ne permet pas d'effectuer l'opération demandée</li>
-<li><code>ValueError</code> : le type est correct, mais pas la valeur</li>
-<li><code>ZeroDivisionError</code> : division par zéro</li>
-<li><code>IndexError</code> : tentative d'accès à un élément d'une séquence avec un indice qui n'existe pas</li>
-<li><code>KeyError</code> : tentative d'accès à un élément d'un dictionnaire avec une clé qui n'existe pas</li>
-<li><code>FileNotFoundError</code> : le fichier n'existe pas</li>
-<li><code>IOError</code> : erreur lors de la manipulation d'un fichier</li>
-<li><code>SyntaxError</code> : erreur de syntaxe (indentation, parenthèse...)</li>
+<li><code>NameError</code>
+<ul>
+<li>variable ou fonction manipulée non déclarée</li>
+</ul></li>
+<li><code>TypeError</code>
+<ul>
+<li>type de la variable incohérent avec l'opération demandée</li>
+</ul></li>
+<li><code>ValueError</code>
+<ul>
+<li>le type est correct, mais pas la valeur</li>
+</ul></li>
+<li><code>ZeroDivisionError</code>
+<ul>
+<li>division par zéro</li>
+</ul></li>
+<li><code>IndexError</code> / <code>KeyError</code>
+<ul>
+<li>tentative d'accès à une séquence/dictionnaire avec un indice/clé inexistant</li>
+</ul></li>
+<li><code>FileNotFoundError</code>
+<ul>
+<li>le fichier n'existe pas</li>
+</ul></li>
+<li><code>IOError</code>
+<ul>
+<li>erreur lors de la manipulation d'un fichier</li>
+</ul></li>
+<li><code>SyntaxError</code>
+<ul>
+<li>erreur de syntaxe (indentation, parenthèse...)</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
 </section>
-<section id="rappels-et-bonnes-pratiques---doctests" class="level1">
-<h1>Rappels et bonnes pratiques - doc&amp;tests</h1>
+<section id="rappels-et-bonnes-pratiques---doctest" class="level1">
+<h1>Rappels et bonnes pratiques - doctest</h1>
 <section id="documentation" class="level2">
 <h2>Documentation</h2>
 <ul>
@@ -381,9 +404,80 @@ Traceback (most recent call last):
 <h1>Rappels et bonnes pratiques - en vrac</h1>
 <section id="modules-et-imports" class="level2">
 <h2>Modules et imports</h2>
+<ul>
+<li><code>import math</code>
+<ul>
+<li>importe l'espace de nom du module <code>math</code></li>
+<li>=&gt; <code>math.cos(x)</code></li>
+</ul></li>
+<li><code>from math import *</code>
+<ul>
+<li>importe les fonctions du module <code>math</code> dans l'espace de nom courant</li>
+<li>=&gt; <code>cos(x)</code>
+<ul>
+<li>attention aux conflits si deux fonctions portent le même nom !</li>
+</ul></li>
+</ul></li>
+<li><code>from math import cos</code>
+<ul>
+<li>import la fonction <code>cos()</code> du module <code>math</code> dans l'espace de nom courant</li>
+<li>=&gt; <code>cos(x)</code></li>
+</ul></li>
+</ul>
 </section>
-<section id="calculs-virgules-fixesflottants" class="level2">
-<h2>Calculs virgules fixes/flottants</h2>
+<section id="modules-et-imports-1" class="level2">
+<h2>Modules et imports</h2>
+<ul>
+<li>Python recherche les modules dans le PYTHONPATH (variable d'environnement)
+<ul>
+<li><code>sys.path</code> en Python</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> sys
+<span class="op">&gt;&gt;&gt;</span> sys.path
+[<span class="st">&#39;&#39;</span>,
+ <span class="co">&#39;C:\\Windows\\system32\\python34.zip&#39;</span>,
+ <span class="co">&#39;C:\\Python34\\Lib&#39;</span>,
+ <span class="co">&#39;C:\\Python34\\DLLs&#39;</span>,
+ <span class="co">&#39;C:\\Python34&#39;</span>,
+ <span class="co">&#39;C:\\Python34\\lib\\site-packages&#39;</span>]</code></pre></div>
+<ul>
+<li>Contenu du PYTHONPATH :
+<ul>
+<li><strong>répertoire courant</strong></li>
+<li><code>sites-packages</code></li>
+<li>...
+<ul>
+<li>c'est une liste =&gt; <code>append(...)</code> possibles</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="modules-et-imports-2" class="level2">
+<h2>Modules et imports</h2>
+<ul>
+<li>Package
+<ul>
+<li>Ensemble de modules</li>
+<li>Répertoire avec un fichier <code>__init__.py</code></li>
+</ul></li>
+</ul>
+<pre><code>--repertoire_courant
+   |--package
+      |-- __init__.py
+      |-- module2.py
+   |--repertoire
+      |-- module1.py</code></pre>
+<p></br></p>
+<p style="font-size:16pt">
+avec Python lancé depuis <code>repertoire_courant</code>
+</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package           <span class="co"># on importe tous le package</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package.module1   <span class="co"># on importe module1 seulement</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire
+<span class="pp">ImportError</span>: No module named repertoire
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire.module2
+<span class="pp">ImportError</span>: No module named repertoire.module2</code></pre></div>
 </section>
 <section id="bonnes-pratiques" class="level2">
 <h2>Bonnes pratiques</h2>
@@ -399,26 +493,66 @@ Traceback (most recent call last):
 <section id="bonnes-pratiques-1" class="level2">
 <h2>Bonnes pratiques</h2>
 <ul>
-<li><code>nom_de_variable</code>, <code>nom_de_fonction</code>, <code>NomDeClasse</code></li>
-<li><code>a + b</code> (et pas <code>a+b</code>)
-<ul>
-<li>respecter les conventions c'est faciliter la lecture</li>
-</ul></li>
 <li>20 lignes max par fonction
 <ul>
-<li>au delà c'est rarement compréhensible !</li>
+<li>au delà cela devient souvent trop compliqué !</li>
 </ul></li>
 <li>1 fonction = 1 tâche
 <ul>
-<li>découper en sous-fonction pour rendre plus compréhensible/maintenable/testable</li>
+<li>découper en sous-fonctions pour rendre maintenable et testable</li>
 </ul></li>
-<li>1 fichier = 1 classe</li>
-<li>Utiliser bloc <code>if __name__ == '__main__':</code> pour exécuter le code
+<li>1 fichier = 1 classe
 <ul>
-<li>la console ne sauvegarde pas vos test</li>
+<li>séparer les éléments qui ne sont pas liés</li>
 </ul></li>
-<li>Testez votre code <em>en live</em></li>
+<li>Utiliser <code>if __name__ == '__main__':</code> pour exécuter le code
+<ul>
+<li>la console ne sauvegarde pas vos tests</li>
+<li>code à la racine exécuté lors d'un import</li>
+</ul></li>
+<li>Testez votre code <em>en live</em>
+<ul>
+<li>profitez que Python ne soit pas compilé pour exécuter facilement le code</li>
+</ul></li>
 </ul>
+</section>
+<section id="conventions" class="level2">
+<h2>Conventions</h2>
+<p>Respecter les conventions pour faciliter la lecture et la compréhension</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nom_de_variable
+nom_de_fonction
+NomDeClasse</code></pre></div>
+</section>
+<section id="conventions-1" class="level2">
+<h2>Conventions</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> b <span class="op">+</span> c</code></pre></div>
+<p></br></p>
+<p><em>Est mieux que :</em></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a<span class="op">=</span>b<span class="op">+</span>c</code></pre></div>
+</section>
+<section id="conventions-2" class="level2">
+<h2>Conventions</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span> <span class="op">=</span> {<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">3</span><span class="op">*</span><span class="dv">4</span>}</code></pre></div>
+<p></br></p>
+<p><em>Est mieux que :</em></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span><span class="op">=</span>{<span class="st">&#39;a&#39;</span>:<span class="dv">1</span> , <span class="st">&#39;b&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;c&#39;</span>:<span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span>}</code></pre></div>
+</section>
+<section id="conventions-3" class="level2">
+<h2>Conventions</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fonction_qui_compare(a, b<span class="op">=</span><span class="dv">0</span>):
+    <span class="cf">if</span> a <span class="op">&gt;</span> b:
+        <span class="cf">return</span> <span class="va">True</span>
+    <span class="cf">else</span>:
+        <span class="cf">return</span> <span class="va">False</span></code></pre></div>
+<p></br></p>
+<p><em>Est mieux que :</em></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fonctionQuiCompare ( a , b <span class="op">=</span> <span class="dv">0</span> ) :
+
+    <span class="cf">if</span> (a<span class="op">&gt;</span>b):
+        <span class="cf">return</span> <span class="va">True</span>
+
+    <span class="cf">else</span>:
+        <span class="cf">return</span> <span class="va">False</span></code></pre></div>
 </section>
 </section>
 <section id="python-objet" class="level1">
@@ -601,7 +735,7 @@ Instance de MaClasse (valeur de un_attribut <span class="op">=</span> <span clas
 <ul>
 <li>Nom de la classe mère entre parenthèses lors de la définition
 <ul>
-<li><em>toutes les classes héritent de la classe <code>object</code></em></li>
+<li><em>toutes les classes héritent (indirectement) d'une classe <code>object</code></em></li>
 </ul></li>
 <li>Méthodes et attributs transmis à la classe fille</li>
 </ul>
@@ -684,14 +818,14 @@ Je suis dans la classe fille</code></pre></div>
 ...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valeur1, valeur2):
 ...         <span class="va">self</span>.attribut_public <span class="op">=</span> valeur1
 ...         <span class="va">self</span>._attribut_prive <span class="op">=</span> valeur2</code></pre></div>
-<p style="font-size: 16pt">
-Sauf bonnes raisons, nous utiliserons toujours des attributs <em>privés</em>
-</p>
 </section>
 <section id="lectureécriture-dattributs" class="level2">
 <h2>Lecture/écriture d'attributs</h2>
 <ul>
-<li>Comment lire/écrire les valeurs des attributs privés ?</li>
+<li>Comment lire/écrire les valeurs des attributs privés ?
+<ul>
+<li>Utiliser des méthodes spécifiques</li>
+</ul></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="bu">object</span>):
     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, longueur, largeur):
@@ -726,6 +860,10 @@ Sauf bonnes raisons, nous utiliserons toujours des attributs <em>privés</em>
 <li><code>@attribut.setter</code> pour faire comme si l'on affectait une valeur à l'attribut</li>
 </ul></li>
 </ul>
+<p><br/></p>
+<p style="font-size:16pt">
+Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute à une fonction pour en personnaliser le comportement (pré ou post-traitements, initialisation de paramètres...). Il en existe plein et on peut en définir soi-même.
+</p>
 </section>
 <section id="lectureécriture-dattributs-2" class="level2">
 <h2>Lecture/écriture d'attributs</h2>
@@ -753,7 +891,7 @@ Sauf bonnes raisons, nous utiliserons toujours des attributs <em>privés</em>
 <p>Une classe abstraite est une classe qui ne peut être instanciée.</p>
 </blockquote>
 <ul>
-<li>Notion inexistante en Python</li>
+<li>Notion difficile à mettre en oeuvre en Python</li>
 <li>Astuce :
 <ul>
 <li>lever une exception dans le constructeur</li>
@@ -761,11 +899,36 @@ Sauf bonnes raisons, nous utiliserons toujours des attributs <em>privés</em>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MaClasseAbstraite(<span class="bu">object</span>):
     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, param1, param2...):
-        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></code></pre></div>
+        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>
+
+    <span class="kw">def</span> methode1(<span class="va">self</span>, param...):
+        <span class="co"># methode1 est une méthode abstraite</span>
+        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>
+
+    <span class="kw">def</span> methode2(<span class="va">self</span>, param...):
+        <span class="co"># methode2 est une méthode concrète : on l&#39;implémente ici</span>
+        ... </code></pre></div>
 </section>
 </section>
 <section id="bases-de-données" class="level1">
 <h1>Bases de données</h1>
+<section id="pourquoi-quoi" class="level2">
+<h2>Pourquoi ? Quoi ?</h2>
+<ul>
+<li>Persistance des données</li>
+<li><p>Données structurées</p></li>
+<li>Différents systèmes de gestion de bases de données</li>
+<li>Librairies Python pour manipuler les plus courants
+<ul>
+<li><code>sqlite</code>, <code>psycopg</code>, <code>mysql.connector</code>...</li>
+<li>fonctionnement équivalent pour chacune d'elles</li>
+</ul></li>
+<li>Object Relationnal Model (ORM) pour s'abstraire du SGBD
+<ul>
+<li>SQLAlchemy</li>
+</ul></li>
+</ul>
+</section>
 <section id="sqlite" class="level2">
 <h2>SQLite</h2>
 <ul>
@@ -776,10 +939,10 @@ Sauf bonnes raisons, nous utiliserons toujours des attributs <em>privés</em>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> sqlite3</code></pre></div>
 </section>
-<section id="lobjet-connection" class="level2">
-<h2>L'objet connection</h2>
+<section id="lobjet-connexion" class="level2">
+<h2>L'objet connexion</h2>
 <ul>
-<li>Représente une connection à une base de données</li>
+<li>Représente une connexion à une base de données</li>
 <li>Interface pour valider (commit) ou annuler (rollback) les transactions</li>
 <li>Génère les curseurs</li>
 </ul>
@@ -788,7 +951,15 @@ Sauf bonnes raisons, nous utiliserons toujours des attributs <em>privés</em>
 conn.commit()  <span class="co"># valider transaction</span>
 conn.rollback()  <span class="co"># annuler transaction</span>
 conn.close()  <span class="co"># fermer la connection</span></code></pre></div>
-<p>syntaxe avec with</p>
+</section>
+<section id="syntaxe-avec-with" class="level2">
+<h2>Syntaxe avec with</h2>
+<ul>
+<li>Idem que pour les fichiers</li>
+<li>Pour éviter d'oublier de refermer la connexion</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;user/password@database&quot;</span>) <span class="im">as</span> conn:
+    <span class="co"># on effectue nos requêtes dans la BDD</span></code></pre></div>
 </section>
 <section id="lobjet-curseur" class="level2">
 <h2>L'objet curseur</h2>
@@ -842,7 +1013,7 @@ results <span class="op">=</span> curs.fetchall()
 <h2>Exemples</h2>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> rows <span class="op">=</span> [[<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>, <span class="dv">100000</span>],
 ...         [<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">30000</span>],
-...         [<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>]]
+...         [<span class="st">&#39;Pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>]]
 
 <span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> row <span class="kw">in</span> rows:
 ...     curs.execute(<span class="st">&#39;insert into people values (? , ?, ?)&#39;</span>, row)
