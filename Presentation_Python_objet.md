@@ -275,9 +275,9 @@ finally:
 ```
 
 
-## Les context managers ##
+## Remarque ##
 
-* Simplifier les choses quand la gestion des exceptions devient lourde 
+* Astuce contre les oublis de fermeture de fichier
 
 ``` python
 try:
@@ -290,20 +290,27 @@ except (IOError, FileNotFoundError):
 
 ## Exceptions fréquentes ##
 
-* Quelques exceptions parmis les plus fréquentes :
-	* `NameError` : la variable ou fonction manipulée n'est pas déclarée
-	* `TypeError` : le type de la variable ne permet pas d'effectuer l'opération demandée
-	* `ValueError` : le type est correct, mais pas la valeur
-	* `ZeroDivisionError` : division par zéro
-	* `IndexError` : tentative d'accès à un élément d'une séquence avec un indice qui n'existe pas 
-	* `KeyError` : tentative d'accès à un élément d'un dictionnaire avec une clé qui n'existe pas
-	* `FileNotFoundError` : le fichier n'existe pas
-	* `IOError` : erreur lors de la manipulation d'un fichier
-	* `SyntaxError` : erreur de syntaxe (indentation, parenthèse...)
+* Ce que signifient les exceptions courantes :
+	* `NameError`
+		* variable ou fonction manipulée non déclarée
+	* `TypeError`
+		* type de la variable incohérent avec l'opération demandée
+	* `ValueError`
+		* le type est correct, mais pas la valeur
+	* `ZeroDivisionError`
+		* division par zéro
+	* `IndexError` / `KeyError`
+		* tentative d'accès à une séquence/dictionnaire avec un indice/clé inexistant 
+	* `FileNotFoundError`
+		* le fichier n'existe pas
+	* `IOError`
+		* erreur lors de la manipulation d'un fichier
+	* `SyntaxError`
+		* erreur de syntaxe (indentation, parenthèse...)
 
 
 
-# Rappels et bonnes pratiques - doc&tests #
+# Rappels et bonnes pratiques - doctest #
 ## Documentation ##
 * Expliquer ce que font les fonctions, classes, modules...
 * Indispensable pour rendre le code exploitable par d'autres
@@ -333,11 +340,72 @@ def ma_fonction(a, b):
 # Rappels et bonnes pratiques - en vrac #
 ## Modules et imports ##
 
+* `import math`
+	* importe l'espace de nom du module `math`
+	* => `math.cos(x)`
+* `from math import *`
+	* importe les fonctions du module `math` dans l'espace de nom courant
+	* => `cos(x)`
+		* attention aux conflits si deux fonctions portent le même nom !
+* `from math import cos`
+	* import la fonction `cos()` du module `math` dans l'espace de nom courant
+	* => `cos(x)`
 
-## Calculs virgules fixes/flottants ##
+
+## Modules et imports ##
+
+* Python recherche les modules dans le PYTHONPATH (variable d'environnement)
+	* `sys.path` en Python
+
+``` python
+>>> import sys
+>>> sys.path
+['',
+ 'C:\\Windows\\system32\\python34.zip',
+ 'C:\\Python34\\Lib',
+ 'C:\\Python34\\DLLs',
+ 'C:\\Python34',
+ 'C:\\Python34\\lib\\site-packages']
+```
+
+* Contenu du PYTHONPATH :
+	* **répertoire courant**
+	* `sites-packages`
+	* ...
+		* c'est une liste => `append(...)` possibles
+
+
+## Modules et imports ##
+
+* Package
+	* Ensemble de modules
+	* Répertoire avec un fichier `__init__.py`
+
+```
+--repertoire_courant
+   |--package
+      |-- __init__.py
+      |-- module2.py
+   |--repertoire
+      |-- module1.py
+```
+
+</br>
+
+<p style="font-size:16pt">avec Python lancé depuis `repertoire_courant`</p>
+
+``` python
+>>> import package           # on importe tous le package
+>>> import package.module1   # on importe module1 seulement
+>>> import repertoire
+ImportError: No module named repertoire
+>>> import repertoire.module2
+ImportError: No module named repertoire.module2
+```
 
 
 ## Bonnes pratiques ##
+
 * Utilisation de la documentation
 	* comment utiliser une fonction ? `help(fonction)`
 	* quelles sont les fonctions de ce module ? `dir(module)`
@@ -345,21 +413,86 @@ def ma_fonction(a, b):
 
 
 ## Bonnes pratiques ##
-* `nom_de_variable`, `nom_de_fonction`, `NomDeClasse`
-* `a + b` (et pas `a+b`)
-	* respecter les conventions c'est faciliter la lecture 
+
 * 20 lignes max par fonction
-	* au delà c'est rarement compréhensible !
+	* au delà cela devient souvent trop compliqué !
 * 1 fonction = 1 tâche
-	* découper en sous-fonction pour rendre plus compréhensible/maintenable/testable
+	* découper en sous-fonctions pour rendre maintenable et testable
 * 1 fichier = 1 classe
-* Utiliser bloc `if __name__ == '__main__':` pour exécuter le code
-	* la console ne sauvegarde pas vos test
+	* séparer les éléments qui ne sont pas liés
+* Utiliser `if __name__ == '__main__':` pour exécuter le code
+	* la console ne sauvegarde pas vos tests
+	* code à la racine exécuté lors d'un import
 * Testez votre code *en live*
+	* profitez que Python ne soit pas compilé pour exécuter facilement le code
+
+
+## Conventions ##
+
+Respecter les conventions pour faciliter la lecture et la compréhension
+
+``` python
+nom_de_variable
+nom_de_fonction
+NomDeClasse
+```
+
+
+## Conventions ##
+
+``` python
+a = b + c
+```
+
+</br>
+
+*Est mieux que :*
+``` python
+a=b+c
+```
+
+
+## Conventions ##
+
+``` python
+dict = {'a': 1, 'b': 2, 'c': 3*4}
+```
+
+</br>
+
+*Est mieux que :*
+``` python
+dict={'a':1 , 'b':2,'c':3 * 4}
+```
+
+
+## Conventions ##
+
+``` python
+def fonction_qui_compare(a, b=0):
+    if a > b:
+        return True
+    else:
+        return False
+```
+
+</br>
+
+*Est mieux que :*
+``` python
+def fonctionQuiCompare ( a , b = 0 ) :
+
+    if (a>b):
+        return True
+
+    else:
+        return False
+```
 
 
 
 # Python objet #
+
 ## Déclaration d'une classe ##
 
 * Utilisation du mot-clé `class`
@@ -541,7 +674,7 @@ Instance de MaClasse (valeur de un_attribut = 17)
 > Principe permettant de créer une classe à partir d'une autre.
 
 * Nom de la classe mère entre parenthèses lors de la définition
-	* *toutes les classes héritent de la classe `object`*
+	* *toutes les classes héritent (indirectement) d'une classe `object`*
 * Méthodes et attributs transmis à la classe fille
 
 ``` python
@@ -627,12 +760,11 @@ Je suis dans la classe fille
 
 ```
 
-<p style="font-size: 16pt">   Sauf bonnes raisons, nous utiliserons toujours des attributs *privés*</p>
-
 
 ## Lecture/écriture d'attributs ##
 
 * Comment lire/écrire les valeurs des attributs privés ?
+	* Utiliser des méthodes spécifiques
 
 ``` python
 class Rectangle(object):
@@ -673,6 +805,10 @@ Ca marche, mais on voudrait faire mieux et pouvoir écrire :
 	* `@property` pour faire comme si la méthode était un attribut
 	* `@attribut.setter` pour faire comme si l'on affectait une valeur à l'attribut
 
+<br/>
+
+<p style="font-size:16pt">Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute à une fonction pour en personnaliser le comportement (pré ou post-traitements, initialisation de paramètres...). Il en existe plein et on peut en définir soi-même.</p>
+
 
 ## Lecture/écriture d'attributs ##
 
@@ -701,7 +837,7 @@ class Rectangle(object):
 
 > Une classe abstraite est une classe qui ne peut être instanciée.
 
-* Notion inexistante en Python
+* Notion difficile à mettre en oeuvre en Python
 * Astuce : 
 	* lever une exception dans le constructeur
 
@@ -709,11 +845,32 @@ class Rectangle(object):
 class MaClasseAbstraite(object):
 	def __init__(self, param1, param2...):
 		raise NotImplementedError
+
+    def methode1(self, param...):
+        # methode1 est une méthode abstraite
+        raise NotImplementedError
+
+    def methode2(self, param...):
+        # methode2 est une méthode concrète : on l'implémente ici
+        ... 
 ```
 
 
 
 # Bases de données #
+
+## Pourquoi ? Quoi ? ##
+
+* Persistance des données
+* Données structurées
+
+* Différents systèmes de gestion de bases de données
+* Librairies Python pour manipuler les plus courants
+	* `sqlite`, `psycopg`, `mysql.connector`...
+	* fonctionnement équivalent pour chacune d'elles
+* Object Relationnal Model (ORM) pour s'abstraire du SGBD
+	* SQLAlchemy
+
 
 ## SQLite ##
 
@@ -726,9 +883,9 @@ class MaClasseAbstraite(object):
 import sqlite3
 ```
 
-## L'objet connection ##
+## L'objet connexion ##
 
-* Représente une connection à une base de données
+* Représente une connexion à une base de données
 * Interface pour valider (commit) ou annuler (rollback) les transactions
 * Génère les curseurs
 
@@ -740,7 +897,15 @@ conn.rollback()  # annuler transaction
 conn.close()  # fermer la connection
 ```
 
-syntaxe avec with
+## Syntaxe avec with ##
+
+* Idem que pour les fichiers
+* Pour éviter d'oublier de refermer la connexion
+
+``` python
+with sqlite3.connect("user/password@database") as conn:
+    # on effectue nos requêtes dans la BDD
+```
 
 ## L'objet curseur ##
 
@@ -802,7 +967,7 @@ for row in results:
 ``` python
 >>> rows = [['Tom', 'mgr', 100000],
 ...         ['Kim', 'adm', 30000],
-...         ['pat', 'dev', 90000]]
+...         ['Pat', 'dev', 90000]]
 
 >>> for row in rows:
 ...     curs.execute('insert into people values (? , ?, ?)', row)
