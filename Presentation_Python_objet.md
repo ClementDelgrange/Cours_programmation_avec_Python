@@ -310,7 +310,7 @@ except (IOError, FileNotFoundError):
 
 
 
-# Rappels et bonnes pratiques - doctest #
+# Rappels et bonnes pratiques - doc&test #
 ## Documentation ##
 * Expliquer ce que font les fonctions, classes, modules...
 * Indispensable pour rendre le code exploitable par d'autres
@@ -333,11 +333,173 @@ def ma_fonction(a, b):
 ```
 
 
-## Les tests unitaires ##
+## Les tests ##
+
+> Un test est un morceau de code permettant d'en soumettre une autre et d'analyser le résultat obtenu.
+
+* Pourquoi tester ?
+	* s'assurer que l'application fonctionne
+	* améliorer sa qualité
+	* produire une meilleure documentation du code
+
+
+## Les tests ##
+
+* Comment tester ?
+	* automatiser les tests au maximum
+	* tester la réussite, l'échec et la cohérence
+	* rechercher la difficulté, proscrire les tests triviaux
+	* écrire des tests déterministes
+	* séparer le code des tests du code de l'application
+
+
+## Les tests ##
+
+* Quand tester ?
+	* en cours de développement
+	* tout au long de la vie de l'application
+	* **avant le développement de l'applicaiton**
+
+
+## Les tests ##
+
+* Différents types de tests
+	* tests unitaires
+		* point de vue du développeur
+		* test de chaque portion de code indépendamment
+		* chaque méthode répond à sa spécification
+		* traitement d'un cas particulier à la fois
+	* test fonctionnels
+		* point de vue utilisateur
+		* validation du fonctionnement de la totalité du système (interactions entre composants)
+
+
+## Des outils pour tester ##
+
+* Librairie `doctest`
+	* tests intégrés à la documenation
+	* une ligne de test commence pas `>>>`
+		* appel de l'interpréteur
+	* ligne suivante = résultat attendu
+		* **forme du résultat identique au résultat de l'appel de l'interpréteur**
+* `unitest`
+	* fonctionnalités supplémentaires pour les tests unitaires
+
+
+## Exemple ##
+
+``` python
+def factorielle(n):
+    """
+    Retourne la factorielle de n (entier positif).
+
+    >>> [factorielle(n) for n in range(6)]
+    [1, 1, 2, 6, 24, 120]
+
+    >>> factorielle(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n doit etre >= 0
+
+    >>> factorielle(1.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: n doit etre un entier
+
+    >>> factorielle(1e100)
+    Traceback (most recent call last):
+        ...
+    OverflowError: n est trop grand
+    """
+```
+
+
+## Exemple ##
+</br>
+
+``` python
+>>> import doctest
+>>> doctest.testmod(module_a_tester)
+TestResults(failed=0, attempted=4)
+```
+
+
+## Exemple ##
+
+* Que faire si représentation du résultat n'est pas certaine ?
+
+
+``` python
+def divise_par_un(n):
+    """
+    Retourne la division d'un nombre entier par 1.
+
+    >>> divise_par_un(4)
+    4
+	
+	>>> divise_par_un(1.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: n doit etre un entier
+    """
+	if math.floor(n) != n:
+        raise ValueError("n doit etre un entier")
+	return n / 1
+```
+
+``` python
+>>> doctest.testmod()
+Failed example:
+    divise_par_un(4)
+Expected:
+    4
+Got:
+    4.0
+```
+
+## Exemple ##
+
+``` python
+def divise_par_un(n):
+    """
+    Retourne la division d'un nombre entier par 1.
+
+    >>> divise_par_un(4) == 4
+    True
+
+	>>> divise_par_un(1.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: n doit etre un entier
+    """
+	if math.floor(n) != n:
+        raise ValueError("n doit etre un entier")
+	return n / 1
+```
+
+``` python
+>>> doctest.testmod()
+TestResults(failed=0, attempted=2)
+```
+
+
+## Exemple ##
+
+``` python
+def fabrique_un_dictionnaire(a, b, c):
+    """
+    Retourne un dictionnaire
+
+	>>> dico = {'a': 4, 'b': 2, 'c': 6}
+    >>> fabrique_un_dictionnaire(4, 2, 6) == dico
+    True
+    """
+	return {'a': a, 'b': b, 'c': c}
+```
 
 
 
-# Rappels et bonnes pratiques - en vrac #
+# Rappels et bonnes pratiques - les modules #
 ## Modules et imports ##
 
 * `import math`
@@ -377,33 +539,38 @@ def ma_fonction(a, b):
 
 ## Modules et imports ##
 
+* Module = fichier `.py`
 * Package
 	* Ensemble de modules
 	* Répertoire avec un fichier `__init__.py`
 
 ```
 --repertoire_courant
+   |--module1.py
    |--package
       |-- __init__.py
       |-- module2.py
+      |-- module3.py
    |--repertoire
-      |-- module1.py
+      |-- module4.py
 ```
-
-</br>
 
 <p style="font-size:16pt">avec Python lancé depuis `repertoire_courant`</p>
 
 ``` python
->>> import package           # on importe tous le package
->>> import package.module1   # on importe module1 seulement
+>>> import module1           # on importe module1
+>>> import package           # on importe tout le package
+>>> import package.module2   # on importe module2 seulement
 >>> import repertoire
 ImportError: No module named repertoire
->>> import repertoire.module2
-ImportError: No module named repertoire.module2
+>>> import repertoire.module4
+ImportError: No module named repertoire.module4
+>>> sys.path.append('repertoire')  # on ajoute le répertoire au PYTHON PATH
+>>> import module4          # l'import du module4 fonctionne
 ```
 
 
+# Rappels et bonnes pratiques #
 ## Bonnes pratiques ##
 
 * Utilisation de la documentation
@@ -429,27 +596,47 @@ ImportError: No module named repertoire.module2
 
 ## Conventions ##
 
-Respecter les conventions pour faciliter la lecture et la compréhension
+<center>
+<font color="green">JAUNE</font> <font color="red">BLEU</font> <font color="blue">ORANGE</font></br>
+<font color="yellow">NOIR</font> <font color="blue">ROUGE</font> <font color="black">VERT</font></br>
+<font color="red">VIOLET</font> <font color="blue">JAUNE</font> <font color="green">ROUGE</font></br>
+<font color="black">ORANGE</font> <font color="red">VERT</font> <font color="yellow">NOIR</font></br>
+<font color="green">BLEU</font> <font color="blue">ROUGE</font> <font color="black">VIOLET</font></br>
+<font color="blue">VERT</font> <font color="red">BLEU</font> <font color="green">ORANGE</font></br>
+</br>
+</center>
+
+=> Respecter les conventions c'est faciliter la lecture et la compréhension
+
+
+## Conventions ##
+
+* Nommage des variables
+
+</br>
 
 ``` python
 nom_de_variable
 nom_de_fonction
 NomDeClasse
+NOM_DE_CONSTANTE
 ```
 
 
 ## Conventions ##
 
 ``` python
-a = b + c
+a = b + c*d
 ```
-
 </br>
 
 *Est mieux que :*
 ``` python
-a=b+c
+a=b+c*d
 ```
+</br>
+
+* Opérateurs entourés d'espaces pour indiquer les priorités
 
 
 ## Conventions ##
@@ -457,18 +644,23 @@ a=b+c
 ``` python
 dict = {'a': 1, 'b': 2, 'c': 3*4}
 ```
-
 </br>
 
 *Est mieux que :*
 ``` python
 dict={'a':1 , 'b':2,'c':3 * 4}
 ```
+</br>
 
+* Pas d'espace avant les `:` ou les `,` mais un après
+  
 
 ## Conventions ##
 
 ``` python
+import module
+
+
 def fonction_qui_compare(a, b=0):
     if a > b:
         return True
@@ -476,23 +668,49 @@ def fonction_qui_compare(a, b=0):
         return False
 ```
 
-</br>
-
-*Est mieux que :*
 ``` python
+import module
+
 def fonctionQuiCompare ( a , b = 0 ) :
 
-    if (a>b):
+    if ( a>b ) :
         return True
 
-    else:
-        return False
+    else : return False
 ```
+
+<small>
+- Pas d'espace autour du `=` pour les valeurs par défaut</br>
+- Deux sauts de ligne après les imports</br>
+- Pas de saut de ligne après la signature d'une fonction</br>
+- Pas de parenthèses inutiles</br>
+- Structure de code régulière</br>
+</small>
+
+
+## Conventions ##
+
+``` python
+OFFSET = 4
+
+def une_fonction(tab, k):
+    return tab[k + OFFSET]
+```
+</br>
+``` python
+i = 4
+
+def une_fonction(tab, K) :
+    return tab[K + i]
+```
+</br>
+
+* Respect des conventions de nommage des variables
+* Noms de variable évidents
 
 
 
 # Python objet #
-
 ## Déclaration d'une classe ##
 
 * Utilisation du mot-clé `class`

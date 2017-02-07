@@ -374,7 +374,7 @@ Traceback (most recent call last):
 </section>
 </section>
 <section id="rappels-et-bonnes-pratiques---doctest" class="level1">
-<h1>Rappels et bonnes pratiques - doctest</h1>
+<h1>Rappels et bonnes pratiques - doc&amp;test</h1>
 <section id="documentation" class="level2">
 <h2>Documentation</h2>
 <ul>
@@ -396,12 +396,180 @@ Traceback (most recent call last):
 <span class="co">    :returntype: type de la valeur retournée par la fonction </span>
 <span class="co">    &quot;&quot;&quot;</span></code></pre></div>
 </section>
-<section id="les-tests-unitaires" class="level2">
-<h2>Les tests unitaires</h2>
+<section id="les-tests" class="level2">
+<h2>Les tests</h2>
+<blockquote>
+<p>Un test est un morceau de code permettant d'en soumettre une autre et d'analyser le résultat obtenu.</p>
+</blockquote>
+<ul>
+<li>Pourquoi tester ?
+<ul>
+<li>s'assurer que l'application fonctionne</li>
+<li>améliorer sa qualité</li>
+<li>produire une meilleure documentation du code</li>
+</ul></li>
+</ul>
+</section>
+<section id="les-tests-1" class="level2">
+<h2>Les tests</h2>
+<ul>
+<li>Comment tester ?
+<ul>
+<li>automatiser les tests au maximum</li>
+<li>tester la réussite, l'échec et la cohérence</li>
+<li>rechercher la difficulté, proscrire les tests triviaux</li>
+<li>écrire des tests déterministes</li>
+<li>séparer le code des tests du code de l'application</li>
+</ul></li>
+</ul>
+</section>
+<section id="les-tests-2" class="level2">
+<h2>Les tests</h2>
+<ul>
+<li>Quand tester ?
+<ul>
+<li>en cours de développement</li>
+<li>tout au long de la vie de l'application</li>
+<li><strong>avant le développement de l'applicaiton</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="les-tests-3" class="level2">
+<h2>Les tests</h2>
+<ul>
+<li>Différents types de tests
+<ul>
+<li>tests unitaires
+<ul>
+<li>point de vue du développeur</li>
+<li>test de chaque portion de code indépendamment</li>
+<li>chaque méthode répond à sa spécification</li>
+<li>traitement d'un cas particulier à la fois</li>
+</ul></li>
+<li>test fonctionnels
+<ul>
+<li>point de vue utilisateur</li>
+<li>validation du fonctionnement de la totalité du système (interactions entre composants)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="des-outils-pour-tester" class="level2">
+<h2>Des outils pour tester</h2>
+<ul>
+<li>Librairie <code>doctest</code>
+<ul>
+<li>tests intégrés à la documenation</li>
+<li>une ligne de test commence pas <code>&gt;&gt;&gt;</code>
+<ul>
+<li>appel de l'interpréteur</li>
+</ul></li>
+<li>ligne suivante = résultat attendu
+<ul>
+<li><strong>forme du résultat identique au résultat de l'appel de l'interpréteur</strong></li>
+</ul></li>
+</ul></li>
+<li><code>unitest</code>
+<ul>
+<li>fonctionnalités supplémentaires pour les tests unitaires</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemple" class="level2">
+<h2>Exemple</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> factorielle(n):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    Retourne la factorielle de n (entier positif).</span>
+
+<span class="co">    &gt;&gt;&gt; [factorielle(n) for n in range(6)]</span>
+<span class="co">    [1, 1, 2, 6, 24, 120]</span>
+
+<span class="co">    &gt;&gt;&gt; factorielle(-1)</span>
+<span class="co">    Traceback (most recent call last):</span>
+<span class="co">        ...</span>
+<span class="co">    ValueError: n doit etre &gt;= 0</span>
+
+<span class="co">    &gt;&gt;&gt; factorielle(1.5)</span>
+<span class="co">    Traceback (most recent call last):</span>
+<span class="co">        ...</span>
+<span class="co">    ValueError: n doit etre un entier</span>
+
+<span class="co">    &gt;&gt;&gt; factorielle(1e100)</span>
+<span class="co">    Traceback (most recent call last):</span>
+<span class="co">        ...</span>
+<span class="co">    OverflowError: n est trop grand</span>
+<span class="co">    &quot;&quot;&quot;</span></code></pre></div>
+</section>
+<section id="exemple-1" class="level2">
+<h2>Exemple</h2>
+<p></br></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> doctest
+<span class="op">&gt;&gt;&gt;</span> doctest.testmod(module_a_tester)
+TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<span class="op">=</span><span class="dv">4</span>)</code></pre></div>
+</section>
+<section id="exemple-2" class="level2">
+<h2>Exemple</h2>
+<ul>
+<li>Que faire si représentation du résultat n'est pas certaine ?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> divise_par_un(n):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    Retourne la division d&#39;un nombre entier par 1.</span>
+
+<span class="co">    &gt;&gt;&gt; divise_par_un(4)</span>
+<span class="co">    4</span>
+<span class="co">    </span>
+<span class="co">    &gt;&gt;&gt; divise_par_un(1.5)</span>
+<span class="co">    Traceback (most recent call last):</span>
+<span class="co">        ...</span>
+<span class="co">    ValueError: n doit etre un entier</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="cf">if</span> math.floor(n) <span class="op">!=</span> n:
+        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;n doit etre un entier&quot;</span>)
+    <span class="cf">return</span> n <span class="op">/</span> <span class="dv">1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> doctest.testmod()
+Failed example:
+    divise_par_un(<span class="dv">4</span>)
+Expected:
+    <span class="dv">4</span>
+Got:
+    <span class="fl">4.0</span></code></pre></div>
+</section>
+<section id="exemple-3" class="level2">
+<h2>Exemple</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> divise_par_un(n):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    Retourne la division d&#39;un nombre entier par 1.</span>
+
+<span class="co">    &gt;&gt;&gt; divise_par_un(4) == 4</span>
+<span class="co">    True</span>
+
+<span class="co">    &gt;&gt;&gt; divise_par_un(1.5)</span>
+<span class="co">    Traceback (most recent call last):</span>
+<span class="co">        ...</span>
+<span class="co">    ValueError: n doit etre un entier</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="cf">if</span> math.floor(n) <span class="op">!=</span> n:
+        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;n doit etre un entier&quot;</span>)
+    <span class="cf">return</span> n <span class="op">/</span> <span class="dv">1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> doctest.testmod()
+TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<span class="op">=</span><span class="dv">2</span>)</code></pre></div>
+</section>
+<section id="exemple-4" class="level2">
+<h2>Exemple</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fabrique_un_dictionnaire(a, b, c):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    Retourne un dictionnaire</span>
+
+<span class="co">    &gt;&gt;&gt; dico = {&#39;a&#39;: 4, &#39;b&#39;: 2, &#39;c&#39;: 6}</span>
+<span class="co">    &gt;&gt;&gt; fabrique_un_dictionnaire(4, 2, 6) == dico</span>
+<span class="co">    True</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="cf">return</span> {<span class="st">&#39;a&#39;</span>: a, <span class="st">&#39;b&#39;</span>: b, <span class="st">&#39;c&#39;</span>: c}</code></pre></div>
 </section>
 </section>
-<section id="rappels-et-bonnes-pratiques---en-vrac" class="level1">
-<h1>Rappels et bonnes pratiques - en vrac</h1>
+<section id="rappels-et-bonnes-pratiques---les-modules" class="level1">
+<h1>Rappels et bonnes pratiques - les modules</h1>
 <section id="modules-et-imports" class="level2">
 <h2>Modules et imports</h2>
 <ul>
@@ -456,6 +624,7 @@ Traceback (most recent call last):
 <section id="modules-et-imports-2" class="level2">
 <h2>Modules et imports</h2>
 <ul>
+<li>Module = fichier <code>.py</code></li>
 <li>Package
 <ul>
 <li>Ensemble de modules</li>
@@ -463,22 +632,29 @@ Traceback (most recent call last):
 </ul></li>
 </ul>
 <pre><code>--repertoire_courant
+   |--module1.py
    |--package
       |-- __init__.py
       |-- module2.py
+      |-- module3.py
    |--repertoire
-      |-- module1.py</code></pre>
-<p></br></p>
+      |-- module4.py</code></pre>
 <p style="font-size:16pt">
 avec Python lancé depuis <code>repertoire_courant</code>
 </p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package           <span class="co"># on importe tous le package</span>
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package.module1   <span class="co"># on importe module1 seulement</span>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> module1           <span class="co"># on importe module1</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package           <span class="co"># on importe tout le package</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package.module2   <span class="co"># on importe module2 seulement</span>
 <span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire
 <span class="pp">ImportError</span>: No module named repertoire
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire.module2
-<span class="pp">ImportError</span>: No module named repertoire.module2</code></pre></div>
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire.module4
+<span class="pp">ImportError</span>: No module named repertoire.module4
+<span class="op">&gt;&gt;&gt;</span> sys.path.append(<span class="st">&#39;repertoire&#39;</span>)  <span class="co"># on ajoute le répertoire au PYTHON PATH</span>
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> module4          <span class="co"># l&#39;import du module4 fonctionne</span></code></pre></div>
 </section>
+</section>
+<section id="rappels-et-bonnes-pratiques" class="level1">
+<h1>Rappels et bonnes pratiques</h1>
 <section id="bonnes-pratiques" class="level2">
 <h2>Bonnes pratiques</h2>
 <ul>
@@ -518,41 +694,80 @@ avec Python lancé depuis <code>repertoire_courant</code>
 </section>
 <section id="conventions" class="level2">
 <h2>Conventions</h2>
-<p>Respecter les conventions pour faciliter la lecture et la compréhension</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nom_de_variable
-nom_de_fonction
-NomDeClasse</code></pre></div>
+<center>
+<font color="green">JAUNE</font> <font color="red">BLEU</font> <font color="blue">ORANGE</font></br> <font color="yellow">NOIR</font> <font color="blue">ROUGE</font> <font color="black">VERT</font></br> <font color="red">VIOLET</font> <font color="blue">JAUNE</font> <font color="green">ROUGE</font></br> <font color="black">ORANGE</font> <font color="red">VERT</font> <font color="yellow">NOIR</font></br> <font color="green">BLEU</font> <font color="blue">ROUGE</font> <font color="black">VIOLET</font></br> <font color="blue">VERT</font> <font color="red">BLEU</font> <font color="green">ORANGE</font></br> </br>
+</center>
+<p>=&gt; Respecter les conventions c'est faciliter la lecture et la compréhension</p>
 </section>
 <section id="conventions-1" class="level2">
 <h2>Conventions</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> b <span class="op">+</span> c</code></pre></div>
+<ul>
+<li>Nommage des variables</li>
+</ul>
 <p></br></p>
-<p><em>Est mieux que :</em></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a<span class="op">=</span>b<span class="op">+</span>c</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nom_de_variable
+nom_de_fonction
+NomDeClasse
+NOM_DE_CONSTANTE</code></pre></div>
 </section>
 <section id="conventions-2" class="level2">
+<h2>Conventions</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> b <span class="op">+</span> c<span class="op">*</span>d</code></pre></div>
+<p></br></p>
+<p><em>Est mieux que :</em></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a<span class="op">=</span>b<span class="op">+</span>c<span class="op">*</span>d</code></pre></div>
+<p></br></p>
+<ul>
+<li>Opérateurs entourés d'espaces pour indiquer les priorités</li>
+</ul>
+</section>
+<section id="conventions-3" class="level2">
 <h2>Conventions</h2>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span> <span class="op">=</span> {<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">3</span><span class="op">*</span><span class="dv">4</span>}</code></pre></div>
 <p></br></p>
 <p><em>Est mieux que :</em></p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span><span class="op">=</span>{<span class="st">&#39;a&#39;</span>:<span class="dv">1</span> , <span class="st">&#39;b&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;c&#39;</span>:<span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span>}</code></pre></div>
+<p></br></p>
+<ul>
+<li>Pas d'espace avant les <code>:</code> ou les <code>,</code> mais un après</li>
+</ul>
 </section>
-<section id="conventions-3" class="level2">
+<section id="conventions-4" class="level2">
 <h2>Conventions</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fonction_qui_compare(a, b<span class="op">=</span><span class="dv">0</span>):
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> module
+
+
+<span class="kw">def</span> fonction_qui_compare(a, b<span class="op">=</span><span class="dv">0</span>):
     <span class="cf">if</span> a <span class="op">&gt;</span> b:
         <span class="cf">return</span> <span class="va">True</span>
     <span class="cf">else</span>:
         <span class="cf">return</span> <span class="va">False</span></code></pre></div>
-<p></br></p>
-<p><em>Est mieux que :</em></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fonctionQuiCompare ( a , b <span class="op">=</span> <span class="dv">0</span> ) :
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> module
 
-    <span class="cf">if</span> (a<span class="op">&gt;</span>b):
+<span class="kw">def</span> fonctionQuiCompare ( a , b <span class="op">=</span> <span class="dv">0</span> ) :
+
+    <span class="cf">if</span> ( a<span class="op">&gt;</span>b ) :
         <span class="cf">return</span> <span class="va">True</span>
 
-    <span class="cf">else</span>:
-        <span class="cf">return</span> <span class="va">False</span></code></pre></div>
+    <span class="cf">else</span> : <span class="cf">return</span> <span class="va">False</span></code></pre></div>
+<p><small> - Pas d'espace autour du <code>=</code> pour les valeurs par défaut</br> - Deux sauts de ligne après les imports</br> - Pas de saut de ligne après la signature d'une fonction</br> - Pas de parenthèses inutiles</br> - Structure de code régulière</br> </small></p>
+</section>
+<section id="conventions-5" class="level2">
+<h2>Conventions</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">OFFSET <span class="op">=</span> <span class="dv">4</span>
+
+<span class="kw">def</span> une_fonction(tab, k):
+    <span class="cf">return</span> tab[k <span class="op">+</span> OFFSET]</code></pre></div>
+<p></br></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">i <span class="op">=</span> <span class="dv">4</span>
+
+<span class="kw">def</span> une_fonction(tab, K) :
+    <span class="cf">return</span> tab[K <span class="op">+</span> i]</code></pre></div>
+<p></br></p>
+<ul>
+<li>Respect des conventions de nommage des variables</li>
+<li>Noms de variable évidents</li>
+</ul>
 </section>
 </section>
 <section id="python-objet" class="level1">
