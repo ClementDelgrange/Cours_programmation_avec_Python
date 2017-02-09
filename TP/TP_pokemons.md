@@ -223,13 +223,17 @@ package `ihm`.
 
 
 # Utilisation d'une base de données #
-Pour rendre notre jeu pleinement opérationnel, il nous reste encore à 
-En l'état actuel, le jeu permet de jouer une partie mais souffre encore de quelques défauts :
+Pour rendre notre jeu pleinement opérationnel, il nous reste encore à permettre 
+de sauvegarder une partie pour y rejouer plus tard. Nous utiliserons pour cela 
+une base de données SQLite. Nous en profiterons pour initialiser les pokemons et 
+dresseurs du jeu avec de enregistrements dans cette base.
 
-* l'initialisation d'une partie est assez fastidieuse : il est nécessaire d'aller dans le code pour écrire toutes les instructions d'instanciation des pokemons;
-* et surtout, la partie est perdue dès que le programme est arrêté !
+\begin{note}
+Syntaxe pour se connecter à une base de données SQLite en Python :
 
-Pour résoudre ces deux problèmes, nous allons utiliser une base de données. Elle contiendra toutes les caractéristiques des pokémons servant à l'initialisation d'une partie, les dresseurs et pokemons sauvages, et permettra d'enregistrer le jeu pour reprendre une partie même après avoir fermé l'application.
+<https://github.com/ClementDelgrange/Python_ENSG_Geomatique/blob/master/Presentation_Python_objet.md>
+(aller vers la fin du document)
+\end{note}
 
 
 
