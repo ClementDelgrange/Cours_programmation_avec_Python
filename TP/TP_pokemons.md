@@ -75,7 +75,7 @@ pokemon *normal*.
 
 La formule pour calculer les dégats est la suivante :
 
-```degats = (\frac{(niveau * 0.4 + 2) * force * puissance}{defense * 50} + 2) * coeff```
+```degats = (((niveau * 0.4 + 2) * force * puissance)/(defense * 50) + 2) * coeff```
 
 où :
 
@@ -144,7 +144,7 @@ renseigné, sa valeur sera de 1. L'expérience d'un pokemon sera toujours
 initialisée à 0. Enfin ses points de vie sont calculés à partir des 
 points de vie des pokemons de son espèce et de son niveau :
 
-```pv = pv_espece * (niveau + 5)```
+```pv = int(pv_espece * (niveau + 5) / 4)```
 
 7. Ajoutez le contructeur de la classe `Pokemon`. 
 8. Prévoyez également une méthode pour que l'affichage d'une instance 
@@ -228,17 +228,30 @@ de sauvegarder une partie pour y rejouer plus tard. Nous utiliserons pour cela
 une base de données SQLite. Nous en profiterons pour initialiser les pokemons et 
 dresseurs du jeu avec de enregistrements dans cette base.
 
-\begin{note}
-Syntaxe pour se connecter à une base de données SQLite en Python :
+20. Récupérez les fichiers `__main__.py`, `utilitaire.py` que vous placerez
+  respectivement à la racine du projet et dans l package `metier`. Placez
+ également les deux fichiers `config_bdd.py` et `acces_bdd.py` dans le package 
+ `bdd`.
 
-<https://github.com/ClementDelgrange/Python_ENSG_Geomatique/blob/master/Presentation_Python_objet.md>
-(aller vers la fin du document)
-\end{note}
+* Le fichier `__main__.py` sera la fichier à exécuter pour lancer le jeu. Il 
+ contient uniquement des appels de fonctions situées dans les deux autres 
+ fichiers.
+* `acces_bdd.py` contient quatre fonction permettant d'utiliser une base de 
+ données SQLite. Ces fonctions ne sont pas encore implémentées.
+* `config_bdd.py` contient une unique fonction `creer_bdd(db_name)` avec les
+ instructions SQL permettant de créer une base de données pour notre jeu. Ce 
+ fichier utilise les quatre fonctions d'`acces_bdd.py`.
+* `utilitaire.py` contient diverses fonctions utiles dans le programme. 
+ Certaines sont déjà implémentées. D'autres le seront dans la suite de ce TP.
 
+Dans tous les cas, la documentation vous permet de comprendre ce que doivent 
+faire les différentes fonctions.
 
-
-
-# Quelques améliorations #
-
-
-TYPES_POKEMONS = {'Normal': 1, 'Feu': 2, 'Eau': 3, 'Plante': 4, 'Electrique': 5}
+21. Complétez les quatre fonctions du script `acces_bdd.py` :
+22. Implémentez la fonction `initialiser_partie(db_name)` qui est appelée 
+ lorsqu'une partie a été chargée mais qu'elle ne contient pas de dresser humain 
+ (il s'agit donc d'une nouvelle partie). La fonction doit demander au joueur le 
+ nous qu'il souhaite donner à son dresseur, la pokemon avec lequel il désire 
+ commencer (bulbizare, salamèche ou bulbizare) comment il veut le nommer.
+23. Il ne reste plus qu'à permettre de sauvegarder la partie pour revenir y
+ jouer après avoir fermé le jeu. Implémentez la méthode `sauvegarder_partie()`.
