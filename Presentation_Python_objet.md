@@ -95,6 +95,8 @@ for e in liste:
 ## Les listes de compréhension ##
 </br>
 
+<p style="font-size: 14pt">*En reprenant l'exemple précédent :*</p>
+
 ``` python
 >>> liste = [1 for i in range(10000000)]
 >>> t_start = time.time()
@@ -277,7 +279,8 @@ finally:
 
 ## Remarque ##
 
-* Astuce contre les oublis de fermeture de fichier
+* Cas des fichiers :
+	* Astuce contre les oublis de fermeture
 
 ``` python
 try:
@@ -539,10 +542,17 @@ def fabrique_un_dictionnaire(a, b, c):
 
 ## Modules et imports ##
 
-* Module = fichier `.py`
+* Module
+	* Ce que l'on importe
+	* Fichier `.py`
 * Package
 	* Ensemble de modules
-	* Répertoire avec un fichier `__init__.py`
+	* Répertoire contenant un fichier `__init__.py`
+
+
+## Modules et imports ##
+
+* Exemple
 
 ```
 --repertoire_courant

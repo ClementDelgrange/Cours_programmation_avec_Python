@@ -16,41 +16,23 @@
         <!-- For syntax highlighting -->
         <style type="text/css">code{white-space: pre;}</style>
         <style type="text/css">
-div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
         </style>
         <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
 
@@ -100,76 +82,80 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Itérer sur les éléments pas sur les indices</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">liste <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>]
+<pre class="sourceCode python"><code class="sourceCode python">liste = [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>]
 
-<span class="cf">for</span> e <span class="kw">in</span> liste:
-    e <span class="op">+=</span> <span class="dv">1</span></code></pre></div>
+<span class="kw">for</span> e in liste:
+    e += <span class="dv">1</span></code></pre>
 <p></br></p>
 <p><em>Est mieux que :</em></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">liste <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>]
+<pre class="sourceCode python"><code class="sourceCode python">liste = [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>]
 
-<span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(liste)):
-    liste[i] <span class="op">+=</span> <span class="dv">1</span></code></pre></div>
+<span class="kw">for</span> i in <span class="dt">range</span>(<span class="dt">len</span>(liste)):
+    liste[i] += <span class="dv">1</span></code></pre>
 </section>
 <section id="litération-en-python-1" class="level2">
 <h2>L'itération en Python</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> liste <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000000</span>)]
-<span class="op">&gt;&gt;&gt;</span> t_start <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> e <span class="kw">in</span> liste:
-...     e <span class="op">+=</span> <span class="dv">1</span>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; liste = [<span class="dv">1</span> <span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">10000000</span>)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; <span class="kw">for</span> e in liste:
+...     e += <span class="dv">1</span>
 ...
-<span class="op">&gt;&gt;&gt;</span> t_stop <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(t_stop <span class="op">-</span> t_start)
-<span class="fl">0.6951391696929932</span></code></pre></div>
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; <span class="dt">print</span>(t_stop - t_start)
+<span class="fl">0.6951391696929932</span></code></pre>
 </section>
 <section id="litération-en-python-2" class="level2">
 <h2>L'itération en Python</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> liste <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000000</span>)]
-<span class="op">&gt;&gt;&gt;</span> t_start <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(liste):
-...     liste[i] <span class="op">+=</span> <span class="dv">1</span>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; liste = [<span class="dv">1</span> <span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">10000000</span>)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; <span class="kw">for</span> i in <span class="dt">range</span>(<span class="dt">len</span>(liste):
+...     liste[i] += <span class="dv">1</span>
 ...
-<span class="op">&gt;&gt;&gt;</span> t_stop <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(t_stop <span class="op">-</span> t_start)
-<span class="fl">1.4717938899993896</span></code></pre></div>
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; <span class="dt">print</span>(t_stop - t_start)
+<span class="fl">1.4717938899993896</span></code></pre>
 </section>
 <section id="litération-en-python-3" class="level2">
 <h2>L'itération en Python</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> liste <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000000</span>)]
-<span class="op">&gt;&gt;&gt;</span> t_start <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> i <span class="op">=</span> <span class="dv">0</span>
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(liste):
-...     liste[i] <span class="op">+=</span> <span class="dv">1</span>
-...     i <span class="op">+=</span> <span class="dv">1</span>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; liste = [<span class="dv">1</span> <span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">10000000</span>)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; i = <span class="dv">0</span>
+&gt;&gt;&gt; <span class="kw">while</span> i &lt; <span class="dt">len</span>(liste):
+...     liste[i] += <span class="dv">1</span>
+...     i += <span class="dv">1</span>
 ...
-<span class="op">&gt;&gt;&gt;</span> t_stop <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(t_stop <span class="op">-</span> t_start)
-<span class="fl">3.251149892807007</span></code></pre></div>
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; <span class="dt">print</span>(t_stop - t_start)
+<span class="fl">3.251149892807007</span></code></pre>
 </section>
 <section id="les-listes-de-compréhension" class="level2">
 <h2>Les listes de compréhension</h2>
 <ul>
 <li>Appliquer un traitement sur les éléments d'un ensemble</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nouvelle_liste <span class="op">=</span> [e<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> e <span class="kw">in</span> liste]</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">nouvelle_liste = [e**<span class="dv">2</span> <span class="kw">for</span> e in liste]</code></pre>
 <p></br></p>
 <p><em>Est mieux que :</em></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nouvelle_liste <span class="op">=</span> []
-<span class="cf">for</span> e <span class="kw">in</span> liste:
-    nouvelle_liste.append(e<span class="op">**</span><span class="dv">2</span>)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">nouvelle_liste = []
+<span class="kw">for</span> e in liste:
+    nouvelle_liste.append(e**<span class="dv">2</span>)</code></pre>
 </section>
 <section id="les-listes-de-compréhension-1" class="level2">
 <h2>Les listes de compréhension</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> liste <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000000</span>)]
-<span class="op">&gt;&gt;&gt;</span> t_start <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> liste <span class="op">=</span> [e<span class="dv">+1</span> <span class="cf">for</span> e <span class="kw">in</span> liste]
-<span class="op">&gt;&gt;&gt;</span> t_stop <span class="op">=</span> time.time()
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(t_stop <span class="op">-</span> t_start)
-<span class="fl">0.5306060314178467</span></code></pre></div>
+<p style="font-size: 14pt">
+<em>En reprenant l'exemple précédent :</em>
+</p>
+
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; liste = [<span class="dv">1</span> <span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">10000000</span>)]
+&gt;&gt;&gt; t_start = time.time()
+&gt;&gt;&gt; liste = [e<span class="dv">+1</span> <span class="kw">for</span> e in liste]
+&gt;&gt;&gt; t_stop = time.time()
+&gt;&gt;&gt; <span class="dt">print</span>(t_stop - t_start)
+<span class="fl">0.5306060314178467</span></code></pre>
 </section>
 </section>
 <section id="rappels-et-bonnes-pratiques---les-fonctions" class="level1">
@@ -184,11 +170,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> somme(<span class="op">*</span>args):
-    s <span class="op">=</span> <span class="dv">0</span>
-    <span class="cf">for</span> arg <span class="kw">in</span> args:
-        s <span class="op">+=</span> arg
-    <span class="cf">return</span> s</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> somme(*args):
+    s = <span class="dv">0</span>
+    <span class="kw">for</span> arg in args:
+        s += arg
+    <span class="kw">return</span> s</code></pre>
 </section>
 <section id="nombre-variable-darguments-1" class="level2">
 <h2>Nombre variable d'arguments</h2>
@@ -200,13 +186,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> presentation(<span class="op">**</span>kwargs):
-    <span class="cf">for</span> key, val <span class="kw">in</span> kwargs:
-        <span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">{}</span><span class="st"> = </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(key, value))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> presentation(nom<span class="op">=</span><span class="st">&quot;Mousse&quot;</span>, prenom<span class="op">=</span><span class="st">&quot;Emma&quot;</span>, age<span class="op">=</span><span class="dv">22</span>)
-age <span class="op">=</span> <span class="dv">22</span>
-prenom <span class="op">=</span> Emma
-nom <span class="op">=</span> Mousse</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> presentation(**kwargs):
+    <span class="kw">for</span> key, val in kwargs:
+        <span class="dt">print</span>(<span class="st">&quot;{} = {}&quot;</span>.<span class="dt">format</span>(key, value))</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; presentation(nom=<span class="st">&quot;Mousse&quot;</span>, prenom=<span class="st">&quot;Emma&quot;</span>, age=<span class="dv">22</span>)
+age = <span class="dv">22</span>
+prenom = Emma
+nom = Mousse</code></pre>
 </section>
 </section>
 <section id="rappels-et-bonnes-pratiques---les-exceptions" class="level1">
@@ -217,13 +203,13 @@ nom <span class="op">=</span> Mousse</code></pre></div>
 <li>Un exemple : le fichier <code>script.py</code> contient</li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> une_fonction(a):
-    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> a
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> une_fonction(a):
+    <span class="kw">return</span> <span class="dv">1</span> / a
  
 <span class="kw">def</span> une_autre_fonction():
     une_fonction(<span class="dv">0</span>)
  
-une_autre_fonction()</code></pre></div>
+une_autre_fonction()</code></pre>
 </section>
 <section id="les-messages-derreurs-1" class="level2">
 <h2>Les messages d'erreurs</h2>
@@ -234,14 +220,14 @@ une_autre_fonction()</code></pre></div>
 </ul></li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">Traceback (most recent call last):
-  File <span class="st">&quot;script.py&quot;</span>, line <span class="dv">7</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span>
+<pre class="sourceCode python"><code class="sourceCode python">Traceback (most recent call last):
+  File <span class="st">&quot;script.py&quot;</span>, line <span class="dv">7</span>, in &lt;module&gt;
     une_autre_fonction()
-  File <span class="st">&quot;script.py&quot;</span>, line <span class="dv">5</span>, <span class="kw">in</span> une_autre_fonction
+  File <span class="st">&quot;script.py&quot;</span>, line <span class="dv">5</span>, in une_autre_fonction
     une_fonction(<span class="dv">0</span>)
-  File <span class="st">&quot;script.py&quot;</span>, line <span class="dv">2</span>, <span class="kw">in</span> une_fonction
-    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> a
-<span class="pp">ZeroDivisionError</span>: division by zero</code></pre></div>
+  File <span class="st">&quot;script.py&quot;</span>, line <span class="dv">2</span>, in une_fonction
+    <span class="kw">return</span> <span class="dv">1</span> / a
+<span class="ot">ZeroDivisionError</span>: division by zero</code></pre>
 </section>
 <section id="les-exceptions" class="level2">
 <h2>Les exceptions</h2>
@@ -264,73 +250,76 @@ une_autre_fonction()</code></pre></div>
 <li>Signaler volontairement une anomalie quand elle se produit</li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> ma_fonction(age):
-    <span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">0</span>:
-        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;&#39;age&#39; doit etre positif !&quot;</span>)
-    <span class="co"># suite de la fonction</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> ma_fonction(<span class="op">-</span><span class="dv">2</span>)
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> ma_fonction(age):
+    <span class="kw">if</span> age &lt; <span class="dv">0</span>:
+        <span class="kw">raise</span> <span class="ot">ValueError</span>(<span class="st">&quot;&#39;age&#39; doit etre positif !&quot;</span>)
+    <span class="co"># suite de la fonction</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; ma_fonction(-<span class="dv">2</span>)
 Traceback (most recent call last):
-  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span>
-  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span>, line <span class="dv">3</span>, <span class="kw">in</span> ma_fonction
-<span class="pp">ValueError</span>: <span class="st">&#39;age&#39;</span> doit etre positif <span class="op">!</span></code></pre></div>
+  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span>, line <span class="dv">1</span>, in &lt;module&gt;
+  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span>, line <span class="dv">3</span>, in ma_fonction
+<span class="ot">ValueError</span>: <span class="st">&#39;age&#39;</span> doit etre positif !</code></pre>
 </section>
 <section id="traiter-dune-exception" class="level2">
 <h2>Traiter d'une exception</h2>
 <ul>
 <li>Mots-clé <code>try / except</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">try</span>:
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
     <span class="co"># ce qui peut produire une exception</span>
-<span class="cf">except</span> NomException:
-    <span class="co"># ce qu&#39;il faut faire si l&#39;exception se déclanche</span></code></pre></div>
+<span class="kw">except</span> NomException:
+    <span class="co"># ce qu&#39;il faut faire si l&#39;exception se déclanche</span></code></pre>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">liste <span class="op">=</span> [<span class="st">&#39;toto&#39;</span>, <span class="st">&#39;titi&#39;</span>, <span class="st">&#39;tata&#39;</span>...]
-<span class="cf">try</span>:
-    choix <span class="op">=</span> liste[<span class="dv">10</span> <span class="op">//</span> i]
-<span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:
-    <span class="bu">print</span>(<span class="st">&quot;Division par zero impossible&quot;</span>)
-    choix <span class="op">=</span> liste[<span class="dv">0</span>]
-<span class="cf">except</span> <span class="pp">IndexError</span>:
-    <span class="bu">print</span>(<span class="st">&quot;Probleme d&#39;index&quot;</span>)
-    choix <span class="op">=</span> liste[<span class="bu">len</span>(liste)]</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">liste = [<span class="st">&#39;toto&#39;</span>, <span class="st">&#39;titi&#39;</span>, <span class="st">&#39;tata&#39;</span>...]
+<span class="kw">try</span>:
+    choix = liste[<span class="dv">10</span> // i]
+<span class="kw">except</span> <span class="ot">ZeroDivisionError</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Division par zero impossible&quot;</span>)
+    choix = liste[<span class="dv">0</span>]
+<span class="kw">except</span> <span class="ot">IndexError</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Probleme d&#39;index&quot;</span>)
+    choix = liste[<span class="dt">len</span>(liste)]</code></pre>
 </section>
 <section id="traiter-dune-exception-1" class="level2">
 <h2>Traiter d'une exception</h2>
 <ul>
 <li><code>finally</code> et <code>else</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">try</span>:
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
     <span class="co"># ce qui peut produire une exception</span>
-<span class="cf">except</span> NomException:
+<span class="kw">except</span> NomException:
     <span class="co"># ce qu&#39;il faut faire si l&#39;exception se déclanche</span>
-<span class="cf">else</span>:
+<span class="kw">else</span>:
     <span class="co"># ce qu&#39;il faut faire si aucune exception n&#39;a été levée</span>
-<span class="cf">finally</span>:
-    <span class="co"># ce qui sera exécuté dans tous les cas, qu&#39;une exception ait eu lieu ou pas</span></code></pre></div>
+<span class="kw">finally</span>:
+    <span class="co"># ce qui sera exécuté dans tous les cas, qu&#39;une exception ait eu lieu ou pas</span></code></pre>
 </section>
 <section id="traiter-une-exception" class="level2">
 <h2>Traiter une exception</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">try</span>:
-    f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;fichier.txt&#39;</span>, <span class="st">&#39;w&#39;</span>)
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    f = <span class="dt">open</span>(<span class="st">&#39;fichier.txt&#39;</span>, <span class="st">&#39;w&#39;</span>)
     <span class="co"># écriture dans le fichier</span>
-<span class="cf">except</span> <span class="pp">IOError</span>:
-    <span class="bu">print</span>(<span class="st">&quot;Probleme lors de l&#39;écriture du fichier&quot;</span>)
-<span class="cf">else</span>:
-    <span class="bu">print</span>(<span class="st">&quot;Ecriture OK&quot;</span>)
-<span class="cf">finally</span>:
-    f.close()</code></pre></div>
+<span class="kw">except</span> <span class="ot">IOError</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Probleme lors de l&#39;écriture du fichier&quot;</span>)
+<span class="kw">else</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Ecriture OK&quot;</span>)
+<span class="kw">finally</span>:
+    f.close()</code></pre>
 </section>
 <section id="remarque" class="level2">
 <h2>Remarque</h2>
 <ul>
-<li>Astuce contre les oublis de fermeture de fichier</li>
+<li>Cas des fichiers :
+<ul>
+<li>Astuce contre les oublis de fermeture</li>
+</ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">try</span>:
-    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;fichier.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> f:
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&#39;fichier.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="ch">as</span> f:
         <span class="co"># écriture dans le fichier</span>
-<span class="cf">except</span> (<span class="pp">IOError</span>, <span class="pp">FileNotFoundError</span>):
-    <span class="co"># gérer l&#39;erreur</span></code></pre></div>
+<span class="kw">except</span> (<span class="ot">IOError</span>, <span class="ot">FileNotFoundError</span>):
+    <span class="co"># gérer l&#39;erreur</span></code></pre>
 </section>
 <section id="exceptions-fréquentes" class="level2">
 <h2>Exceptions fréquentes</h2>
@@ -381,7 +370,7 @@ Traceback (most recent call last):
 <li>Expliquer ce que font les fonctions, classes, modules...</li>
 <li>Indispensable pour rendre le code exploitable par d'autres</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> ma_fonction(a, b):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> ma_fonction(a, b):
     <span class="co">&quot;&quot;&quot;</span>
 <span class="co">    Ligne générale de description de ce que fait la fonction</span>
 
@@ -394,7 +383,7 @@ Traceback (most recent call last):
 <span class="co">    :type b: type de la valeur attendue dans b</span>
 <span class="co">    :return: description de ce que retourne la fonction</span>
 <span class="co">    :returntype: type de la valeur retournée par la fonction </span>
-<span class="co">    &quot;&quot;&quot;</span></code></pre></div>
+<span class="co">    &quot;&quot;&quot;</span></code></pre>
 </section>
 <section id="les-tests" class="level2">
 <h2>Les tests</h2>
@@ -477,7 +466,7 @@ Traceback (most recent call last):
 </section>
 <section id="exemple" class="level2">
 <h2>Exemple</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> factorielle(n):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> factorielle(n):
     <span class="co">&quot;&quot;&quot;</span>
 <span class="co">    Retourne la factorielle de n (entier positif).</span>
 
@@ -498,21 +487,21 @@ Traceback (most recent call last):
 <span class="co">    Traceback (most recent call last):</span>
 <span class="co">        ...</span>
 <span class="co">    OverflowError: n est trop grand</span>
-<span class="co">    &quot;&quot;&quot;</span></code></pre></div>
+<span class="co">    &quot;&quot;&quot;</span></code></pre>
 </section>
 <section id="exemple-1" class="level2">
 <h2>Exemple</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> doctest
-<span class="op">&gt;&gt;&gt;</span> doctest.testmod(module_a_tester)
-TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<span class="op">=</span><span class="dv">4</span>)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="ch">import</span> doctest
+&gt;&gt;&gt; doctest.testmod(module_a_tester)
+TestResults(failed=<span class="dv">0</span>, attempted=<span class="dv">4</span>)</code></pre>
 </section>
 <section id="exemple-2" class="level2">
 <h2>Exemple</h2>
 <ul>
 <li>Que faire si représentation du résultat n'est pas certaine ?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> divise_par_un(n):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> divise_par_un(n):
     <span class="co">&quot;&quot;&quot;</span>
 <span class="co">    Retourne la division d&#39;un nombre entier par 1.</span>
 
@@ -524,20 +513,20 @@ TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<
 <span class="co">        ...</span>
 <span class="co">    ValueError: n doit etre un entier</span>
 <span class="co">    &quot;&quot;&quot;</span>
-    <span class="cf">if</span> math.floor(n) <span class="op">!=</span> n:
-        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;n doit etre un entier&quot;</span>)
-    <span class="cf">return</span> n <span class="op">/</span> <span class="dv">1</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> doctest.testmod()
+    <span class="kw">if</span> math.floor(n) != n:
+        <span class="kw">raise</span> <span class="ot">ValueError</span>(<span class="st">&quot;n doit etre un entier&quot;</span>)
+    <span class="kw">return</span> n / <span class="dv">1</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; doctest.testmod()
 Failed example:
     divise_par_un(<span class="dv">4</span>)
 Expected:
     <span class="dv">4</span>
 Got:
-    <span class="fl">4.0</span></code></pre></div>
+    <span class="fl">4.0</span></code></pre>
 </section>
 <section id="exemple-3" class="level2">
 <h2>Exemple</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> divise_par_un(n):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> divise_par_un(n):
     <span class="co">&quot;&quot;&quot;</span>
 <span class="co">    Retourne la division d&#39;un nombre entier par 1.</span>
 
@@ -549,15 +538,15 @@ Got:
 <span class="co">        ...</span>
 <span class="co">    ValueError: n doit etre un entier</span>
 <span class="co">    &quot;&quot;&quot;</span>
-    <span class="cf">if</span> math.floor(n) <span class="op">!=</span> n:
-        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;n doit etre un entier&quot;</span>)
-    <span class="cf">return</span> n <span class="op">/</span> <span class="dv">1</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> doctest.testmod()
-TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<span class="op">=</span><span class="dv">2</span>)</code></pre></div>
+    <span class="kw">if</span> math.floor(n) != n:
+        <span class="kw">raise</span> <span class="ot">ValueError</span>(<span class="st">&quot;n doit etre un entier&quot;</span>)
+    <span class="kw">return</span> n / <span class="dv">1</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; doctest.testmod()
+TestResults(failed=<span class="dv">0</span>, attempted=<span class="dv">2</span>)</code></pre>
 </section>
 <section id="exemple-4" class="level2">
 <h2>Exemple</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fabrique_un_dictionnaire(a, b, c):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fabrique_un_dictionnaire(a, b, c):
     <span class="co">&quot;&quot;&quot;</span>
 <span class="co">    Retourne un dictionnaire</span>
 
@@ -565,7 +554,7 @@ TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<
 <span class="co">    &gt;&gt;&gt; fabrique_un_dictionnaire(4, 2, 6) == dico</span>
 <span class="co">    True</span>
 <span class="co">    &quot;&quot;&quot;</span>
-    <span class="cf">return</span> {<span class="st">&#39;a&#39;</span>: a, <span class="st">&#39;b&#39;</span>: b, <span class="st">&#39;c&#39;</span>: c}</code></pre></div>
+    <span class="kw">return</span> {<span class="st">&#39;a&#39;</span>: a, <span class="st">&#39;b&#39;</span>: b, <span class="st">&#39;c&#39;</span>: c}</code></pre>
 </section>
 </section>
 <section id="rappels-et-bonnes-pratiques---les-modules" class="level1">
@@ -601,14 +590,14 @@ TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<
 <li><code>sys.path</code> en Python</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> sys
-<span class="op">&gt;&gt;&gt;</span> sys.path
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="ch">import</span> sys
+&gt;&gt;&gt; sys.path
 [<span class="st">&#39;&#39;</span>,
  <span class="co">&#39;C:\\Windows\\system32\\python34.zip&#39;</span>,
  <span class="co">&#39;C:\\Python34\\Lib&#39;</span>,
  <span class="co">&#39;C:\\Python34\\DLLs&#39;</span>,
  <span class="co">&#39;C:\\Python34&#39;</span>,
- <span class="co">&#39;C:\\Python34\\lib\\site-packages&#39;</span>]</code></pre></div>
+ <span class="co">&#39;C:\\Python34\\lib\\site-packages&#39;</span>]</code></pre>
 <ul>
 <li>Contenu du PYTHONPATH :
 <ul>
@@ -624,12 +613,22 @@ TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<
 <section id="modules-et-imports-2" class="level2">
 <h2>Modules et imports</h2>
 <ul>
-<li>Module = fichier <code>.py</code></li>
+<li>Module
+<ul>
+<li>Ce que l'on importe</li>
+<li>Fichier <code>.py</code></li>
+</ul></li>
 <li>Package
 <ul>
 <li>Ensemble de modules</li>
-<li>Répertoire avec un fichier <code>__init__.py</code></li>
+<li>Répertoire contenant un fichier <code>__init__.py</code></li>
 </ul></li>
+</ul>
+</section>
+<section id="modules-et-imports-3" class="level2">
+<h2>Modules et imports</h2>
+<ul>
+<li>Exemple</li>
 </ul>
 <pre><code>--repertoire_courant
    |--module1.py
@@ -642,15 +641,16 @@ TestResults(failed<span class="op">=</span><span class="dv">0</span>, attempted<
 <p style="font-size:16pt">
 avec Python lancé depuis <code>repertoire_courant</code>
 </p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> module1           <span class="co"># on importe module1</span>
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package           <span class="co"># on importe tout le package</span>
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> package.module2   <span class="co"># on importe module2 seulement</span>
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire
-<span class="pp">ImportError</span>: No module named repertoire
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> repertoire.module4
-<span class="pp">ImportError</span>: No module named repertoire.module4
-<span class="op">&gt;&gt;&gt;</span> sys.path.append(<span class="st">&#39;repertoire&#39;</span>)  <span class="co"># on ajoute le répertoire au PYTHON PATH</span>
-<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> module4          <span class="co"># l&#39;import du module4 fonctionne</span></code></pre></div>
+
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="ch">import</span> module1           <span class="co"># on importe module1</span>
+&gt;&gt;&gt; <span class="ch">import</span> package           <span class="co"># on importe tout le package</span>
+&gt;&gt;&gt; <span class="ch">import</span> package.module2   <span class="co"># on importe module2 seulement</span>
+&gt;&gt;&gt; <span class="ch">import</span> repertoire
+<span class="ot">ImportError</span>: No module named repertoire
+&gt;&gt;&gt; <span class="ch">import</span> repertoire.module4
+<span class="ot">ImportError</span>: No module named repertoire.module4
+&gt;&gt;&gt; sys.path.append(<span class="st">&#39;repertoire&#39;</span>)  <span class="co"># on ajoute le répertoire au PYTHON PATH</span>
+&gt;&gt;&gt; <span class="ch">import</span> module4          <span class="co"># l&#39;import du module4 fonctionne</span></code></pre>
 </section>
 </section>
 <section id="rappels-et-bonnes-pratiques" class="level1">
@@ -662,7 +662,7 @@ avec Python lancé depuis <code>repertoire_courant</code>
 <ul>
 <li>comment utiliser une fonction ? <code>help(fonction)</code></li>
 <li>quelles sont les fonctions de ce module ? <code>dir(module)</code></li>
-<li>où trouver de la doc en ligne ? <a href="https://docs.python.org/3.5/" class="uri">https://docs.python.org/3.5/</a></li>
+<li>où trouver de la doc en ligne ? <a href="https://docs.python.org/3.5/">https://docs.python.org/3.5/</a></li>
 </ul></li>
 </ul>
 </section>
@@ -697,6 +697,7 @@ avec Python lancé depuis <code>repertoire_courant</code>
 <center>
 <font color="green">JAUNE</font> <font color="red">BLEU</font> <font color="blue">ORANGE</font></br> <font color="yellow">NOIR</font> <font color="blue">ROUGE</font> <font color="black">VERT</font></br> <font color="red">VIOLET</font> <font color="blue">JAUNE</font> <font color="green">ROUGE</font></br> <font color="black">ORANGE</font> <font color="red">VERT</font> <font color="yellow">NOIR</font></br> <font color="green">BLEU</font> <font color="blue">ROUGE</font> <font color="black">VIOLET</font></br> <font color="blue">VERT</font> <font color="red">BLEU</font> <font color="green">ORANGE</font></br> </br>
 </center>
+
 <p>=&gt; Respecter les conventions c'est faciliter la lecture et la compréhension</p>
 </section>
 <section id="conventions-1" class="level2">
@@ -705,17 +706,17 @@ avec Python lancé depuis <code>repertoire_courant</code>
 <li>Nommage des variables</li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nom_de_variable
+<pre class="sourceCode python"><code class="sourceCode python">nom_de_variable
 nom_de_fonction
 NomDeClasse
-NOM_DE_CONSTANTE</code></pre></div>
+NOM_DE_CONSTANTE</code></pre>
 </section>
 <section id="conventions-2" class="level2">
 <h2>Conventions</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> b <span class="op">+</span> c<span class="op">*</span>d</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">a = b + c*d</code></pre>
 <p></br></p>
 <p><em>Est mieux que :</em></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a<span class="op">=</span>b<span class="op">+</span>c<span class="op">*</span>d</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">a=b+c*d</code></pre>
 <p></br></p>
 <ul>
 <li>Opérateurs entourés d'espaces pour indiquer les priorités</li>
@@ -723,10 +724,10 @@ NOM_DE_CONSTANTE</code></pre></div>
 </section>
 <section id="conventions-3" class="level2">
 <h2>Conventions</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span> <span class="op">=</span> {<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">3</span><span class="op">*</span><span class="dv">4</span>}</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">dict</span> = {<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">3</span>*<span class="dv">4</span>}</code></pre>
 <p></br></p>
 <p><em>Est mieux que :</em></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">dict</span><span class="op">=</span>{<span class="st">&#39;a&#39;</span>:<span class="dv">1</span> , <span class="st">&#39;b&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;c&#39;</span>:<span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span>}</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">dict</span>={<span class="st">&#39;a&#39;</span>:<span class="dv">1</span> , <span class="st">&#39;b&#39;</span>:<span class="dv">2</span>,<span class="st">&#39;c&#39;</span>:<span class="dv">3</span> * <span class="dv">4</span>}</code></pre>
 <p></br></p>
 <ul>
 <li>Pas d'espace avant les <code>:</code> ou les <code>,</code> mais un après</li>
@@ -734,35 +735,35 @@ NOM_DE_CONSTANTE</code></pre></div>
 </section>
 <section id="conventions-4" class="level2">
 <h2>Conventions</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> module
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> module
 
 
-<span class="kw">def</span> fonction_qui_compare(a, b<span class="op">=</span><span class="dv">0</span>):
-    <span class="cf">if</span> a <span class="op">&gt;</span> b:
-        <span class="cf">return</span> <span class="va">True</span>
-    <span class="cf">else</span>:
-        <span class="cf">return</span> <span class="va">False</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> module
+<span class="kw">def</span> fonction_qui_compare(a, b=<span class="dv">0</span>):
+    <span class="kw">if</span> a &gt; b:
+        <span class="kw">return</span> <span class="ot">True</span>
+    <span class="kw">else</span>:
+        <span class="kw">return</span> <span class="ot">False</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> module
 
-<span class="kw">def</span> fonctionQuiCompare ( a , b <span class="op">=</span> <span class="dv">0</span> ) :
+<span class="kw">def</span> fonctionQuiCompare ( a , b = <span class="dv">0</span> ) :
 
-    <span class="cf">if</span> ( a<span class="op">&gt;</span>b ) :
-        <span class="cf">return</span> <span class="va">True</span>
+    <span class="kw">if</span> ( a&gt;b ) :
+        <span class="kw">return</span> <span class="ot">True</span>
 
-    <span class="cf">else</span> : <span class="cf">return</span> <span class="va">False</span></code></pre></div>
+    <span class="kw">else</span> : <span class="kw">return</span> <span class="ot">False</span></code></pre>
 <p><small> - Pas d'espace autour du <code>=</code> pour les valeurs par défaut</br> - Deux sauts de ligne après les imports</br> - Pas de saut de ligne après la signature d'une fonction</br> - Pas de parenthèses inutiles</br> - Structure de code régulière</br> </small></p>
 </section>
 <section id="conventions-5" class="level2">
 <h2>Conventions</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">OFFSET <span class="op">=</span> <span class="dv">4</span>
+<pre class="sourceCode python"><code class="sourceCode python">OFFSET = <span class="dv">4</span>
 
 <span class="kw">def</span> une_fonction(tab, k):
-    <span class="cf">return</span> tab[k <span class="op">+</span> OFFSET]</code></pre></div>
+    <span class="kw">return</span> tab[k + OFFSET]</code></pre>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">i <span class="op">=</span> <span class="dv">4</span>
+<pre class="sourceCode python"><code class="sourceCode python">i = <span class="dv">4</span>
 
 <span class="kw">def</span> une_fonction(tab, K) :
-    <span class="cf">return</span> tab[K <span class="op">+</span> i]</code></pre></div>
+    <span class="kw">return</span> tab[K + i]</code></pre>
 <p></br></p>
 <ul>
 <li>Respect des conventions de nommage des variables</li>
@@ -777,9 +778,9 @@ NOM_DE_CONSTANTE</code></pre></div>
 <ul>
 <li>Utilisation du mot-clé <code>class</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MaClasse(<span class="bu">object</span>):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MaClasse(<span class="dt">object</span>):
     ...
-    ...</code></pre></div>
+    ...</code></pre>
 <ul>
 <li>Convention :
 <ul>
@@ -798,9 +799,9 @@ NOM_DE_CONSTANTE</code></pre></div>
 <li>On en crée autant que l'on veut</li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mon_objet1 <span class="op">=</span> MaClasse()
-mon_objet2 <span class="op">=</span> MaClasse()
-mon_objet3 <span class="op">=</span> MaClasse()</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">mon_objet1 = MaClasse()
+mon_objet2 = MaClasse()
+mon_objet3 = MaClasse()</code></pre>
 </section>
 <section id="les-méthodes" class="level2">
 <h2>Les méthodes</h2>
@@ -814,13 +815,13 @@ mon_objet3 <span class="op">=</span> MaClasse()</code></pre></div>
 </ul></li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
 ...     <span class="kw">def</span> une_methode(param):
-...         <span class="bu">print</span>(<span class="st">&quot;Une méthode qui fait quelque chose&quot;</span>)
+...         <span class="dt">print</span>(<span class="st">&quot;Une méthode qui fait quelque chose&quot;</span>)
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse()
-<span class="op">&gt;&gt;&gt;</span> mon_objet.une_methode()
-Une méthode qui fait quelque chose</code></pre></div>
+&gt;&gt;&gt; mon_objet = MaClasse()
+&gt;&gt;&gt; mon_objet.une_methode()
+Une méthode qui fait quelque chose</code></pre>
 </section>
 <section id="les-méthodes-1" class="level2">
 <h2>Les méthodes</h2>
@@ -832,15 +833,15 @@ Une méthode qui fait quelque chose</code></pre></div>
 </ul></li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> une_methode(<span class="va">self</span>):
-...         <span class="bu">print</span>(<span class="va">self</span>)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> une_methode(<span class="ot">self</span>):
+...         <span class="dt">print</span>(<span class="ot">self</span>)
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse()
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mon_objet)
-<span class="op">&lt;</span>__main__.DescriptionDeLObjet <span class="bu">object</span> at <span class="bn">0x059F0190</span><span class="op">&gt;</span>
-<span class="op">&gt;&gt;&gt;</span> mon_objet.une_methode()
-<span class="op">&lt;</span>__main__.DescriptionDeLObjet <span class="bu">object</span> at <span class="bn">0x059F0190</span><span class="op">&gt;</span></code></pre></div>
+&gt;&gt;&gt; mon_objet = MaClasse()
+&gt;&gt;&gt; <span class="dt">print</span>(mon_objet)
+&lt;__main__.DescriptionDeLObjet <span class="dt">object</span> at <span class="bn">0x059F0190</span>&gt;
+&gt;&gt;&gt; mon_objet.une_methode()
+&lt;__main__.DescriptionDeLObjet <span class="dt">object</span> at <span class="bn">0x059F0190</span>&gt;</code></pre>
 </section>
 <section id="les-attributs" class="level2">
 <h2>Les attributs</h2>
@@ -854,16 +855,16 @@ Une méthode qui fait quelque chose</code></pre></div>
 <li>ou de <code>self</code> si on est dans la classe</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> afficher(<span class="va">self</span>):
-...         <span class="bu">print</span>(<span class="va">self</span>.un_attribut)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> afficher(<span class="ot">self</span>):
+...         <span class="dt">print</span>(<span class="ot">self</span>.un_attribut)
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse()
-<span class="op">&gt;&gt;&gt;</span> mon_objet.un_attribut <span class="op">=</span> <span class="dv">48</span>
-<span class="op">&gt;&gt;&gt;</span> mon_objet.afficher()
+&gt;&gt;&gt; mon_objet = MaClasse()
+&gt;&gt;&gt; mon_objet.un_attribut = <span class="dv">48</span>
+&gt;&gt;&gt; mon_objet.afficher()
 <span class="dv">48</span>
-<span class="op">&gt;&gt;&gt;</span> un_attribut  <span class="co"># n&#39;existe pas en dehors de la classe</span>
-<span class="pp">NameError</span>: name <span class="st">&#39;un_attribut&#39;</span> <span class="kw">is</span> <span class="kw">not</span> defined</code></pre></div>
+&gt;&gt;&gt; un_attribut  <span class="co"># n&#39;existe pas en dehors de la classe</span>
+<span class="ot">NameError</span>: name <span class="st">&#39;un_attribut&#39;</span> is not defined</code></pre>
 </section>
 <section id="le-constructeur" class="level2">
 <h2>Le constructeur</h2>
@@ -874,15 +875,15 @@ Une méthode qui fait quelque chose</code></pre></div>
 </ul></li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):
-...         <span class="va">self</span>.un_attribut <span class="op">=</span> <span class="st">&quot;valeur initiale&quot;</span>
-...         <span class="bu">print</span>(<span class="st">&quot;Objet créé. Attributs initialisés.&quot;</span>)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>):
+...         <span class="ot">self</span>.un_attribut = <span class="st">&quot;valeur initiale&quot;</span>
+...         <span class="dt">print</span>(<span class="st">&quot;Objet créé. Attributs initialisés.&quot;</span>)
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse()
+&gt;&gt;&gt; mon_objet = MaClasse()
 Objet créé. Attributs initialisés.
-<span class="op">&gt;&gt;&gt;</span> mon_objet.un_attribut
-<span class="co">&quot;valeur initiale&quot;</span></code></pre></div>
+&gt;&gt;&gt; mon_objet.un_attribut
+<span class="co">&quot;valeur initiale&quot;</span></code></pre>
 </section>
 <section id="le-constructeur-1" class="level2">
 <h2>Le constructeur</h2>
@@ -890,13 +891,13 @@ Objet créé. Attributs initialisés.
 <li>Possibilité de passer des paramètres pour personnaliser les objets</li>
 </ul>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valeur):
-...         <span class="va">self</span>.un_attribut <span class="op">=</span> valeur
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, valeur):
+...         <span class="ot">self</span>.un_attribut = valeur
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse(<span class="st">&quot;valeur personnalisée&quot;</span>)
-<span class="op">&gt;&gt;&gt;</span> mon_objet.un_attribut
-<span class="co">&quot;valeur personnalisée&quot;</span></code></pre></div>
+&gt;&gt;&gt; mon_objet = MaClasse(<span class="st">&quot;valeur personnalisée&quot;</span>)
+&gt;&gt;&gt; mon_objet.un_attribut
+<span class="co">&quot;valeur personnalisée&quot;</span></code></pre>
 </section>
 <section id="méthodes-spéciales" class="level2">
 <h2>Méthodes spéciales</h2>
@@ -911,22 +912,22 @@ Objet créé. Attributs initialisés.
 </section>
 <section id="méthodes-spéciales-1" class="level2">
 <h2>Méthodes spéciales</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valeur):
-...         <span class="va">self</span>.un_attribut <span class="op">=</span> valeur
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, valeur):
+...         <span class="ot">self</span>.un_attribut = valeur
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse(<span class="st">&quot;17&quot;</span>)
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mon_objet)
-<span class="op">&lt;</span>__main__.MaClasse <span class="bu">object</span> at <span class="bn">0x051D5DF0</span><span class="op">&gt;</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valeur):
-...         <span class="va">self</span>.un_attribut <span class="op">=</span> valeur
-...     <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):
-...         <span class="bu">print</span>(<span class="st">&quot;Instance de MaClasse (valeur de un_attribut = </span><span class="sc">{}</span><span class="st">)&quot;</span>.<span class="bu">format</span>(<span class="va">self</span>.un_attribut)
+&gt;&gt;&gt; mon_objet = MaClasse(<span class="st">&quot;17&quot;</span>)
+&gt;&gt;&gt; <span class="dt">print</span>(mon_objet)
+&lt;__main__.MaClasse <span class="dt">object</span> at <span class="bn">0x051D5DF0</span>&gt;</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, valeur):
+...         <span class="ot">self</span>.un_attribut = valeur
+...     <span class="kw">def</span> <span class="ot">__str__</span>(<span class="ot">self</span>):
+...         <span class="dt">print</span>(<span class="st">&quot;Instance de MaClasse (valeur de un_attribut = {})&quot;</span>.<span class="dt">format</span>(<span class="ot">self</span>.un_attribut)
 ...
-<span class="op">&gt;&gt;&gt;</span> mon_objet <span class="op">=</span> MaClasse(<span class="st">&quot;17&quot;</span>)
-<span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mon_objet)
-Instance de MaClasse (valeur de un_attribut <span class="op">=</span> <span class="dv">17</span>)</code></pre></div>
+&gt;&gt;&gt; mon_objet = MaClasse(<span class="st">&quot;17&quot;</span>)
+&gt;&gt;&gt; <span class="dt">print</span>(mon_objet)
+Instance de MaClasse (valeur de un_attribut = <span class="dv">17</span>)</code></pre>
 </section>
 <section id="méthodes-spéciales-2" class="level2">
 <h2>Méthodes spéciales</h2>
@@ -954,21 +955,21 @@ Instance de MaClasse (valeur de un_attribut <span class="op">=</span> <span clas
 </ul></li>
 <li>Méthodes et attributs transmis à la classe fille</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> ClasseFille(ClasseMere):
-    ...</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> ClasseFille(ClasseMere):
+    ...</code></pre>
 </section>
 <section id="lhéritage-1" class="level2">
 <h2>L'héritage</h2>
 <p></br></p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> ClasseMere(<span class="bu">object</span>):
-...     <span class="kw">def</span> une_methode(<span class="va">self</span>):
-...         <span class="bu">print</span>(<span class="st">&quot;Je suis dans la classe mère&quot;</span>)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> ClasseMere(<span class="dt">object</span>):
+...     <span class="kw">def</span> une_methode(<span class="ot">self</span>):
+...         <span class="dt">print</span>(<span class="st">&quot;Je suis dans la classe mère&quot;</span>)
 ... 
-<span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> ClasseFille(ClasseMere):
-...     <span class="cf">pass</span>
+&gt;&gt;&gt; <span class="kw">class</span> ClasseFille(ClasseMere):
+...     <span class="kw">pass</span>
 ...
-<span class="op">&gt;&gt;&gt;</span> ClasseFille().une_methode()
-Je suis dans la classe mère</code></pre></div>
+&gt;&gt;&gt; ClasseFille().une_methode()
+Je suis dans la classe mère</code></pre>
 </section>
 <section id="lhéritage-2" class="level2">
 <h2>L'héritage</h2>
@@ -978,19 +979,19 @@ Je suis dans la classe mère</code></pre></div>
 <li><code>ClasseMere.methode(self, param...)</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Article(<span class="bu">object</span>):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, prix):
-...         <span class="va">self</span>.prix <span class="op">=</span> prix
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> Article(<span class="dt">object</span>):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, prix):
+...         <span class="ot">self</span>.prix = prix
 ...
-<span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> ArticleEnPromotion(Article):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, prix, rabais):
-...         Article.<span class="fu">__init__</span>(<span class="va">self</span>, prix)
-...         <span class="va">self</span>.prix <span class="op">*=</span> (<span class="dv">1</span> <span class="op">-</span> rabais <span class="op">/</span> <span class="dv">100</span>)
+&gt;&gt;&gt; <span class="kw">class</span> ArticleEnPromotion(Article):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, prix, rabais):
+...         Article.<span class="ot">__init__</span>(<span class="ot">self</span>, prix)
+...         <span class="ot">self</span>.prix *= (<span class="dv">1</span> - rabais / <span class="dv">100</span>)
 ...
-<span class="op">&gt;&gt;&gt;</span> Article(<span class="dv">10</span>).prix
+&gt;&gt;&gt; Article(<span class="dv">10</span>).prix
 <span class="dv">10</span>
-<span class="op">&gt;&gt;&gt;</span> ArticleEnPromotion(<span class="dv">10</span>, <span class="dv">20</span>).prix
-<span class="dv">8</span></code></pre></div>
+&gt;&gt;&gt; ArticleEnPromotion(<span class="dv">10</span>, <span class="dv">20</span>).prix
+<span class="dv">8</span></code></pre>
 </section>
 <section id="le-polymorphisme" class="level2">
 <h2>Le polymorphisme</h2>
@@ -1004,18 +1005,18 @@ Je suis dans la classe mère</code></pre></div>
 <li>Python se charge de trouver la bonne méthode à utiliser lors de l'appel</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> ClasseMere(<span class="bu">object</span>):
-...     <span class="kw">def</span> une_methode(<span class="va">self</span>):
-...         <span class="bu">print</span>(<span class="st">&quot;Je suis dans la classe mère&quot;</span>)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> ClasseMere(<span class="dt">object</span>):
+...     <span class="kw">def</span> une_methode(<span class="ot">self</span>):
+...         <span class="dt">print</span>(<span class="st">&quot;Je suis dans la classe mère&quot;</span>)
 ... 
-<span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> ClasseFille(ClasseMere):
-...     <span class="kw">def</span> une_methode(<span class="va">self</span>):
-...         <span class="bu">print</span>(<span class="st">&quot;Je suis dans la classe fille&quot;</span>)
+&gt;&gt;&gt; <span class="kw">class</span> ClasseFille(ClasseMere):
+...     <span class="kw">def</span> une_methode(<span class="ot">self</span>):
+...         <span class="dt">print</span>(<span class="st">&quot;Je suis dans la classe fille&quot;</span>)
 ...
-<span class="op">&gt;&gt;&gt;</span> ClasseMere().une_methode()
+&gt;&gt;&gt; ClasseMere().une_methode()
 Je suis dans la classe mère
-<span class="op">&gt;&gt;&gt;</span> ClasseFille().une_methode()
-Je suis dans la classe fille</code></pre></div>
+&gt;&gt;&gt; ClasseFille().une_methode()
+Je suis dans la classe fille</code></pre>
 </section>
 <section id="lencapsulation" class="level2">
 <h2>L'encapsulation</h2>
@@ -1029,10 +1030,10 @@ Je suis dans la classe fille</code></pre></div>
 <li><code>_</code> avant le nom de l'attribut pour faire comme s'il était privé</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> MaClasse(<span class="bu">object</span>):
-...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valeur1, valeur2):
-...         <span class="va">self</span>.attribut_public <span class="op">=</span> valeur1
-...         <span class="va">self</span>._attribut_prive <span class="op">=</span> valeur2</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="kw">class</span> MaClasse(<span class="dt">object</span>):
+...     <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, valeur1, valeur2):
+...         <span class="ot">self</span>.attribut_public = valeur1
+...         <span class="ot">self</span>._attribut_prive = valeur2</code></pre>
 </section>
 <section id="lectureécriture-dattributs" class="level2">
 <h2>Lecture/écriture d'attributs</h2>
@@ -1042,32 +1043,32 @@ Je suis dans la classe fille</code></pre></div>
 <li>Utiliser des méthodes spécifiques</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="bu">object</span>):
-    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, longueur, largeur):
-        <span class="va">self</span>._longueur <span class="op">=</span> longueur
-        <span class="va">self</span>._largeur <span class="op">=</span> largeur
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="dt">object</span>):
+    <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, longueur, largeur):
+        <span class="ot">self</span>._longueur = longueur
+        <span class="ot">self</span>._largeur = largeur
     
-    <span class="kw">def</span> get_longueur(<span class="va">self</span>):
-        <span class="cf">return</span> <span class="va">self</span>._longueur
+    <span class="kw">def</span> get_longueur(<span class="ot">self</span>):
+        <span class="kw">return</span> <span class="ot">self</span>._longueur
 
-    <span class="kw">def</span> set_longueur(<span class="va">self</span>, valeur):
-        <span class="cf">if</span> valeur <span class="op">&gt;=</span> <span class="va">self</span>._largeur:
-            <span class="va">self</span>._longueur <span class="op">=</span> valeur
-        <span class="cf">else</span>:
-            <span class="va">self</span>._longueur <span class="op">=</span> <span class="va">self</span>._largeur
-            <span class="va">self</span>._largeur <span class="op">=</span> valeur</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> rect <span class="op">=</span> Rectangle(<span class="dv">5</span>, <span class="dv">4</span>)
-<span class="op">&gt;&gt;&gt;</span> rect.set_longueur(<span class="dv">3</span>)
-<span class="op">&gt;&gt;&gt;</span> rect.get_longueur()
-<span class="dv">4</span></code></pre></div>
+    <span class="kw">def</span> set_longueur(<span class="ot">self</span>, valeur):
+        <span class="kw">if</span> valeur &gt;= <span class="ot">self</span>._largeur:
+            <span class="ot">self</span>._longueur = valeur
+        <span class="kw">else</span>:
+            <span class="ot">self</span>._longueur = <span class="ot">self</span>._largeur
+            <span class="ot">self</span>._largeur = valeur</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; rect = Rectangle(<span class="dv">5</span>, <span class="dv">4</span>)
+&gt;&gt;&gt; rect.set_longueur(<span class="dv">3</span>)
+&gt;&gt;&gt; rect.get_longueur()
+<span class="dv">4</span></code></pre>
 </section>
 <section id="lectureécriture-dattributs-1" class="level2">
 <h2>Lecture/écriture d'attributs</h2>
 <p>Ca marche, mais on voudrait faire mieux et pouvoir écrire :</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> rect <span class="op">=</span> Rectangle(<span class="dv">5</span>, <span class="dv">4</span>)
-<span class="op">&gt;&gt;&gt;</span> rect.longueur <span class="op">=</span> <span class="dv">3</span>
-<span class="op">&gt;&gt;&gt;</span> rect.longueur
-<span class="dv">4</span></code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; rect = Rectangle(<span class="dv">5</span>, <span class="dv">4</span>)
+&gt;&gt;&gt; rect.longueur = <span class="dv">3</span>
+&gt;&gt;&gt; rect.longueur
+<span class="dv">4</span></code></pre>
 <ul>
 <li>Décorateur sur les fonctions
 <ul>
@@ -1079,26 +1080,28 @@ Je suis dans la classe fille</code></pre></div>
 <p style="font-size:16pt">
 Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute à une fonction pour en personnaliser le comportement (pré ou post-traitements, initialisation de paramètres...). Il en existe plein et on peut en définir soi-même.
 </p>
+
+
 </section>
 <section id="lectureécriture-dattributs-2" class="level2">
 <h2>Lecture/écriture d'attributs</h2>
 <p>Le code devient :</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="bu">object</span>):
-    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, longueur, largeur):
-        <span class="va">self</span>._longueur <span class="op">=</span> longueur
-        <span class="va">self</span>._largeur <span class="op">=</span> largeur
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Rectangle(<span class="dt">object</span>):
+    <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, longueur, largeur):
+        <span class="ot">self</span>._longueur = longueur
+        <span class="ot">self</span>._largeur = largeur
     
-    <span class="at">@property</span>
-    <span class="kw">def</span> longueur(<span class="va">self</span>):
-        <span class="cf">return</span> <span class="va">self</span>._longueur
+    <span class="ot">@property</span>
+    <span class="kw">def</span> longueur(<span class="ot">self</span>):
+        <span class="kw">return</span> <span class="ot">self</span>._longueur
 
-    <span class="at">@longueur.setter</span>
-    <span class="kw">def</span> longueur(<span class="va">self</span>, valeur):
-        <span class="cf">if</span> valeur <span class="op">&gt;=</span> <span class="va">self</span>._largeur:
-            <span class="va">self</span>._longueur <span class="op">=</span> valeur
-        <span class="cf">else</span>:
-            <span class="va">self</span>._longueur <span class="op">=</span> <span class="va">self</span>._largeur
-            <span class="va">self</span>._largeur <span class="op">=</span> valeur</code></pre></div>
+    <span class="ot">@longueur.setter</span>
+    <span class="kw">def</span> longueur(<span class="ot">self</span>, valeur):
+        <span class="kw">if</span> valeur &gt;= <span class="ot">self</span>._largeur:
+            <span class="ot">self</span>._longueur = valeur
+        <span class="kw">else</span>:
+            <span class="ot">self</span>._longueur = <span class="ot">self</span>._largeur
+            <span class="ot">self</span>._largeur = valeur</code></pre>
 </section>
 <section id="les-classes-abstraites" class="level2">
 <h2>Les classes abstraites</h2>
@@ -1112,17 +1115,17 @@ Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute
 <li>lever une exception dans le constructeur</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MaClasseAbstraite(<span class="bu">object</span>):
-    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, param1, param2...):
-        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> MaClasseAbstraite(<span class="dt">object</span>):
+    <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>, param1, param2...):
+        <span class="kw">raise</span> <span class="ot">NotImplementedError</span>
 
-    <span class="kw">def</span> methode1(<span class="va">self</span>, param...):
+    <span class="kw">def</span> methode1(<span class="ot">self</span>, param...):
         <span class="co"># methode1 est une méthode abstraite</span>
-        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>
+        <span class="kw">raise</span> <span class="ot">NotImplementedError</span>
 
-    <span class="kw">def</span> methode2(<span class="va">self</span>, param...):
+    <span class="kw">def</span> methode2(<span class="ot">self</span>, param...):
         <span class="co"># methode2 est une méthode concrète : on l&#39;implémente ici</span>
-        ... </code></pre></div>
+        ... </code></pre>
 </section>
 </section>
 <section id="bases-de-données" class="level1">
@@ -1152,7 +1155,7 @@ Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute
 <li>BDD dans un seul fichier indépendant de la plateforme</li>
 <li>Librairie standard de Python</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> sqlite3</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> sqlite3</code></pre>
 </section>
 <section id="lobjet-connexion" class="level2">
 <h2>L'objet connexion</h2>
@@ -1161,11 +1164,11 @@ Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute
 <li>Interface pour valider (commit) ou annuler (rollback) les transactions</li>
 <li>Génère les curseurs</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;user/password@database&quot;</span>)
+<pre class="sourceCode python"><code class="sourceCode python">conn = sqlite3.<span class="ot">connect</span>(<span class="st">&quot;user/password@database&quot;</span>)
 
 conn.commit()  <span class="co"># valider transaction</span>
 conn.rollback()  <span class="co"># annuler transaction</span>
-conn.close()  <span class="co"># fermer la connection</span></code></pre></div>
+conn.close()  <span class="co"># fermer la connection</span></code></pre>
 </section>
 <section id="syntaxe-avec-with" class="level2">
 <h2>Syntaxe avec with</h2>
@@ -1173,8 +1176,8 @@ conn.close()  <span class="co"># fermer la connection</span></code></pre></div>
 <li>Idem que pour les fichiers</li>
 <li>Pour éviter d'oublier de refermer la connexion</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;user/password@database&quot;</span>) <span class="im">as</span> conn:
-    <span class="co"># on effectue nos requêtes dans la BDD</span></code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">with</span> sqlite3.<span class="ot">connect</span>(<span class="st">&quot;user/password@database&quot;</span>) <span class="ch">as</span> conn:
+    <span class="co"># on effectue nos requêtes dans la BDD</span></code></pre>
 </section>
 <section id="lobjet-curseur" class="level2">
 <h2>L'objet curseur</h2>
@@ -1182,19 +1185,19 @@ conn.close()  <span class="co"># fermer la connection</span></code></pre></div>
 <li>Représente une instruction SQL sous format texte</li>
 <li>Utilisé pour parcourir les résultats d'une requête SQL</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">curs <span class="op">=</span> conn.cursor()
+<pre class="sourceCode python"><code class="sourceCode python">curs = conn.cursor()
 
-curs.execute(sql_string [, parameters])  <span class="co"># execute requete sql</span></code></pre></div>
+curs.execute(sql_string [, parameters])  <span class="co"># execute requete sql</span></code></pre>
 </section>
 <section id="les-requêtes-prises-en-charge" class="level2">
 <h2>Les requêtes prises en charge</h2>
 <ul>
 <li>Tous types de requêtes SQL acceptés</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">curs.execute(<span class="st">&quot;CREATE TABLE ...&quot;</span>)
+<pre class="sourceCode python"><code class="sourceCode python">curs.execute(<span class="st">&quot;CREATE TABLE ...&quot;</span>)
 curs.execute(<span class="st">&quot;UPDATE ...&quot;</span>)
 curs.execute(<span class="st">&quot;INSERT INTO ...&quot;</span>)
-curs.execute(<span class="st">&quot;SELECT ...&quot;</span>)</code></pre></div>
+curs.execute(<span class="st">&quot;SELECT ...&quot;</span>)</code></pre>
 </section>
 <section id="passage-de-paramètres" class="level2">
 <h2>Passage de paramètres</h2>
@@ -1202,144 +1205,144 @@ curs.execute(<span class="st">&quot;SELECT ...&quot;</span>)</code></pre></div>
 <li>Utilisation du caractère <code>?</code></li>
 <li>Valeur des paramètres sous forme de tuple</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">query <span class="op">=</span> <span class="st">&quot;SELECT nom, prenom FROM personne WHERE naissance &gt; ? AND sexe = ?&quot;</span>
-curs.execute(query, (<span class="dv">2000</span>, <span class="st">&#39;M&#39;</span>))</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">query = <span class="st">&quot;SELECT nom, prenom FROM personne WHERE naissance &gt; ? AND sexe = ?&quot;</span>
+curs.execute(query, (<span class="dv">2000</span>, <span class="st">&#39;M&#39;</span>))</code></pre>
 </section>
 <section id="résultats-des-requêtes-sql" class="level2">
 <h2>Résultats des requêtes SQL</h2>
 <ul>
 <li>Séquence d'objets Python</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">curs.execute(select_query)
-results <span class="op">=</span> curs.fetchall()
-<span class="cf">for</span> row <span class="kw">in</span> results:
-    ...</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">curs.execute(select_query)
+results = curs.fetchall()
+<span class="kw">for</span> row in results:
+    ...</code></pre>
 </section>
 <section id="exemples" class="level2">
 <h2>Exemples</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> sqlite3
-<span class="op">&gt;&gt;&gt;</span> conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;dbase1&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> curs <span class="op">=</span> conn.cursor()
-<span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;insert into people values (?, ?, ?)&#39;</span>, (<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">5000</span>))
-<span class="op">&gt;&gt;&gt;</span> curs.rowcount
-<span class="dv">1</span></code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="ch">import</span> sqlite3
+&gt;&gt;&gt; conn = sqlite3.<span class="ot">connect</span>(<span class="st">&#39;dbase1&#39;</span>)
+&gt;&gt;&gt; curs = conn.cursor()
+&gt;&gt;&gt; curs.execute(<span class="st">&#39;insert into people values (?, ?, ?)&#39;</span>, (<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">5000</span>))
+&gt;&gt;&gt; curs.rowcount
+<span class="dv">1</span></code></pre>
 </section>
 <section id="exemples-1" class="level2">
 <h2>Exemples</h2>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> rows <span class="op">=</span> [[<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>, <span class="dv">100000</span>],
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; rows = [[<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>, <span class="dv">100000</span>],
 ...         [<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">30000</span>],
 ...         [<span class="st">&#39;Pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>]]
 
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> row <span class="kw">in</span> rows:
+&gt;&gt;&gt; <span class="kw">for</span> row in rows:
 ...     curs.execute(<span class="st">&#39;insert into people values (? , ?, ?)&#39;</span>, row)
 ...
 
-<span class="op">&gt;&gt;&gt;</span> conn.commit()</code></pre></div>
+&gt;&gt;&gt; conn.commit()</code></pre>
 </section>
 <section id="exemples-2" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li>Utilisation de <code>fetchall()</code> pour avoir tous les résultats d'un coup</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> row <span class="kw">in</span> curs.fetchall():
-...     <span class="bu">print</span>(row)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+&gt;&gt;&gt; <span class="kw">for</span> row in curs.fetchall():
+...     <span class="dt">print</span>(row)
 ...
 (<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">5000</span>)
 (<span class="st">&#39;Sue&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">70000</span>)
 (<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">60000</span>)
 (<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>, <span class="dv">100000</span>)
 (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">30000</span>)
-(<span class="st">&#39;Pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)</code></pre></div>
+(<span class="st">&#39;Pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)</code></pre>
 </section>
 <section id="exemples-3" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li>Possibilité de ne retenir que certaines colonnes en Python (semblable aux dictionnaires)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> (name, job, pay) <span class="kw">in</span> curs.fetchall():
-...     <span class="bu">print</span>(name, <span class="st">&#39;:&#39;</span>, pay)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+&gt;&gt;&gt; <span class="kw">for</span> (name, job, pay) in curs.fetchall():
+...     <span class="dt">print</span>(name, <span class="st">&#39;:&#39;</span>, pay)
 ...
 Bob : <span class="dv">5000</span>
 Sue : <span class="dv">70000</span>
 Ann : <span class="dv">60000</span>
 Tom : <span class="dv">100000</span>
 Kim : <span class="dv">30000</span>
-Pat : <span class="dv">90000</span></code></pre></div>
+Pat : <span class="dv">90000</span></code></pre>
 </section>
 <section id="exemples-4" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li>Idem en utilisant la position des colonnes</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> names <span class="op">=</span> [rec[<span class="dv">0</span>] <span class="cf">for</span> rec <span class="kw">in</span> curs.fetchall()]
-<span class="op">&gt;&gt;&gt;</span> names
-[<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Sue&#39;</span>, <span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;Pat&#39;</span>]</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+&gt;&gt;&gt; names = [rec[<span class="dv">0</span>] <span class="kw">for</span> rec in curs.fetchall()]
+&gt;&gt;&gt; names
+[<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Sue&#39;</span>, <span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;Pat&#39;</span>]</code></pre>
 </section>
 <section id="exemples-5" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li>Utilisation fe <code>fetchone()</code> pour n'avoir qu'une ligne de résultat à la fois</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">while</span> <span class="va">True</span>:
-...     row <span class="op">=</span> curs.fetchone()
-...     <span class="cf">if</span> <span class="kw">not</span> row:
-...         <span class="cf">break</span>
-...     <span class="bu">print</span>(row)
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+&gt;&gt;&gt; <span class="kw">while</span> <span class="ot">True</span>:
+...     row = curs.fetchone()
+...     <span class="kw">if</span> not row:
+...         <span class="kw">break</span>
+...     <span class="dt">print</span>(row)
 ...
 (<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">5000</span>)
 (<span class="st">&#39;Sue&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">70000</span>)
 (<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">60000</span>)
 (<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>, <span class="dv">100000</span>)
 (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">30000</span>)
-(<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)</code></pre></div>
+(<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)</code></pre>
 </section>
 <section id="exemples-6" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li><code>rowcount</code> indique le nombre de lignes impactées par la requête</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;update people set pay=? where pay &lt;= ?&#39;</span>, [<span class="dv">65000</span>, <span class="dv">60000</span>])
-<span class="op">&gt;&gt;&gt;</span> curs.rowcount
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; curs.execute(<span class="st">&#39;update people set pay=? where pay &lt;= ?&#39;</span>, [<span class="dv">65000</span>, <span class="dv">60000</span>])
+&gt;&gt;&gt; curs.rowcount
 <span class="dv">3</span>
-<span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> curs.fetchall()
+&gt;&gt;&gt; curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+&gt;&gt;&gt; curs.fetchall()
 [(<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;Sue&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">70000</span>), (<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>,
-<span class="dv">100000</span>), (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)]</code></pre></div>
+<span class="dv">100000</span>), (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)]</code></pre>
 </section>
 <section id="exemples-7" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li>Accès à la description des colonnes (<code>curs.description</code>)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
-<span class="op">&gt;&gt;&gt;</span> colnames <span class="op">=</span> [desc[<span class="dv">0</span>] <span class="cf">for</span> desc <span class="kw">in</span> curs.description]
-<span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> row <span class="kw">in</span> curs.fetchall():
-...     <span class="cf">for</span> name, value <span class="kw">in</span> <span class="bu">zip</span>(colnames, row):
-...         <span class="bu">print</span>(name, <span class="st">&#39;</span><span class="ch">\t</span><span class="st">=&gt;&#39;</span>, value)
-...     <span class="bu">print</span>()
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+&gt;&gt;&gt; colnames = [desc[<span class="dv">0</span>] <span class="kw">for</span> desc in curs.description]
+&gt;&gt;&gt; <span class="kw">for</span> row in curs.fetchall():
+...     <span class="kw">for</span> name, value in <span class="dt">zip</span>(colnames, row):
+...         <span class="dt">print</span>(name, <span class="st">&#39;</span><span class="ch">\t</span><span class="st">=&gt;&#39;</span>, value)
+...     <span class="dt">print</span>()
 ...
-name <span class="op">=&gt;</span> Sue
-job  <span class="op">=&gt;</span> mus
-pay  <span class="op">=&gt;</span> <span class="dv">70000</span>
+name =&gt; Sue
+job  =&gt; mus
+pay  =&gt; <span class="dv">70000</span>
 
-name <span class="op">=&gt;</span> Ann
-job  <span class="op">=&gt;</span> mus
-pay  <span class="op">=&gt;</span> <span class="dv">65000</span></code></pre></div>
+name =&gt; Ann
+job  =&gt; mus
+pay  =&gt; <span class="dv">65000</span></code></pre>
 </section>
 <section id="exemples-8" class="level2">
 <h2>Exemples</h2>
 <ul>
 <li>Possible de faire en Python ce que font de grosses requêtes compliquées</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> query <span class="op">=</span> (<span class="st">&quot;select name from people where job = &#39;devel&#39; and &quot;</span>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; query = (<span class="st">&quot;select name from people where job = &#39;devel&#39; and &quot;</span>
 ...                <span class="st">&quot;pay &gt; (select avg(pay) from people where job = &#39;devel&#39;)&quot;</span>)
-<span class="op">&gt;&gt;&gt;</span> curs.execute(query)
-<span class="op">&gt;&gt;&gt;</span> curs.fetchall()
-[(<span class="st">&#39;kim&#39;</span>,)]</code></pre></div>
+&gt;&gt;&gt; curs.execute(query)
+&gt;&gt;&gt; curs.fetchall()
+[(<span class="st">&#39;kim&#39;</span>,)]</code></pre>
 <pre><code>&gt;&gt;&gt; curs.execute(&quot;select name, pay from people where job = &#39;devel&#39;&quot;)
 &gt;&gt;&gt; result = curs.fetchall()
 &gt;&gt;&gt; avg = sum(rec[1] for rec in result) / len(result)
