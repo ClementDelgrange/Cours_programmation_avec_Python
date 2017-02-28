@@ -15,7 +15,7 @@ suivants :
 
 * un pokemon sauvage apparait : le dresseur peut l'affronter, tenter de 
  le capturer ou s'enfuir;
-* un dresseur apprait et vous affronte;
+* un dresseur apparait et vous affronte;
 * il ne se passe rien, vous pouvez vous reposer.
 
 Pour ce travail, nous nous efforcerons de respecter quelques principes 
@@ -131,7 +131,7 @@ attributs lorsqu'ils auront besoin d'être lu en dehors de la classe.
 6. Ajoutez également une méthode gérant l'affichage d'une instance de
  `PokemonEspece` sous la forme `Pikachu (pokemon ELECTRIQUE)`.
 
-Le constructeur de la classe  `Pokemon`attend trois paramètres 
+Le constructeur de la classe  `Pokemon` attend trois paramètres 
 obligatoires :
  
 * le nom du pokemon (par exemple `Alfred`);
@@ -226,7 +226,7 @@ package `ihm`.
 Pour rendre notre jeu pleinement opérationnel, il nous reste encore à permettre 
 de sauvegarder une partie pour y rejouer plus tard. Nous utiliserons pour cela 
 une base de données SQLite. Nous en profiterons pour initialiser les pokemons et 
-dresseurs du jeu avec de enregistrements dans cette base.
+dresseurs du jeu avec des enregistrements dans cette base.
 
 20. Récupérez les fichiers `__main__.py`, `utilitaire.py` que vous placerez
   respectivement à la racine du projet et dans l package `metier`. Placez
@@ -252,6 +252,6 @@ faire les différentes fonctions.
  lorsqu'une partie a été chargée mais qu'elle ne contient pas de dresser humain 
  (il s'agit donc d'une nouvelle partie). La fonction doit demander au joueur le 
  nous qu'il souhaite donner à son dresseur, la pokemon avec lequel il désire 
- commencer (bulbizare, salamèche ou bulbizare) comment il veut le nommer.
+ commencer (bulbizare, salamèche ou carapuce) et comment il veut le nommer.
 23. Il ne reste plus qu'à permettre de sauvegarder la partie pour revenir y
  jouer après avoir fermé le jeu. Implémentez la méthode `sauvegarder_partie()`.
