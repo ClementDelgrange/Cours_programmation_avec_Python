@@ -1087,25 +1087,38 @@ class MaClasseAbstraite(object):
 
 # Bases de données #
 
-## Pourquoi ? Quoi ? ##
+## SGBD en Python ##
 
-* Persistance des données
-* Données structurées
-
-* Différents systèmes de gestion de bases de données
-* Librairies Python pour manipuler les plus courants
-	* `sqlite`, `psycopg`, `mysql.connector`...
-	* fonctionnement équivalent pour chacune d'elles
-* Object Relationnal Model (ORM) pour s'abstraire du SGBD
-	* SQLAlchemy
+* Intérêts
+	* Persistance des données
+	* Structuration des données
+* Les solutions
+	* `sqlite`
+	* `psycopg`
+	* `mysql.connector`
+	* ...
+	* *nombreuses librairies pour les SGBD les plus courants*
+	* API commune
 
 
 ## SQLite ##
 
-* Moteur de BDDR
-* Moteur intégré au programme
+* Base de données relationnelle (=> SQL)
+* Pas d'architecture client-serveur traditionnelle
+
+![Architecture SQLite - source Wikipedia](img/sqlite_architecture.png)
+
 * BDD dans un seul fichier indépendant de la plateforme
+* Extension spatiale SpatiaLite
+* Exemples d'usage : 
+	* systèmes embarqués, profils Firefox...
+ 
+## SQLite en Python ##
+
 * Librairie standard de Python
+	* rien besoin d'installer
+
+</br>
 
 ``` python
 import sqlite3
@@ -1114,15 +1127,17 @@ import sqlite3
 ## L'objet connexion ##
 
 * Représente une connexion à une base de données
-* Interface pour valider (commit) ou annuler (rollback) les transactions
-* Génère les curseurs
+* Interface pour valider ou annuler les transactions
+	*  *commit* / *rollback*
+	*  transaction = ensemble d'opérations SQL
+* Génère des curseurs
 
 ``` python
 conn = sqlite3.connect("user/password@database")
 
-conn.commit()  # valider transaction
+conn.commit()    # valider transaction
 conn.rollback()  # annuler transaction
-conn.close()  # fermer la connection
+conn.close()     # fermer la connection
 ```
 
 ## Syntaxe avec with ##
@@ -1132,12 +1147,12 @@ conn.close()  # fermer la connection
 
 ``` python
 with sqlite3.connect("user/password@database") as conn:
-    # on effectue nos requêtes dans la BDD
+    # requêtes dans la BDD
 ```
 
 ## L'objet curseur ##
 
-* Représente une instruction SQL sous format texte
+* Objet pour envoyer des requêtes SQL via la connection
 * Utilisé pour parcourir les résultats d'une requête SQL
 
 ``` python
@@ -1146,7 +1161,7 @@ curs = conn.cursor()
 curs.execute(sql_string [, parameters])  # execute requete sql
 ```
 
-## Les requêtes prises en charge ##
+## Requêtes prises en charge ##
 
 * Tous types de requêtes SQL acceptés
 
@@ -1155,7 +1170,7 @@ curs.execute("CREATE TABLE ...")
 curs.execute("UPDATE ...")
 curs.execute("INSERT INTO ...")
 curs.execute("SELECT ...")
-
+...
 ```
 
 ## Passage de paramètres ##
@@ -1180,6 +1195,8 @@ for row in results:
 ```
 
 ## Exemples ##
+
+* `curs.rowcount` => nombre de lignes impactées par la dernière opération 
 
 ``` python
 >>> import sqlite3
@@ -1206,7 +1223,7 @@ for row in results:
 
 ## Exemples ##
 
-* Utilisation de `fetchall()` pour avoir tous les résultats d'un coup
+* `fetchall()` => avoir tous les résultats d'un coup
 
 ``` python
 >>> curs.execute('select * from people')
@@ -1223,7 +1240,7 @@ for row in results:
 
 ## Exemples ##
 
-* Possibilité de ne retenir que certaines colonnes en Python (semblable aux dictionnaires)
+* Possibilité de ne retenir que certaines colonnes en Python
 
 ``` python
 >>> curs.execute('select * from people')
@@ -1251,7 +1268,7 @@ Pat : 90000
 
 ## Exemples ##
 
-* Utilisation fe `fetchone()` pour n'avoir qu'une ligne de résultat à la fois
+* `fetchone()` =>r n'avoir qu'une ligne de résultat à la fois
 
 ``` python
 >>> curs.execute('select * from people')
@@ -1266,12 +1283,12 @@ Pat : 90000
 ('Ann', 'mus', 60000)
 ('Tom', 'mgr', 100000)
 ('Kim', 'adm', 30000)
-('pat', 'dev', 90000)
+('Pat', 'dev', 90000)
 ```
 
 ## Exemples ##
 
-* `rowcount` indique le nombre de lignes impactées par la requête
+* `rowcount` => nombre de lignes impactées par la requête
 
 ``` python
 >>> curs.execute('update people set pay=? where pay <= ?', [65000, 60000])
@@ -1280,12 +1297,21 @@ Pat : 90000
 >>> curs.execute('select * from people')
 >>> curs.fetchall()
 [('Bob', 'dev', 65000), ('Sue', 'mus', 70000), ('Ann', 'mus', 65000), ('Tom', 'mgr',
-100000), ('Kim', 'adm', 65000), ('pat', 'dev', 90000)]
+100000), ('Kim', 'adm', 65000), ('Pat', 'dev', 90000)]
 ```
 
 ## Exemples ##
 
-* Accès à la description des colonnes (`curs.description`)
+* `curs.description` => description des colonnes
+
+``` python
+>>> curs.execute('select * from people')
+>>> curs.description
+(('name', None, None, None, None, None, None), ('job', None, None, None, None, None,
+None), ('pay', None, None, None, None, None, None))
+```
+
+## Exemples ##
 
 ``` python
 >>> curs.execute('select * from people')
@@ -1307,30 +1333,31 @@ pay  => 65000
 
 ## Exemples ##
 
-* Possible de faire en Python ce que font de grosses requêtes compliquées
+* Possibilité de déporter en Python les calculs de grosses requêtes compliquées
+	* mais attention à la mémoire et aux performances
 
 ``` python
->>> query = ("select name from people where job = 'devel' and "
-...                "pay > (select avg(pay) from people where job = 'devel')")
+>>> query = ("select name from people where job = 'devel'"
+...                "and pay > (select avg(pay) from people where job = 'devel')")
 >>> curs.execute(query)
 >>> curs.fetchall()
-[('kim',)]
+[('Kim',)]
 ```
 
 ```
 >>> curs.execute("select name, pay from people where job = 'devel'")
 >>> result = curs.fetchall()
->>> avg = sum(rec[1] for rec in result) / len(result)
+>>> avg = sum(row[1] for row in result) / len(result)  # calcul du salaire moyen en python
 >>> print([rec[0] for rec in result if rec[1] > avg])
-['kim']
+['Kim']
 ```
 
+## ORM ##
 
-## Mapping classes-bdd ##
-* Classiquement
-    * Classe = table
-    * Objet = ligne
-    * Attribut = colonne
-
-
+* Object Relationnal Model
+* Couche intermédiaire entre le SGBD et le programme
+* Donner l'illustion de travailler avec une BDD orientée objets
+* Solution au problème du mapping objet/relationnel
+* Exemple
+	* SQLAlchemy
 

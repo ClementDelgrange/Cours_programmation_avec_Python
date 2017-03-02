@@ -1143,45 +1143,70 @@ Remarque : plus généralement, un décorateur est quelque chose que l'on ajoute
 </section>
 <section id="bases-de-données" class="level1">
 <h1>Bases de données</h1>
-<section id="pourquoi-quoi" class="level2">
-<h2>Pourquoi ? Quoi ?</h2>
+<section id="sgbd-en-python" class="level2">
+<h2>SGBD en Python</h2>
+<ul>
+<li>Intérêts
 <ul>
 <li>Persistance des données</li>
-<li><p>Données structurées</p></li>
-<li>Différents systèmes de gestion de bases de données</li>
-<li>Librairies Python pour manipuler les plus courants
-<ul>
-<li><code>sqlite</code>, <code>psycopg</code>, <code>mysql.connector</code>...</li>
-<li>fonctionnement équivalent pour chacune d'elles</li>
+<li>Structuration des données</li>
 </ul></li>
-<li>Object Relationnal Model (ORM) pour s'abstraire du SGBD
+<li>Les solutions
 <ul>
-<li>SQLAlchemy</li>
+<li><code>sqlite</code></li>
+<li><code>psycopg</code></li>
+<li><code>mysql.connector</code></li>
+<li>...</li>
+<li><em>nombreuses librairies pour les SGBD les plus courants</em></li>
+<li>API commune</li>
 </ul></li>
 </ul>
 </section>
 <section id="sqlite" class="level2">
 <h2>SQLite</h2>
 <ul>
-<li>Moteur de BDDR</li>
-<li>Moteur intégré au programme</li>
-<li>BDD dans un seul fichier indépendant de la plateforme</li>
-<li>Librairie standard de Python</li>
+<li>Base de données relationnelle (=&gt; SQL)</li>
+<li>Pas d'architecture client-serveur traditionnelle</li>
 </ul>
+<figure>
+<img src="img/sqlite_architecture.png" alt="Architecture SQLite - source Wikipedia" /><figcaption>Architecture SQLite - source Wikipedia</figcaption>
+</figure>
+<ul>
+<li>BDD dans un seul fichier indépendant de la plateforme</li>
+<li>Extension spatiale SpatiaLite</li>
+<li>Exemples d'usage :
+<ul>
+<li>systèmes embarqués, profils Firefox...</li>
+</ul></li>
+</ul>
+</section>
+<section id="sqlite-en-python" class="level2">
+<h2>SQLite en Python</h2>
+<ul>
+<li>Librairie standard de Python
+<ul>
+<li>rien besoin d'installer</li>
+</ul></li>
+</ul>
+<p></br></p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> sqlite3</code></pre></div>
 </section>
 <section id="lobjet-connexion" class="level2">
 <h2>L'objet connexion</h2>
 <ul>
 <li>Représente une connexion à une base de données</li>
-<li>Interface pour valider (commit) ou annuler (rollback) les transactions</li>
-<li>Génère les curseurs</li>
+<li>Interface pour valider ou annuler les transactions
+<ul>
+<li><em>commit</em> / <em>rollback</em></li>
+<li>transaction = ensemble d'opérations SQL</li>
+</ul></li>
+<li>Génère des curseurs</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;user/password@database&quot;</span>)
 
-conn.commit()  <span class="co"># valider transaction</span>
+conn.commit()    <span class="co"># valider transaction</span>
 conn.rollback()  <span class="co"># annuler transaction</span>
-conn.close()  <span class="co"># fermer la connection</span></code></pre></div>
+conn.close()     <span class="co"># fermer la connection</span></code></pre></div>
 </section>
 <section id="syntaxe-avec-with" class="level2">
 <h2>Syntaxe avec with</h2>
@@ -1190,27 +1215,28 @@ conn.close()  <span class="co"># fermer la connection</span></code></pre></div>
 <li>Pour éviter d'oublier de refermer la connexion</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;user/password@database&quot;</span>) <span class="im">as</span> conn:
-    <span class="co"># on effectue nos requêtes dans la BDD</span></code></pre></div>
+    <span class="co"># requêtes dans la BDD</span></code></pre></div>
 </section>
 <section id="lobjet-curseur" class="level2">
 <h2>L'objet curseur</h2>
 <ul>
-<li>Représente une instruction SQL sous format texte</li>
+<li>Objet pour envoyer des requêtes SQL via la connection</li>
 <li>Utilisé pour parcourir les résultats d'une requête SQL</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">curs <span class="op">=</span> conn.cursor()
 
 curs.execute(sql_string [, parameters])  <span class="co"># execute requete sql</span></code></pre></div>
 </section>
-<section id="les-requêtes-prises-en-charge" class="level2">
-<h2>Les requêtes prises en charge</h2>
+<section id="requêtes-prises-en-charge" class="level2">
+<h2>Requêtes prises en charge</h2>
 <ul>
 <li>Tous types de requêtes SQL acceptés</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">curs.execute(<span class="st">&quot;CREATE TABLE ...&quot;</span>)
 curs.execute(<span class="st">&quot;UPDATE ...&quot;</span>)
 curs.execute(<span class="st">&quot;INSERT INTO ...&quot;</span>)
-curs.execute(<span class="st">&quot;SELECT ...&quot;</span>)</code></pre></div>
+curs.execute(<span class="st">&quot;SELECT ...&quot;</span>)
+...</code></pre></div>
 </section>
 <section id="passage-de-paramètres" class="level2">
 <h2>Passage de paramètres</h2>
@@ -1233,6 +1259,9 @@ results <span class="op">=</span> curs.fetchall()
 </section>
 <section id="exemples" class="level2">
 <h2>Exemples</h2>
+<ul>
+<li><code>curs.rowcount</code> =&gt; nombre de lignes impactées par la dernière opération</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> sqlite3
 <span class="op">&gt;&gt;&gt;</span> conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;dbase1&#39;</span>)
 <span class="op">&gt;&gt;&gt;</span> curs <span class="op">=</span> conn.cursor()
@@ -1255,7 +1284,7 @@ results <span class="op">=</span> curs.fetchall()
 <section id="exemples-2" class="level2">
 <h2>Exemples</h2>
 <ul>
-<li>Utilisation de <code>fetchall()</code> pour avoir tous les résultats d'un coup</li>
+<li><code>fetchall()</code> =&gt; avoir tous les résultats d'un coup</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
 <span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> row <span class="kw">in</span> curs.fetchall():
@@ -1271,7 +1300,7 @@ results <span class="op">=</span> curs.fetchall()
 <section id="exemples-3" class="level2">
 <h2>Exemples</h2>
 <ul>
-<li>Possibilité de ne retenir que certaines colonnes en Python (semblable aux dictionnaires)</li>
+<li>Possibilité de ne retenir que certaines colonnes en Python</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
 <span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> (name, job, pay) <span class="kw">in</span> curs.fetchall():
@@ -1297,7 +1326,7 @@ Pat : <span class="dv">90000</span></code></pre></div>
 <section id="exemples-5" class="level2">
 <h2>Exemples</h2>
 <ul>
-<li>Utilisation fe <code>fetchone()</code> pour n'avoir qu'une ligne de résultat à la fois</li>
+<li><code>fetchone()</code> =&gt;r n'avoir qu'une ligne de résultat à la fois</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
 <span class="op">&gt;&gt;&gt;</span> <span class="cf">while</span> <span class="va">True</span>:
@@ -1311,12 +1340,12 @@ Pat : <span class="dv">90000</span></code></pre></div>
 (<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">60000</span>)
 (<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>, <span class="dv">100000</span>)
 (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">30000</span>)
-(<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)</code></pre></div>
+(<span class="st">&#39;Pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)</code></pre></div>
 </section>
 <section id="exemples-6" class="level2">
 <h2>Exemples</h2>
 <ul>
-<li><code>rowcount</code> indique le nombre de lignes impactées par la requête</li>
+<li><code>rowcount</code> =&gt; nombre de lignes impactées par la requête</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;update people set pay=? where pay &lt;= ?&#39;</span>, [<span class="dv">65000</span>, <span class="dv">60000</span>])
 <span class="op">&gt;&gt;&gt;</span> curs.rowcount
@@ -1324,13 +1353,20 @@ Pat : <span class="dv">90000</span></code></pre></div>
 <span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
 <span class="op">&gt;&gt;&gt;</span> curs.fetchall()
 [(<span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;Sue&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">70000</span>), (<span class="st">&#39;Ann&#39;</span>, <span class="st">&#39;mus&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;mgr&#39;</span>,
-<span class="dv">100000</span>), (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)]</code></pre></div>
+<span class="dv">100000</span>), (<span class="st">&#39;Kim&#39;</span>, <span class="st">&#39;adm&#39;</span>, <span class="dv">65000</span>), (<span class="st">&#39;Pat&#39;</span>, <span class="st">&#39;dev&#39;</span>, <span class="dv">90000</span>)]</code></pre></div>
 </section>
 <section id="exemples-7" class="level2">
 <h2>Exemples</h2>
 <ul>
-<li>Accès à la description des colonnes (<code>curs.description</code>)</li>
+<li><code>curs.description</code> =&gt; description des colonnes</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
+<span class="op">&gt;&gt;&gt;</span> curs.description
+((<span class="st">&#39;name&#39;</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>), (<span class="st">&#39;job&#39;</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>,
+<span class="va">None</span>), (<span class="st">&#39;pay&#39;</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>))</code></pre></div>
+</section>
+<section id="exemples-8" class="level2">
+<h2>Exemples</h2>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> curs.execute(<span class="st">&#39;select * from people&#39;</span>)
 <span class="op">&gt;&gt;&gt;</span> colnames <span class="op">=</span> [desc[<span class="dv">0</span>] <span class="cf">for</span> desc <span class="kw">in</span> curs.description]
 <span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> row <span class="kw">in</span> curs.fetchall():
@@ -1346,30 +1382,35 @@ name <span class="op">=&gt;</span> Ann
 job  <span class="op">=&gt;</span> mus
 pay  <span class="op">=&gt;</span> <span class="dv">65000</span></code></pre></div>
 </section>
-<section id="exemples-8" class="level2">
+<section id="exemples-9" class="level2">
 <h2>Exemples</h2>
 <ul>
-<li>Possible de faire en Python ce que font de grosses requêtes compliquées</li>
+<li>Possibilité de déporter en Python les calculs de grosses requêtes compliquées
+<ul>
+<li>mais attention à la mémoire et aux performances</li>
+</ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> query <span class="op">=</span> (<span class="st">&quot;select name from people where job = &#39;devel&#39; and &quot;</span>
-...                <span class="st">&quot;pay &gt; (select avg(pay) from people where job = &#39;devel&#39;)&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">&gt;&gt;&gt;</span> query <span class="op">=</span> (<span class="st">&quot;select name from people where job = &#39;devel&#39;&quot;</span>
+...                <span class="st">&quot;and pay &gt; (select avg(pay) from people where job = &#39;devel&#39;)&quot;</span>)
 <span class="op">&gt;&gt;&gt;</span> curs.execute(query)
 <span class="op">&gt;&gt;&gt;</span> curs.fetchall()
-[(<span class="st">&#39;kim&#39;</span>,)]</code></pre></div>
+[(<span class="st">&#39;Kim&#39;</span>,)]</code></pre></div>
 <pre><code>&gt;&gt;&gt; curs.execute(&quot;select name, pay from people where job = &#39;devel&#39;&quot;)
 &gt;&gt;&gt; result = curs.fetchall()
-&gt;&gt;&gt; avg = sum(rec[1] for rec in result) / len(result)
+&gt;&gt;&gt; avg = sum(row[1] for row in result) / len(result)  # calcul du salaire moyen en python
 &gt;&gt;&gt; print([rec[0] for rec in result if rec[1] &gt; avg])
-[&#39;kim&#39;]</code></pre>
+[&#39;Kim&#39;]</code></pre>
 </section>
-<section id="mapping-classes-bdd" class="level2">
-<h2>Mapping classes-bdd</h2>
+<section id="orm" class="level2">
+<h2>ORM</h2>
 <ul>
-<li>Classiquement
+<li>Object Relationnal Model</li>
+<li>Couche intermédiaire entre le SGBD et le programme</li>
+<li>Donner l'illustion de travailler avec une BDD orientée objets</li>
+<li>Solution au problème du mapping objet/relationnel</li>
+<li>Exemple
 <ul>
-<li>Classe = table</li>
-<li>Objet = ligne</li>
-<li>Attribut = colonne</li>
+<li>SQLAlchemy</li>
 </ul></li>
 </ul>
 </section>
