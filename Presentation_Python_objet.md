@@ -1268,7 +1268,7 @@ Pat : 90000
 
 ## Exemples ##
 
-* `fetchone()` =>r n'avoir qu'une ligne de résultat à la fois
+* `fetchone()` => n'avoir qu'une ligne de résultat à la fois
 
 ``` python
 >>> curs.execute('select * from people')
@@ -1284,20 +1284,6 @@ Pat : 90000
 ('Tom', 'mgr', 100000)
 ('Kim', 'adm', 30000)
 ('Pat', 'dev', 90000)
-```
-
-## Exemples ##
-
-* `rowcount` => nombre de lignes impactées par la requête
-
-``` python
->>> curs.execute('update people set pay=? where pay <= ?', [65000, 60000])
->>> curs.rowcount
-3
->>> curs.execute('select * from people')
->>> curs.fetchall()
-[('Bob', 'dev', 65000), ('Sue', 'mus', 70000), ('Ann', 'mus', 65000), ('Tom', 'mgr',
-100000), ('Kim', 'adm', 65000), ('Pat', 'dev', 90000)]
 ```
 
 ## Exemples ##
