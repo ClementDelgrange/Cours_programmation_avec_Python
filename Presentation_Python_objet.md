@@ -1117,7 +1117,7 @@ class MaClasseAbstraite(object):
 
 * Librairie standard de Python
 	* rien besoin d'installer
-
+	* la doc : <https://docs.python.org/3/library/sqlite3.html>
 </br>
 
 ``` python
