@@ -25,17 +25,15 @@ interactions avec le joueur), elle-même distincte des interrogations de
 la base de données.
 
 1. Dans votre IDE préféré, créez un nouveau projet `Pokemon`.
-2. Ajoutez trois packages à votre projet (si votre IDE préféré est le 
- bloc note, nous vous rappelons qu'un package est simplement un 
- répertoire avec un fichier `__init__.py` à sa racine) : 
- `metier`, `ihm` et `bdd`.
-3. Récupérez le fichier `affichage.py` et placez le dans le package 
- `ihm`. Il contient trois méthodes :
-    * `afficher(message)` utilisée pour afficher des messages dans la console et
-     les copier dans un fichier de log;
-    * `logger(message)` pour écrire un message dans un fichier de log;
-    * `choisir(liste_choix, message)` pour inviter l'utilisateur à choisir un
-     élement parmis une liste de choix.
+2. Ajoutez trois packages à votre projet : `metier`, `ihm` et `bdd`.
+ (*si votre IDE préféré est le bloc note, IDLE ou Spyder, nous vous rappelons 
+ qu'un package est simplement un répertoire avec un fichier `__init__.py` à sa 
+ racine; si vous utiliser PyCharm, vous avez juste à effectuer un clic droit sur 
+ votre projet > New > Package*)
+3. Récupérez le répertoire  `pokemons_pour_etudiants` et copiez les fichiers 
+ qu'il contient dans les bons packages de votre projet. Prenez connaissance des 
+ différents codes fournis. La documentation doit vous aider à comprendre ce que 
+ font ou doivent faire les différentes fonctions.
 
 
 # Le modèle de l'application #
@@ -75,7 +73,7 @@ pokemon *normal*.
 
 La formule pour calculer les dégats est la suivante :
 
-```degats = (((niveau * 0.4 + 2) * force * puissance)/(defense * 50) + 2) * coeff```
+```degats = (((niveau * 0.4 + 2) * force * puissance)/(defense * 25) + 2) * coeff```
 
 où :
 
@@ -200,8 +198,8 @@ A ce stade le jeu n'est pas très intéressant car tout est automatique.
 Pour permettre au joueur de choisir ses pokemons / attaques, nous allons 
 maintenant ajouter la classe `Dresseur` 
 
-15. Dans un nouveau script `dresseur.py` ajoutez une classe abstraite
- `Dresseur` et deux classes qui en hérite `DresseurHumain` et 
+15. Dans le script `dresseur.py` observez comment est construite la classe 
+ abstraite `Dresseur` et ajoutez deux classes qui en hérite `DresseurHumain` et 
  `Dresseur Ordi`.
 16. Ajoutez la méthode `choisir_attaque(pokemon)` dans ces trois classes
  (elle est abstraite dans la classe abstraite `Dresseur`). Pour la 
@@ -212,6 +210,7 @@ Nous vous rappelons que toutes les interractions avec le joueur (affichage de
 message dans la console, choix d'une action) doivent être implémentées dans le
 package `ihm`.
 \end{note}
+
 17. Modifiez la fonction `affronter(cible)` précédente pour que le choix
  des attaques utilise les fonctions codées question 15.
 18. Sur le même principe, ajouter des méthodes `choisir_pokemon()` dans
@@ -228,30 +227,12 @@ de sauvegarder une partie pour y rejouer plus tard. Nous utiliserons pour cela
 une base de données SQLite. Nous en profiterons pour initialiser les pokemons et 
 dresseurs du jeu avec des enregistrements dans cette base.
 
-20. Récupérez les fichiers `__main__.py`, `utilitaire.py` que vous placerez
-  respectivement à la racine du projet et dans l package `metier`. Placez
- également les deux fichiers `config_bdd.py` et `acces_bdd.py` dans le package 
- `bdd`.
-
-* Le fichier `__main__.py` sera la fichier à exécuter pour lancer le jeu. Il 
- contient uniquement des appels de fonctions situées dans les deux autres 
- fichiers.
-* `acces_bdd.py` contient quatre fonction permettant d'utiliser une base de 
- données SQLite. Ces fonctions ne sont pas encore implémentées.
-* `config_bdd.py` contient une unique fonction `creer_bdd(db_name)` avec les
- instructions SQL permettant de créer une base de données pour notre jeu. Ce 
- fichier utilise les quatre fonctions d'`acces_bdd.py`.
-* `utilitaire.py` contient diverses fonctions utiles dans le programme. 
- Certaines sont déjà implémentées. D'autres le seront dans la suite de ce TP.
-
-Dans tous les cas, la documentation vous permet de comprendre ce que doivent 
-faire les différentes fonctions.
-
-21. Complétez les quatre fonctions du script `acces_bdd.py` :
-22. Implémentez la fonction `initialiser_partie(db_name)` qui est appelée 
+20. Complétez les quatre fonctions du script `acces_bdd.py` :
+21. Implémentez la fonction `initialiser_partie(db_name)` qui est appelée 
  lorsqu'une partie a été chargée mais qu'elle ne contient pas de dresser humain 
  (il s'agit donc d'une nouvelle partie). La fonction doit demander au joueur le 
  nous qu'il souhaite donner à son dresseur, la pokemon avec lequel il désire 
  commencer (bulbizare, salamèche ou carapuce) et comment il veut le nommer.
-23. Il ne reste plus qu'à permettre de sauvegarder la partie pour revenir y
+22. Il ne reste plus qu'à permettre de sauvegarder la partie pour revenir y
  jouer après avoir fermé le jeu. Implémentez la méthode `sauvegarder_partie()`.
+
