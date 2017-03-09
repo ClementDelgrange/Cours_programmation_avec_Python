@@ -224,11 +224,13 @@ dresseurs du jeu avec des enregistrements dans cette base.
 Dans tous les cas, la documentation vous permet de comprendre ce que doivent 
 faire les différentes fonctions.
 
-18. Complétez les quatre fonctions du script `acces_bdd.py` :
+18. Complétez les quatre fonctions du script `acces_bdd.py`.
 19. Implémentez la fonction `initialiser_partie(db_name)` qui est appelée 
- lorsqu'une partie a été chargée mais qu'elle ne contient pas de dresser humain 
- (il s'agit donc d'une nouvelle partie). La fonction doit demander au joueur le 
- nous qu'il souhaite donner à son dresseur, la pokemon avec lequel il désire 
- commencer (bulbizare, salamèche ou carapuce) et comment il veut le nommer.
+ lorsqu'une partie a été chargée mais qu'elle ne contient pas de dresseur humain 
+ (il s'agit d'une nouvelle partie). La fonction demande au joueur le 
+ nom qu'il souhaite donner à son dresseur, la pokemon avec lequel il désire 
+ commencer (bulbizare, salamèche ou carapuce) et comment il veut l'appeler.
 20. Il ne reste plus qu'à permettre de sauvegarder la partie pour revenir y
- jouer après avoir fermé le jeu. Implémentez la méthode `sauvegarder_partie()`.
+ jouer après avoir fermé le jeu. Implémentez la méthode `sauvegarder_partie()`, 
+ appelée lorsque le joueur appuye sur la lettre q dans la boucle principale de 
+ jeu.
