@@ -14,6 +14,8 @@ Ce cours est constituée d'un support de cours général introduisant les bases 
 
 Enfin des exercices / TP accompagnent ces supports de cours. Ils ne sont pas ordonnées en reprenant la même logique que le plan du cours, mais les notions abordées sont rappelées en introduction de chacun d'eux.
 
+Les corrections ne sont pas systématiquement présentes (voir rarement en fait :-) mais vous pouvez toujours m'envoyer un message si vous avez besoin d'un conseil).
+
 
 ## Regénérer les slides et pdf par vous même
 Les supports de cours sont rédigés en markdown. La génération des documents finaux (cours et TP en pdf, présentations en HTML) fait appel à l'utilitaire [pandoc](https://pandoc.org/). Pour les présentations la libraire [reveal.js](https://revealjs.com/#/) doit avoir été téléchargée pour bénéficier de la mise en page correcte.
