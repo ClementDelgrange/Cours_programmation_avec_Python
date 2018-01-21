@@ -1,3 +1,7 @@
+% Bases du langage
+% C. Delgrange
+% 2018
+
 Un ensemble de petits exercices pour travailler les bases du langages (types de données de base, tests, boucles...).
 
 

@@ -2,15 +2,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
-\usepackage[table]{xcolor} 
-\usepackage{longtable} 
+\usepackage[table]{xcolor}
+\usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage[font=small]{caption}
 
 % Marges du document
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} 
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 % Couleurs utilisées dans le document
 \usepackage{color}
@@ -46,7 +46,7 @@
 	tabsize=2,
 	breaklines=true,
 	extendedchars=true,
-	xleftmargin=1cm, 
+	xleftmargin=1cm,
 	xrightmargin=1cm,
 	backgroundcolor=\color{lightgray},
 	literate=%
@@ -106,7 +106,7 @@
 }{%
   \endorigfigure
 }
-  
+
 % Patch : probleme de taille maximale des images
 \makeatletter
 \def\maxwidth{\ifdim \Gin@nat@width > 0.8\linewidth 0.8\linewidth \else \Gin@nat@width \fi}
@@ -124,8 +124,8 @@
 \begin{center}
 	\hrule
 	\vspace{1em}
-	{\small \textit{$author$}}\\	
-	\vspace{0.5em}
+	%{\small \textit{$author$}}\\
+	%\vspace{0.5em}
 	{\Large \bfseries{$title$}}
 	\vspace{1em}
 	\hrule
